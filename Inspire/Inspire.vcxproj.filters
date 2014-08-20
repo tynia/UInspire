@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{c0cc383f-3829-437b-a33b-c76f0b967cba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\xml">
+      <UniqueIdentifier>{f66644eb-2500-498a-9f5b-58a1243664cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\log">
+      <UniqueIdentifier>{998e6525-955f-49df-866c-ce37d3309f46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\control">
+      <UniqueIdentifier>{327ccc9f-688d-4fd1-9723-ee3917795f00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\util">
+      <UniqueIdentifier>{0f452b2e-3b0e-4626-bf4e-ff42b74ed013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\render">
+      <UniqueIdentifier>{247a612b-8663-4524-88ad-acb4b31eb08e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{40efce65-4b70-4a57-a8ba-16e81919a946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{ef6b7add-751f-4150-b02e-2a9e87ab354b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\control">
+      <UniqueIdentifier>{cbb8b6f4-76da-4dd5-8fa2-b5cb9092d230}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\control\internal">
+      <UniqueIdentifier>{2e8050ee-f3b4-4d64-ba35-5937e516b187}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\log">
+      <UniqueIdentifier>{68832526-2d9e-446d-9b6a-002da2d605d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\render">
+      <UniqueIdentifier>{53cbe2b9-5daf-4fc7-873a-72543368a8f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\util">
+      <UniqueIdentifier>{8cefafd5-5012-4259-9259-66fd38d73476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\xml">
+      <UniqueIdentifier>{a0647892-d7aa-4e1e-a2fa-98e2a860c667}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\xml\XMLWriter.h">
+      <Filter>src\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\xml\XMLReader.h">
+      <Filter>src\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\xml\XMLNode.h">
+      <Filter>src\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\xml\XMLMemoryPool.h">
+      <Filter>src\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\xml\XMLHelper.h">
+      <Filter>src\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\xml\XMLDocument.h">
+      <Filter>src\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\xml\XMLAttribute.h">
+      <Filter>src\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\log\LogHelper.h">
+      <Filter>src\log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\log\InspireLog.h">
+      <Filter>src\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xml\XMLUtil.h">
+      <Filter>include\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xml\XMLBase.h">
+      <Filter>include\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xml\IXMLNode.h">
+      <Filter>include\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xml\IXMLDocument.h">
+      <Filter>include\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xml\IXMLAttribute.h">
+      <Filter>include\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util\CharConverter.h">
+      <Filter>include\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\render\IUIRender.h">
+      <Filter>include\render</Filter>
+    </ClInclude>
+    <ClInclude Include="include\log\LogBase.h">
+      <Filter>include\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\log\IInspireLog.h">
+      <Filter>include\log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\InputManager.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\InvokerManager.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\MemoryPool.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\SimpleMemoryPool.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\UIBase.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\UILayoutBuilder.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\UIRenderFactory.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\UIWndData.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\UIWndManager.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIButton.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UICheckBox.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIComboBox.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UICustomWnd.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIEditBox.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIImage.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIItem.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIList.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIMenu.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIProgressBar.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIRichEditBox.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIScrollBar.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UISlider.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIStaticText.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UITree.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\UIWnd.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIButton.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUICheckBox.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIComboBox.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUICustomWnd.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIEditBox.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIImage.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIItem.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIList.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIMenu.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIProgressBar.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIRichEditBox.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIScrollBar.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUISlider.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIStaticText.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUITree.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIWnd.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\IUIWndManager.h">
+      <Filter>include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\UIInvoker.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\UIHelper.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\UIWndEvent.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\control\internal\UIWndFactory.h">
+      <Filter>src\control\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\UID3DRender.h">
+      <Filter>src\render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\UIGDIRender.h">
+      <Filter>src\render</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util\Inspire.h">
+      <Filter>include\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util\InspireInternal.h">
+      <Filter>include\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util\InspireUtil.h">
+      <Filter>include\util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\util\MainTest.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml\XMLAttribute.cpp">
+      <Filter>src\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml\XMLDocument.cpp">
+      <Filter>src\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml\XMLHelper.cpp">
+      <Filter>src\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml\XMLMemoryPool.cpp">
+      <Filter>src\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml\XMLNode.cpp">
+      <Filter>src\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml\XMLReader.cpp">
+      <Filter>src\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml\XMLWriter.cpp">
+      <Filter>src\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\CharConverter.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml\XMLBase.cpp">
+      <Filter>src\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\log\InspireLog.cpp">
+      <Filter>src\log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\internal\InputManager.cpp">
+      <Filter>src\control\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\internal\InvokerManager.cpp">
+      <Filter>src\control\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\internal\MemoryPool.cpp">
+      <Filter>src\control\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\internal\UIBase.cpp">
+      <Filter>src\control\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\internal\UILayoutBuilder.cpp">
+      <Filter>src\control\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\internal\UIRenderFactory.cpp">
+      <Filter>src\control\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\internal\UIWndManager.cpp">
+      <Filter>src\control\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIButton.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UICheckBox.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIComboBox.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UICustomWnd.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIEditBox.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIImage.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIItem.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIList.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIMenu.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIProgressBar.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIRichEditBox.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIScrollBar.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UISlider.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIStaticText.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UITree.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\UIWnd.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\internal\UIWndFactory.cpp">
+      <Filter>src\control\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\InspireInternal.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

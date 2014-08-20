@@ -1,0 +1,13 @@
+<config>
+   <logitem>
+      <item catagory="emerg" filename="emerg.log" priority="101"/>
+      <item catagory="fatal" filename="fatal.log" priority="201"/>
+      <item catagory="critical" filename="critical.log" priority="301"/>
+      <item catagory="error" filename="error.log" priority="401"/>
+      <item catagory="warning" filename="warning.log" priority="501"/>
+      <item catagory="debug" filename="debug.log" priority="601"/>
+      <item catagory="notice" filename="notice.log" priority="701"/>
+      <item catagory="info" filename="info.log" priority="801"/>
+   </logitem>
+</config>
+

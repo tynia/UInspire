@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D143DC12-36AB-4DD9-A607-28DEBE249C0F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Inspire</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir)\include\util\;$(ProjectDir)\include\control\;$(ProjectDir)\include\log\;$(ProjectDir)\include\xml\;$(ProjectDir)\include\render\;$(ProjectDir)\src\control\;$(ProjectDir)\src\xml\</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;INSPIRE_EXPORTS;%(PreprocessorDefinitions);INSPIRE_DLL_BUILD</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;INSPIRE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\control\IUIButton.h" />
+    <ClInclude Include="include\control\IUICheckBox.h" />
+    <ClInclude Include="include\control\IUIComboBox.h" />
+    <ClInclude Include="include\control\IUICustomWnd.h" />
+    <ClInclude Include="include\control\IUIEditBox.h" />
+    <ClInclude Include="include\control\IUIImage.h" />
+    <ClInclude Include="include\control\IUIItem.h" />
+    <ClInclude Include="include\control\IUIList.h" />
+    <ClInclude Include="include\control\IUIMenu.h" />
+    <ClInclude Include="include\control\IUIProgressBar.h" />
+    <ClInclude Include="include\control\IUIRichEditBox.h" />
+    <ClInclude Include="include\control\IUIScrollBar.h" />
+    <ClInclude Include="include\control\IUISlider.h" />
+    <ClInclude Include="include\control\IUIStaticText.h" />
+    <ClInclude Include="include\control\IUITree.h" />
+    <ClInclude Include="include\control\IUIWnd.h" />
+    <ClInclude Include="include\control\IUIWndManager.h" />
+    <ClInclude Include="include\log\IInspireLog.h" />
+    <ClInclude Include="include\log\LogBase.h" />
+    <ClInclude Include="include\render\IUIRender.h" />
+    <ClInclude Include="include\util\CharConverter.h" />
+    <ClInclude Include="include\util\Inspire.h" />
+    <ClInclude Include="include\util\InspireUtil.h" />
+    <ClInclude Include="include\util\InspireInternal.h" />
+    <ClInclude Include="include\xml\IXMLAttribute.h" />
+    <ClInclude Include="include\xml\IXMLDocument.h" />
+    <ClInclude Include="include\xml\IXMLNode.h" />
+    <ClInclude Include="include\xml\XMLBase.h" />
+    <ClInclude Include="include\xml\XMLUtil.h" />
+    <ClInclude Include="src\control\internal\InputManager.h" />
+    <ClInclude Include="src\control\internal\InvokerManager.h" />
+    <ClInclude Include="src\control\internal\MemoryPool.h" />
+    <ClInclude Include="src\control\internal\SimpleMemoryPool.h" />
+    <ClInclude Include="src\control\internal\UIBase.h" />
+    <ClInclude Include="src\control\internal\UILayoutBuilder.h" />
+    <ClInclude Include="src\control\internal\UIRenderFactory.h" />
+    <ClInclude Include="src\control\internal\UIWndData.h" />
+    <ClInclude Include="src\control\internal\UIWndManager.h" />
+    <ClInclude Include="src\control\internal\UIWndFactory.h" />
+    <ClInclude Include="src\control\internal\UIHelper.h" />
+    <ClInclude Include="src\control\internal\UIInvoker.h" />
+    <ClInclude Include="src\control\internal\UIWndEvent.h" />
+    <ClInclude Include="src\control\UIButton.h" />
+    <ClInclude Include="src\control\UICheckBox.h" />
+    <ClInclude Include="src\control\UIComboBox.h" />
+    <ClInclude Include="src\control\UICustomWnd.h" />
+    <ClInclude Include="src\control\UIEditBox.h" />
+    <ClInclude Include="src\control\UIImage.h" />
+    <ClInclude Include="src\control\UIItem.h" />
+    <ClInclude Include="src\control\UIList.h" />
+    <ClInclude Include="src\control\UIMenu.h" />
+    <ClInclude Include="src\control\UIProgressBar.h" />
+    <ClInclude Include="src\control\UIRichEditBox.h" />
+    <ClInclude Include="src\control\UIScrollBar.h" />
+    <ClInclude Include="src\control\UISlider.h" />
+    <ClInclude Include="src\control\UIStaticText.h" />
+    <ClInclude Include="src\control\UITree.h" />
+    <ClInclude Include="src\control\UIWnd.h" />
+    <ClInclude Include="src\log\InspireLog.h" />
+    <ClInclude Include="src\log\LogHelper.h" />
+    <ClInclude Include="src\render\UID3DRender.h" />
+    <ClInclude Include="src\render\UIGDIRender.h" />
+    <ClInclude Include="src\xml\XMLAttribute.h" />
+    <ClInclude Include="src\xml\XMLDocument.h" />
+    <ClInclude Include="src\xml\XMLHelper.h" />
+    <ClInclude Include="src\xml\XMLMemoryPool.h" />
+    <ClInclude Include="src\xml\XMLNode.h" />
+    <ClInclude Include="src\xml\XMLReader.h" />
+    <ClInclude Include="src\xml\XMLWriter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\util\MainTest.cpp" />
+    <ClCompile Include="src\control\internal\InputManager.cpp" />
+    <ClCompile Include="src\control\internal\InvokerManager.cpp" />
+    <ClCompile Include="src\control\internal\MemoryPool.cpp" />
+    <ClCompile Include="src\control\internal\UIBase.cpp" />
+    <ClCompile Include="src\control\internal\UILayoutBuilder.cpp" />
+    <ClCompile Include="src\control\internal\UIRenderFactory.cpp" />
+    <ClCompile Include="src\control\internal\UIWndManager.cpp" />
+    <ClCompile Include="src\control\internal\UIWndFactory.cpp" />
+    <ClCompile Include="src\control\UIButton.cpp" />
+    <ClCompile Include="src\control\UICheckBox.cpp" />
+    <ClCompile Include="src\control\UIComboBox.cpp" />
+    <ClCompile Include="src\control\UICustomWnd.cpp" />
+    <ClCompile Include="src\control\UIEditBox.cpp" />
+    <ClCompile Include="src\control\UIImage.cpp" />
+    <ClCompile Include="src\control\UIItem.cpp" />
+    <ClCompile Include="src\control\UIList.cpp" />
+    <ClCompile Include="src\control\UIMenu.cpp" />
+    <ClCompile Include="src\control\UIProgressBar.cpp" />
+    <ClCompile Include="src\control\UIRichEditBox.cpp" />
+    <ClCompile Include="src\control\UIScrollBar.cpp" />
+    <ClCompile Include="src\control\UISlider.cpp" />
+    <ClCompile Include="src\control\UIStaticText.cpp" />
+    <ClCompile Include="src\control\UITree.cpp" />
+    <ClCompile Include="src\control\UIWnd.cpp" />
+    <ClCompile Include="src\log\InspireLog.cpp" />
+    <ClCompile Include="src\util\CharConverter.cpp" />
+    <ClCompile Include="src\util\InspireInternal.cpp" />
+    <ClCompile Include="src\xml\XMLAttribute.cpp" />
+    <ClCompile Include="src\xml\XMLDocument.cpp" />
+    <ClCompile Include="src\xml\XMLHelper.cpp" />
+    <ClCompile Include="src\xml\XMLMemoryPool.cpp" />
+    <ClCompile Include="src\xml\XMLNode.cpp" />
+    <ClCompile Include="src\xml\XMLBase.cpp" />
+    <ClCompile Include="src\xml\XMLReader.cpp" />
+    <ClCompile Include="src\xml\XMLWriter.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

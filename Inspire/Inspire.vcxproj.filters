@@ -43,9 +43,6 @@
     <Filter Include="src\xml">
       <UniqueIdentifier>{a0647892-d7aa-4e1e-a2fa-98e2a860c667}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\window">
-      <UniqueIdentifier>{9c2a8577-0993-459f-9f36-fe8ed1c77324}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\xml\XMLWriter.h">

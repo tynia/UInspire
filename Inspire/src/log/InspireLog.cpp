@@ -1,5 +1,5 @@
 #include "InspireLog.h"
-#include "../xml/XMLDocument.h"
+#include "XMLDocument.h"
 
 INSPIRE_LOG_BENGIN
 // InspireLog 
@@ -8,7 +8,6 @@ InspireLog::InspireLog( const char* category, const char* filename, int priority
   _isOpen( false ),
   _category( category ),
   _filename( filename )
-
 {
 
 }

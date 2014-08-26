@@ -19,6 +19,7 @@
 #define _INSPIRE_RENDER_H_
 
 #include "Inspire.h"
+#include "InspireInternal.h"
 INSPIRE_CLIENT_BENGIN
 enum RenderUID
 {

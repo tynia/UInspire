@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_BUTTON_H_
 #define _INSPIRE_UI_BUTTON_H_
 
-#include "../../interface/IUIButton.h"
+#include "IUIButton.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

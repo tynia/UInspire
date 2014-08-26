@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_CUSTOMWND_H_
 #define _INSPIRE_UI_CUSTOMWND_H_
 
-#include "../../interface/IUICustomWnd.h"
+#include "IUICustomWnd.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

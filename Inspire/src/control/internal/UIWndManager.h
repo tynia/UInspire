@@ -15,11 +15,12 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_UI_WNDMANAGER_H_
-#define _INSPIRE_UI_WNDMANAGER_H_
+#ifndef _INSPIRE_UI_WND_MANAGER_H_
+#define _INSPIRE_UI_WND_MANAGER_H_
 
 #include "IUIWnd.h"
 #include "IXMLNode.h"
+#include "IUIWndManager.h"
 
 class CUIBase;
 
@@ -28,6 +29,7 @@ class CUIWndFactory;
 class IUIRender;
 class CInputManager;
 class CEventQueue;
+class CUIWnd;
 
 #define LOWWORD( l )   ( ( WORD )( ( ( DWORD_PTR )( l ) ) & 0xffff ) )
 #define HIGHWORD( l )   ( ( WORD )( ( ( ( DWORD_PTR )( l ) ) >> 16 ) & 0xffff ) )

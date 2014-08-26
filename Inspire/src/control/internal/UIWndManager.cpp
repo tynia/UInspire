@@ -17,11 +17,11 @@
 *******************************************************************************/
 #include "UIWndManager.h"
 #include "UIWnd.h"
-#include "IXMLDocument.h"
 #include "UIWndFactory.h"
 #include "UIRenderFactory.h"
 #include "UIBase.h"
 #include "IUIRender.h"
+#include <XMLDocument.h>
 
 INSPIRE_CLIENT_BENGIN
 CUIWndManager* CUIWndManager::static_Instance = NULL;

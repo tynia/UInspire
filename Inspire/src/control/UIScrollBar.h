@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_SCROLLBAR_H_
 #define _INSPIRE_UI_SCROLLBAR_H_
 
-#include "../../interface/IUIScrollBar.h"
+#include "IUIScrollBar.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

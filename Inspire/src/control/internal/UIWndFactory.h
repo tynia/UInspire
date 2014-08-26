@@ -18,7 +18,23 @@
 #ifndef _INSPIRE_WINDOW_FACTORY_H_
 #define _INSPIRE_WINDOW_FACTORY_H_
 
-#include "SimpleMemoryPool.h"
+#include "InspireFreeList.h"
+#include "UIStaticText.h"
+#include "UIButton.h"
+#include "UICheckBox.h"
+#include "UIComboBox.h"
+#include "UIEditBox.h"
+#include "UIRichEditBox.h"
+#include "UIImage.h"
+#include "UIItem.h"
+#include "UIMenu.h"
+#include "UITree.h"
+#include "UIScrollBar.h"
+#include "UISlider.h"
+#include "UIProgressBar.h"
+#include "UIList.h"
+#include "UICustomWnd.h"
+#include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN
 class CUIWndFactory
@@ -32,22 +48,22 @@ public:
    void DeallocWndEntity( IUIWnd* wnd );
 
 private:
-   simple_pool<CUIStaticText>   _mempool_stt;
-   simple_pool<CUIButton>      _mempool_btn;
-   simple_pool<CUICheckBox>   _mempool_chk;
-   simple_pool<CUIComboBox>   _mempool_cbb;
-   simple_pool<CUIEditBox>      _mempool_edb;
-   simple_pool<CUIRichEditBox>   _mempool_reb;
-   simple_pool<CUIImage>      _mempool_img;
-   simple_pool<CUIItem>      _mempool_itm;
-   simple_pool<CUIMenu>      _mempool_mun;
-   simple_pool<CUITree>      _mempool_tre;
-   simple_pool<CUIScrollBar>   _mempool_scl;
-   simple_pool<CUISlider>      _mempool_sld;
-   simple_pool<CUIProgressBar>   _mempool_pgb;
-   simple_pool<CUIList>      _mempool_lst;
-   simple_pool<CUICustomWnd>   _mempool_ctw;
-   simple_pool<CUIWnd>         _mempool_wnd;
+   InspireFreeList<CUIStaticText>   _mempool_stt;
+   InspireFreeList<CUIButton>       _mempool_btn;
+   InspireFreeList<CUICheckBox>     _mempool_chk;
+   InspireFreeList<CUIComboBox>     _mempool_cbb;
+   InspireFreeList<CUIEditBox>      _mempool_edb;
+   InspireFreeList<CUIRichEditBox>  _mempool_reb;
+   InspireFreeList<CUIImage>        _mempool_img;
+   InspireFreeList<CUIItem>         _mempool_itm;
+   InspireFreeList<CUIMenu>         _mempool_mun;
+   InspireFreeList<CUITree>         _mempool_tre;
+   InspireFreeList<CUIScrollBar>    _mempool_scl;
+   InspireFreeList<CUISlider>       _mempool_sld;
+   InspireFreeList<CUIProgressBar>  _mempool_pgb;
+   InspireFreeList<CUIList>         _mempool_lst;
+   InspireFreeList<CUICustomWnd>    _mempool_ctw;
+   InspireFreeList<CUIWnd>          _mempool_wnd;
 };
 INSPIRE_CLIENT_END
 #endif

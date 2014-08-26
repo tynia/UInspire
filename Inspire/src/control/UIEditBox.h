@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_EDITBOX_H_
 #define _INSPIRE_UI_EDITBOX_H_
 
-#include "../../interface/IUIEditBox.h"
+#include "IUIEditBox.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

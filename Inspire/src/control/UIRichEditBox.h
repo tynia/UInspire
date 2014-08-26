@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_RICHEDIT_H_
 #define _INSPIRE_UI_RICHEDIT_H_
 
-#include "../../interface/IUIRichEditBox.h"
+#include "IUIRichEditBox.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

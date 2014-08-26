@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_RENDER_FACTORY_H_
 #define _INSPIRE_UI_RENDER_FACTORY_H_
 
-#include "../interface/render/IUIRender.h"
+#include "IUIRender.h"
 
 INSPIRE_CLIENT_BENGIN
 class CUIRenderFactory /*: public IUnknown*/

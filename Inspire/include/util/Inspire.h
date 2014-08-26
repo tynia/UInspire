@@ -20,7 +20,7 @@
 
 #if defined( _WIN32 ) || defined( _WINDOWS ) || defined( WIN32 )
 #include <tchar.h>
-#include <Windows.h>
+#include <windows.h>
 //Windows 下使用
 #define INSPIRE_IN_WINDOWS_32_PLATFORM
 //默认Unicode字符

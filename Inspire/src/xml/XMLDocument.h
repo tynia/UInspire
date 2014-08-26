@@ -18,6 +18,7 @@
 #ifndef _INSPIRE_XML_DOCUMENT_H_
 #define _INSPIRE_XML_DOCUMENT_H_
 
+#include "XMLBase.h"
 #include "IXMLDocument.h"
 #include "XMLNode.h"
 
@@ -27,6 +28,7 @@ class XMLMemoryPool;
 class XMLWriter;
 class XMLReader;
 class IXMLAttribute;
+class IXMLNode;
 
 class XMLDocument : public XMLNode, public IXMLDocument
 {

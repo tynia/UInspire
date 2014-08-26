@@ -18,9 +18,9 @@
 #ifndef _INSPIRE_UI_TREE_H_
 #define _INSPIRE_UI_TREE_H_
 
-#include "../../interface/IUITree.h"
+#include "IUITree.h"
 #include "UIWnd.h"
-#include "../include/.hWndEvent.h"
+#include "UIWndEvent.h"
 
 INSPIRE_CLIENT_BENGIN
 

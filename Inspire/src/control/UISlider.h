@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_SLIDER_H_
 #define _INSPIRE_UI_SLIDER_H_
 
-#include "../../interface/IUISlider.h"
+#include "IUISlider.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

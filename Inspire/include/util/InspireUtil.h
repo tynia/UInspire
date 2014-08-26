@@ -20,7 +20,7 @@
 
 #include "Inspire.h"
 #include "CharConverter.h"
-#include "../../src/log/LogHelper.h"
+#include "LogHelper.h"
 
 inline void AssertFail( const char* file, const int line, const char* exp )
 {

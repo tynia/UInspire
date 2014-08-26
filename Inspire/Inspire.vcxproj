@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir)\include\util\;$(ProjectDir)\include\control\;$(ProjectDir)\include\log\;$(ProjectDir)\include\xml\;$(ProjectDir)\include\render\;$(ProjectDir)\src\control\;$(ProjectDir)\src\xml\</IncludePath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir)\include\util\;$(ProjectDir)\include\control\;$(ProjectDir)\include\log\;$(ProjectDir)\include\xml\;$(ProjectDir)\include\render\;$(ProjectDir)\src\control\;$(ProjectDir)\src\xml\;$(ProjectDir)\src\log\;$(ProjectDir)\src\util\;$(ProjectDir)\src\render\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -109,7 +109,6 @@
     <ClInclude Include="src\control\internal\InputManager.h" />
     <ClInclude Include="src\control\internal\InvokerManager.h" />
     <ClInclude Include="src\control\internal\MemoryPool.h" />
-    <ClInclude Include="src\control\internal\SimpleMemoryPool.h" />
     <ClInclude Include="src\control\internal\UIBase.h" />
     <ClInclude Include="src\control\internal\UILayoutBuilder.h" />
     <ClInclude Include="src\control\internal\UIRenderFactory.h" />
@@ -139,6 +138,8 @@
     <ClInclude Include="src\log\LogHelper.h" />
     <ClInclude Include="src\render\UID3DRender.h" />
     <ClInclude Include="src\render\UIGDIRender.h" />
+    <ClInclude Include="src\util\InspireFreeList.h" />
+    <ClInclude Include="src\util\InspireLock.h" />
     <ClInclude Include="src\xml\XMLAttribute.h" />
     <ClInclude Include="src\xml\XMLDocument.h" />
     <ClInclude Include="src\xml\XMLHelper.h" />
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\util\MainTest.cpp" />
+    <ClCompile Include="src\control\InspireInternal.cpp" />
     <ClCompile Include="src\control\internal\InputManager.cpp" />
     <ClCompile Include="src\control\internal\InvokerManager.cpp" />
     <ClCompile Include="src\control\internal\MemoryPool.cpp" />
@@ -175,7 +177,6 @@
     <ClCompile Include="src\control\UIWnd.cpp" />
     <ClCompile Include="src\log\InspireLog.cpp" />
     <ClCompile Include="src\util\CharConverter.cpp" />
-    <ClCompile Include="src\util\InspireInternal.cpp" />
     <ClCompile Include="src\xml\XMLAttribute.cpp" />
     <ClCompile Include="src\xml\XMLDocument.cpp" />
     <ClCompile Include="src\xml\XMLHelper.cpp" />

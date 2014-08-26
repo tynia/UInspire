@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_PROGRESSBAR_H_
 #define _INSPIRE_UI_PROGRESSBAR_H_
 
-#include "../../interface/IUIProgressBar.h"
+#include "IUIProgressBar.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

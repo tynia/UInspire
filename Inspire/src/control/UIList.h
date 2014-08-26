@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_LIST_H_
 #define _INSPIRE_UI_LIST_H_
 
-#include "../../interface/IUIList.h"
+#include "IUIList.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

@@ -43,6 +43,9 @@
     <Filter Include="src\xml">
       <UniqueIdentifier>{a0647892-d7aa-4e1e-a2fa-98e2a860c667}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\window">
+      <UniqueIdentifier>{9c2a8577-0993-459f-9f36-fe8ed1c77324}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\xml\XMLWriter.h">
@@ -106,9 +109,6 @@
       <Filter>src\control\internal</Filter>
     </ClInclude>
     <ClInclude Include="src\control\internal\MemoryPool.h">
-      <Filter>src\control\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="src\control\internal\SimpleMemoryPool.h">
       <Filter>src\control\internal</Filter>
     </ClInclude>
     <ClInclude Include="src\control\internal\UIBase.h">
@@ -252,6 +252,12 @@
     <ClInclude Include="include\util\InspireUtil.h">
       <Filter>include\util</Filter>
     </ClInclude>
+    <ClInclude Include="src\util\InspireLock.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\InspireFreeList.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\util\MainTest.cpp">
@@ -359,8 +365,8 @@
     <ClCompile Include="src\control\internal\UIWndFactory.cpp">
       <Filter>src\control\internal</Filter>
     </ClCompile>
-    <ClCompile Include="src\util\InspireInternal.cpp">
-      <Filter>src\util</Filter>
+    <ClCompile Include="src\control\InspireInternal.cpp">
+      <Filter>src\control</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_IMAGE_H_
 #define _INSPIRE_UI_IMAGE_H_
 
-#include "../../interface/IUIImage.h"
+#include "IUIImage.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

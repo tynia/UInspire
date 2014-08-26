@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_CHECKBOX_H_
 #define _INSPIRE_UI_CHECKBOX_H_
 
-#include "../../interface/IUICheckBox.h"
+#include "IUICheckBox.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

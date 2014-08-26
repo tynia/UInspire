@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_COMBOBOX_H_
 #define _INSPIRE_UI_COMBOBOX_H_
 
-#include "../../interface/IUIComboBox.h"
+#include "IUIComboBox.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

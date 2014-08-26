@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_ITEM_H_
 #define _INSPIRE_UI_ITEM_H_
 
-#include "../../interface/IUIItem.h"
+#include "IUIItem.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

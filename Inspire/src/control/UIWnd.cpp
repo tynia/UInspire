@@ -16,8 +16,8 @@
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
 #include "UIWnd.h"
-#include "../include/.hWndEvent.h"
-#include "../UIWndManager.h"
+#include "UIWndEvent.h"
+#include "UIWndManager.h"
 
 INSPIRE_CLIENT_BENGIN
 CUIWnd::CUIWnd()

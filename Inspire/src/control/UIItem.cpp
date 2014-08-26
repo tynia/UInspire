@@ -16,7 +16,7 @@
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
 #include "UIItem.h"
-#include "../UIWndManager.h"
+#include "UIWndManager.h"
 #include "UIImage.h"
 
 INSPIRE_CLIENT_BENGIN

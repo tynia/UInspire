@@ -18,7 +18,7 @@
 #ifndef _INSPIRE_UI_MENU_H_
 #define _INSPIRE_UI_MENU_H_
 
-#include "../../interface/IUIMenu.h"
+#include "IUIMenu.h"
 #include "UIWnd.h"
 
 INSPIRE_CLIENT_BENGIN

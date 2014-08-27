@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir)\include\util\;$(ProjectDir)\include\control\;$(ProjectDir)\include\log\;$(ProjectDir)\include\xml\;$(ProjectDir)\include\render\;$(ProjectDir)\src\control\;$(ProjectDir)\src\xml\;$(ProjectDir)\src\log\;$(ProjectDir)\src\util\;$(ProjectDir)\src\render\</IncludePath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir)\include\util\;$(ProjectDir)\include\control\;$(ProjectDir)\include\log\;$(ProjectDir)\include\xml\;$(ProjectDir)\include\render\;$(ProjectDir)\src\control\;$(ProjectDir)\src\xml\;$(ProjectDir)\src\log\;$(ProjectDir)\src\util\;$(ProjectDir)\src\render\;$(ProjectDir)\src\control\internal\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

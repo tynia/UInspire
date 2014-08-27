@@ -41,7 +41,7 @@ void CUILayoutBuilder::ParseLayout()
       return;
    }
 
-   XML::IXMLNode* node = doc->firstChild("Layout");
+   XML::IXMLNode* node = doc.firstChild("Layout");
    if (node)
    {
       XML::IXMLNode* child = node->firstChild("index");
@@ -63,7 +63,7 @@ void CUILayoutBuilder::ParseLayoutFile(const char* layout)
    uilayout.load(layout);
 
    CUIWnd* wnd = NULL;
-   XML::IXMLNode* windows = uilayout->firstChild("Windows");
+   XML::IXMLNode* windows = uilayout.firstChild("Windows");
    if (windows)
    {
       XML::IXMLNode* wndnode = windows->firstChild("Window");
@@ -84,18 +84,18 @@ void CUILayoutBuilder::ParseLayoutFile(const char* layout)
             ParseCommonWndData(wnd, wndnode);
             wnd->SetParent(NULL);
 
-            const char* multiInstance = wndnode->GetAttributeValue("MultiInstance");
+            const char* multiInstance = wndnode->getAttributeValue("MultiInstance");
             int val = atoi(multiInstance);
             if (val != 0)
             {
-               _IUIWndMng->PushToMultiInstanceWndContainer(wnd, NULL);
+               //_IUIWndMng->PushToMultiInstanceWndContainer(wnd, NULL);
             }
             else
             {
-               _IUIWndMng->PushToWndContainer(wnd);
+               //_IUIWndMng->PushToWndContainer(wnd);
             }
          }
-         wndnode = wndnode->NextSibling("Window");
+         wndnode = wndnode->nextSibling("Window");
       }
    }
 }
@@ -170,7 +170,7 @@ void CUILayoutBuilder::CloneRootWnd( CUIWnd* wnd )
 {
    CUIWnd* new_wnd = MakeClone(wnd);
 
-   _IUIWndMng->PushToMultiInstanceWndContainer(new_wnd, NULL);
+   //_IUIWndMng->PushToMultiInstanceWndContainer(new_wnd, NULL);
 }
 
 CUIWnd* CUILayoutBuilder::AllocWndEntity( WndType wt )

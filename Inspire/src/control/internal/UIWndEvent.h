@@ -25,9 +25,9 @@ class IUIWnd;
 struct EventArg
 {
    typedef int Index;
-   IUIWnd*   _Sender;
-   IUIWnd*   _Reciever;
-   Index   _Idx;
+   IUIWnd*  _sender;
+   IUIWnd*  _reciever;
+   Index    _idx;
 };
 
 enum InputEventType

@@ -1,13 +1,13 @@
 #ifndef _XDUI_UI_RENDER_GDI_H_
 #define _XDUI_UI_RENDER_GDI_H_
 
-#include "../../interface/render/IUIRender.h"
+#include "IUIRender.h"
 
-XDUI_CLIENT_BENGIN
+INSPIRE_CLIENT_BENGIN
 class CUIRenderGDI : public IUIRender
 {
 public:
-   static IUIRender* Instance();
+   static IUIRender* Instance() {return NULL;};
 
    ///< IUIRender interface
    virtual bool InitUIRender();
@@ -32,9 +32,9 @@ private:
    CUIRenderGDI();
    ~CUIRenderGDI();
 
-   HDC      _hDC;   ///< 绘制的目标窗口上下文
-   HWND   _hWnd;   ///< 绘制的目标窗口句柄
+   HDC    _hDC;   ///< 绘制的目标窗口上下文
+   HWND   _hWnd;  ///< 绘制的目标窗口句柄
 
 };
-XDUI_CLIENT_END
+INSPIRE_CLIENT_END
 #endif

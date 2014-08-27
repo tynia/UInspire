@@ -18,7 +18,7 @@
 #include "UIWnd.h"
 #include "UIWndEvent.h"
 #include "UIWndManager.h"
-
+#include "IXMLNode.h"
 INSPIRE_CLIENT_BENGIN
 CUIWnd::CUIWnd()
 : _WndType( EWT_WND )
@@ -319,80 +319,80 @@ void CUIWnd::CloneFrom( CUIWnd* wnd )
 
 void CUIWnd::ParseData( XML::IXMLNode* node )
 {
-   XML::IXMLNode* node_detail = node->FirstChild( "ID" );
+   XML::IXMLNode* node_detail = node->firstChild( "ID" );
    if ( node_detail )
    {
-      const char* str_wndid = node_detail->GetValue();
-      INSPIRE_CLIENT::CharConverter con( str_wndid );
+      const char* str_wndid = node_detail->getValue();
+      INSPIRE_INTERNAL::CharConverter con( str_wndid );
       _ID = con.GetUnicode();
    }
 
-   node_detail = node->FirstChild( "Position" );
+   node_detail = node->firstChild( "Position" );
    if ( node_detail )
    {
-      const char* str_position = node_detail->GetValue();
+      const char* str_position = node_detail->getValue();
       CPoint pt;
       sscanf_s( str_position, "%d %d", &pt.x, &pt.y );
       SetPosition( pt.x, pt.y );
    }
 
-   node_detail = node->FirstChild( "Rect" );
+   node_detail = node->firstChild( "Rect" );
    if ( node_detail )
    {
-      const char* str_rect = node_detail->GetValue();
+      const char* str_rect = node_detail->getValue();
       CRect rect;
       sscanf_s( str_rect, "%d %d %d %d", &rect.left, &rect.top, &rect.right, &rect.bottom );
       SetRect( rect );
    }
 
-   node_detail = node->FirstChild( "TileMode" );
+   node_detail = node->firstChild( "TileMode" );
    if ( node_detail )
    {
-      const char* str_tile = node_detail->GetValue();
+      const char* str_tile = node_detail->getValue();
       int tilemode;
       sscanf_s( str_tile, "%d", &tilemode );
       _TileMode = ( TiledMode )tilemode;
    }
 
-   node_detail = node->FirstChild( "Tile" );
+   node_detail = node->firstChild( "Tile" );
    if ( node_detail )
    {
-      const char* str_tile = node_detail->GetValue();
+      const char* str_tile = node_detail->getValue();
       Tile tile;
       sscanf_s( str_tile, "%d %d", &tile.x, &tile.y );
    }
 
-   node_detail = node->FirstChild( "TileHeadTail" );
+   node_detail = node->firstChild( "TileHeadTail" );
    if ( node_detail )
    {
-      const char* str_tile = node_detail->GetValue();
+      const char* str_tile = node_detail->getValue();
       Tile tileheadtail;
       sscanf_s( str_tile, "%d %d", &tileheadtail.x, &tileheadtail.y );
       _TileHeadTail = tileheadtail;
    }
 
-   node_detail = node->FirstChild( "TileSize" );
+   node_detail = node->firstChild( "TileSize" );
    if ( node_detail )
    {
-      const char* str_tile = node_detail->GetValue();
+      const char* str_tile = node_detail->getValue();
       Tile tilesize;
       sscanf_s( str_tile, "%d %d", &tilesize.x, &tilesize.y );
       _TileSize = tilesize;
    }
 
-   node_detail = node->FirstChild( "ZLevel" );
+   node_detail = node->firstChild( "ZLevel" );
    if ( node_detail )
    {
-      const char* str_zlevel = node_detail->GetValue();
+      const char* str_zlevel = node_detail->getValue();
       int zlevel = atoi( str_zlevel );
       _Zlevel = zlevel;
    }
 
-   node_detail = node->FirstChild( "ResourceID" );
+   node_detail = node->firstChild( "ResourceID" );
    if ( node_detail )
    {
-      const char* str_resid = node_detail->GetValue();
-      CharConverter con( str_resid );
+      const char* str_resid = node_detail->getValue();
+      INSPIRE_INTERNAL::CharConverter con( str_resid );
       _ResourceID = con.GetUnicode();
    }
 }

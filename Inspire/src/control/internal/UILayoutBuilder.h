@@ -19,8 +19,7 @@
 #define _INSPIRE_UI_LAYOUT_BUILDER_H_
 
 #include "Inspire.h"
-#include "XMLUtil.h"
-class XML::IXMLNode;
+#include <IXMLNode.h>
 
 INSPIRE_CLIENT_BENGIN
 class IUIWndManager;

@@ -17,7 +17,7 @@
 *******************************************************************************/
 #include "UITree.h"
 #include "UIItem.h"
-#include "../include/.hInvoker.h"
+#include "UIInvoker.h"
 
 INSPIRE_CLIENT_BENGIN
 

@@ -32,27 +32,27 @@ enum WndType;
 class CUILayoutBuilder
 {
 public:
-	CUILayoutBuilder(IUIWndManager* wnd_mng);
-	~CUILayoutBuilder();
+   CUILayoutBuilder(IUIWndManager* wnd_mng);
+   ~CUILayoutBuilder();
 
-	CUIWnd* MakeClone(CUIWnd* wnd);
-	void CloneRootWnd(CUIWnd* wnd);
-	CUIWnd* AllocWndEntity(WndType wt);
+   CUIWnd* MakeClone(CUIWnd* wnd);
+   void CloneRootWnd(CUIWnd* wnd);
+   CUIWnd* AllocWndEntity(WndType wt);
 
-	void ParseLayout();
-
-private:
-	void ParseLayoutFile(const char* layout_file);
-	void ParseCommonWndData(IUIWnd* wnd, XML::IXMLNode* node);
-	void ParseControl( IUIWnd* wnd, XML::IXMLNode* node );
-	void ParseControlData(IUIWnd* wnd, XML::IXMLNode* node);
+   void ParseLayout();
 
 private:
-	///< control data.
+   void ParseLayoutFile(const char* layout_file);
+   void ParseCommonWndData(IUIWnd* wnd, XML::IXMLNode* node);
+   void ParseControl( IUIWnd* wnd, XML::IXMLNode* node );
+   void ParseControlData(IUIWnd* wnd, XML::IXMLNode* node);
 
 private:
-	IUIWndManager*	_IUIWndMng;
-	CUIWndFactory*	_Factory;
+   ///< control data.
+
+private:
+   IUIWndManager*   _IUIWndMng;
+   CUIWndFactory*   _Factory;
 };
 
 INSPIRE_CLIENT_END

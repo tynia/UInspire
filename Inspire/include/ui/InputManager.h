@@ -15,34 +15,23 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_INPUT_MANAGER_H_
+#define _INSPIRE_UI_INPUT_MANAGER_H_
 
-#include "platform.h"
+#include "UIWndEvent.h"
 
 namespace inspire {
-
-class INSPIRE_EXPORT_API CharConverter
+class CInputManager/* : public IInputManager*/
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   CInputManager();
+   virtual ~CInputManager();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual CInputEvent* GenerateEvent( HWND hWnd, InputEventID id, int modifierKey, CPoint& pos, CPoint& relPos, int wheel );
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual CInputEvent* GenerateEvent( HWND hWnd, InputEventID id, int modifierKey, int key );
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   virtual void DeGenerateEvent( CInputEvent*& event );
 };
 }
 #endif

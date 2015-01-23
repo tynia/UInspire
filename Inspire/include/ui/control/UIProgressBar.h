@@ -15,34 +15,42 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_PROGRESSBAR_H_
+#define _INSPIRE_UI_PROGRESSBAR_H_
 
-#include "platform.h"
+#include "IUIProgressBar.h"
+#include "UIWnd.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+class CUIProgressBar : public CUIWnd, public IUIProgressBar
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   CUIProgressBar();
+   virtual ~CUIProgressBar();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void Draw();
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual void SetMaxValue( int max_value );
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   virtual void SetMinValue( int min_value = 0 );
+
+   virtual void SetValue( int cur_value );
+
+   virtual const int GetCurrentValue() const;
+
+public:
+   virtual void CloneFrom( CUIWnd* wnd );
+   virtual void ParseData( XML::IXMLNode* node );
+
+protected:
+   int         _CurrentValue;
+   int         _MaxValue;
+   int         _MinValue;
+
+   static int const MIN_VALUE = 0;
+   static int const MAX_VALUE = 100;
 };
+
 }
 #endif

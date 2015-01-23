@@ -15,34 +15,46 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
-
-#include "platform.h"
+#include "InputManager.h"
 
 namespace inspire {
-
-class INSPIRE_EXPORT_API CharConverter
+CInputManager::CInputManager()
 {
-public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
-
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
-
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
-};
 }
-#endif
+
+CInputManager::~CInputManager()
+{
+
+}
+
+CInputEvent* CInputManager::GenerateEvent( HWND hWnd, InputEventID id,
+                                           int modifierKey, CPoint& pos,
+                                           CPoint& relPos, int wheel )
+{
+   CInputEvent* input_event = new CMouseEvent( hWnd, id, modifierKey, pos, relPos, wheel );
+   if ( input_event )
+   {
+      return input_event;
+   }
+   return NULL;
+}
+
+CInputEvent* CInputManager::GenerateEvent( HWND hWnd, InputEventID id, int modifierKey, int key )
+{
+   CInputEvent* input_event = new CKeyboardEvent( hWnd, id, modifierKey, key );
+   if ( input_event )
+   {
+      return input_event;
+   }
+   /// should not process to here.
+   return NULL;
+}
+
+void CInputManager::DeGenerateEvent( CInputEvent*& input_event )
+{
+   delete input_event;
+   input_event = NULL;
+}
+
+}

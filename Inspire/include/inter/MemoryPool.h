@@ -15,34 +15,47 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_MEMORY_POOL_H_
+#define _INSPIRE_MEMORY_POOL_H_
 
-#include "platform.h"
+#include "InspireInternal.h"
 
-namespace inspire {
-
-class INSPIRE_EXPORT_API CharConverter
+class MemoryPool
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   MemoryPool();
+   ~MemoryPool();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   static MemoryPool* getPool();
 
-   const wchar_t* GetUnicode() const
+   void* alloc( std::size_t size );
+   void release();
+
+   void setMemoryFunc( inspire::alloc* af, inspire::free* ff )
    {
-      return _UnicodeString;
+      _alloc = af;
+      _free  = ff ;
    }
 
 private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   void init();
+   char* align( char* ptr );
+   char* addMemory( std::size_t size );
+
+private:
+   static const int BLOCK_SIZE = 64 * 1024;
+   static const int OBJECT_ALIGNMENT = sizeof( void* );
+   struct MBHeader
+   {
+      char* prevHeader;
+   };
+
+   inspire::alloc*  _alloc;
+   inspire::free*   _free;
+
+   char   _original[BLOCK_SIZE];
+   char*  _ptrBegin;
+   char*  _ptrEnd;
+   char*  _curPtr;
 };
-}
 #endif

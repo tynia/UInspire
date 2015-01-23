@@ -15,34 +15,26 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_RENDER_FACTORY_H_
+#define _INSPIRE_UI_RENDER_FACTORY_H_
 
-#include "platform.h"
+#include "IUIRender.h"
 
 namespace inspire {
-
-class INSPIRE_EXPORT_API CharConverter
+class CUIRenderFactory /*: public IUnknown*/
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   ~CUIRenderFactory();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   static CUIRenderFactory* Instance();
+   bool QueryInterface( const RenderUID ruid, void** ppvObject );
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   void Release( const RenderUID ruid );
 
 private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   CUIRenderFactory();
+   static int const RENDER_SUPPORT_COUNT = 4;
+   IUIRender* _Render;
 };
 }
 #endif

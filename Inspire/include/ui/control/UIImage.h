@@ -15,34 +15,32 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_IMAGE_H_
+#define _INSPIRE_UI_IMAGE_H_
 
-#include "platform.h"
+#include "IUIImage.h"
+#include "UIWnd.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+class CUIImage : public CUIWnd, public IUIImage
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   CUIImage();
+   virtual ~CUIImage();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void Draw();
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual void DrawBorder();
+   virtual void ShowIndexNum();
+   virtual IOperation* SetPressFunc( IOperation* oper );
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+public:
+   virtual void CloneFrom( CUIWnd* wnd );
+   virtual void ParseData( XML::IXMLNode* node );
+
+protected:
+   IOperation* _PressDownOper;
 };
 }
 #endif

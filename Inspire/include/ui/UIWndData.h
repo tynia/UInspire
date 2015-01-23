@@ -15,34 +15,77 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_WND_DATA_H_
+#define _INSPIRE_UI_WND_DATA_H_
 
-#include "platform.h"
+#include "include/.hBaseDefinition.h"
 
 namespace inspire {
-
-class INSPIRE_EXPORT_API CharConverter
+struct WndData
 {
-public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
-
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
-
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
 };
+
+struct UIButtonData : public WndData
+{
+
+};
+
+struct UIStaticTextData : public WndData
+{
+
+};
+
+struct UICheckBoxData : public WndData
+{
+
+};
+
+struct UIEditBoxData : public WndData
+{
+
+};
+
+struct UIImageData : public WndData
+{
+
+};
+
+struct UIItemData : public WndData
+{
+
+};
+
+struct UIProgressBarData : public WndData
+{
+
+};
+
+struct UIScrollBarData : public WndData
+{
+
+};
+
+struct UISliderData : public WndData
+{
+
+};
+
+struct UIComboBoxData : public WndData
+{
+
+};
+
+struct UIRichEditData : public WndData
+{
+
+};
+
+struct UITreeData : public WndData
+{
+
+};
+
 }
+
 #endif

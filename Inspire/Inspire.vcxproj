@@ -10,6 +10,120 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\inter\MemoryPool.cpp" />
+    <ClCompile Include="inspire\log\LogFile.cpp" />
+    <ClCompile Include="inspire\ui\control\InspireInternal.cpp" />
+    <ClCompile Include="inspire\ui\control\UIButton.cpp" />
+    <ClCompile Include="inspire\ui\control\UICheckBox.cpp" />
+    <ClCompile Include="inspire\ui\control\UIComboBox.cpp" />
+    <ClCompile Include="inspire\ui\control\UICustomWnd.cpp" />
+    <ClCompile Include="inspire\ui\control\UIEditBox.cpp" />
+    <ClCompile Include="inspire\ui\control\UIImage.cpp" />
+    <ClCompile Include="inspire\ui\control\UIItem.cpp" />
+    <ClCompile Include="inspire\ui\control\UIList.cpp" />
+    <ClCompile Include="inspire\ui\control\UIMenu.cpp" />
+    <ClCompile Include="inspire\ui\control\UIProgressBar.cpp" />
+    <ClCompile Include="inspire\ui\control\UIRichEditBox.cpp" />
+    <ClCompile Include="inspire\ui\control\UIScrollBar.cpp" />
+    <ClCompile Include="inspire\ui\control\UISlider.cpp" />
+    <ClCompile Include="inspire\ui\control\UIStaticText.cpp" />
+    <ClCompile Include="inspire\ui\control\UITree.cpp" />
+    <ClCompile Include="inspire\ui\control\UIWnd.cpp" />
+    <ClCompile Include="inspire\ui\InputManager.cpp" />
+    <ClCompile Include="inspire\ui\InvokerManager.cpp" />
+    <ClCompile Include="inspire\ui\UIBase.cpp" />
+    <ClCompile Include="inspire\ui\UILayoutBuilder.cpp" />
+    <ClCompile Include="inspire\ui\UIRenderFactory.cpp" />
+    <ClCompile Include="inspire\ui\UIWndFactory.cpp" />
+    <ClCompile Include="inspire\ui\UIWndManager.cpp" />
+    <ClCompile Include="inspire\util\CharConverter.cpp" />
+    <ClCompile Include="inspire\xml\XMLAttribute.cpp" />
+    <ClCompile Include="inspire\xml\XMLBase.cpp" />
+    <ClCompile Include="inspire\xml\XMLDocument.cpp" />
+    <ClCompile Include="inspire\xml\XMLHelper.cpp" />
+    <ClCompile Include="inspire\xml\XMLMemoryPool.cpp" />
+    <ClCompile Include="inspire\xml\XMLNode.cpp" />
+    <ClCompile Include="inspire\xml\XMLReader.cpp" />
+    <ClCompile Include="inspire\xml\XMLWriter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Inspire.h" />
+    <ClInclude Include="include\inter\MemoryPool.h" />
+    <ClInclude Include="include\inter\noncopyable.h" />
+    <ClInclude Include="include\log\Log.h" />
+    <ClInclude Include="include\log\LogFile.h" />
+    <ClInclude Include="include\log\LogHelper.h" />
+    <ClInclude Include="include\log\LogManager.h" />
+    <ClInclude Include="include\platform.h" />
+    <ClInclude Include="include\render\IUIRender.h" />
+    <ClInclude Include="include\ui\control\UIButton.h" />
+    <ClInclude Include="include\ui\control\UICheckBox.h" />
+    <ClInclude Include="include\ui\control\UIComboBox.h" />
+    <ClInclude Include="include\ui\control\UICustomWnd.h" />
+    <ClInclude Include="include\ui\control\UIEditBox.h" />
+    <ClInclude Include="include\ui\control\UIImage.h" />
+    <ClInclude Include="include\ui\control\UIItem.h" />
+    <ClInclude Include="include\ui\control\UIList.h" />
+    <ClInclude Include="include\ui\control\UIMenu.h" />
+    <ClInclude Include="include\ui\control\UIProgressBar.h" />
+    <ClInclude Include="include\ui\control\UIRichEditBox.h" />
+    <ClInclude Include="include\ui\control\UIScrollBar.h" />
+    <ClInclude Include="include\ui\control\UISlider.h" />
+    <ClInclude Include="include\ui\control\UIStaticText.h" />
+    <ClInclude Include="include\ui\control\UITree.h" />
+    <ClInclude Include="include\ui\control\UIWnd.h" />
+    <ClInclude Include="include\ui\InputManager.h" />
+    <ClInclude Include="include\ui\interface\IUIButton.h" />
+    <ClInclude Include="include\ui\interface\IUICheckBox.h" />
+    <ClInclude Include="include\ui\interface\IUIComboBox.h" />
+    <ClInclude Include="include\ui\interface\IUICustomWnd.h" />
+    <ClInclude Include="include\ui\interface\IUIEditBox.h" />
+    <ClInclude Include="include\ui\interface\IUIImage.h" />
+    <ClInclude Include="include\ui\interface\IUIItem.h" />
+    <ClInclude Include="include\ui\interface\IUIList.h" />
+    <ClInclude Include="include\ui\interface\IUIMenu.h" />
+    <ClInclude Include="include\ui\interface\IUIProgressBar.h" />
+    <ClInclude Include="include\ui\interface\IUIRichEditBox.h" />
+    <ClInclude Include="include\ui\interface\IUIScrollBar.h" />
+    <ClInclude Include="include\ui\interface\IUISlider.h" />
+    <ClInclude Include="include\ui\interface\IUIStaticText.h" />
+    <ClInclude Include="include\ui\interface\IUITree.h" />
+    <ClInclude Include="include\ui\interface\IUIWnd.h" />
+    <ClInclude Include="include\ui\interface\IUIWndManager.h" />
+    <ClInclude Include="include\ui\InvokerManager.h" />
+    <ClInclude Include="include\ui\UIBase.h" />
+    <ClInclude Include="include\ui\UIHelper - modify.h" />
+    <ClInclude Include="include\ui\UIHelper.h" />
+    <ClInclude Include="include\ui\UIInvoker.h" />
+    <ClInclude Include="include\ui\UILayoutBuilder.h" />
+    <ClInclude Include="include\ui\UIRenderFactory.h" />
+    <ClInclude Include="include\ui\UIWndData.h" />
+    <ClInclude Include="include\ui\UIWndEvent.h" />
+    <ClInclude Include="include\ui\UIWndFactory.h" />
+    <ClInclude Include="include\ui\UIWndManager.h" />
+    <ClInclude Include="include\ui\wnd.h" />
+    <ClInclude Include="include\util\CharConverter.h" />
+    <ClInclude Include="include\util\FreeList.h" />
+    <ClInclude Include="include\util\LockCondition.h" />
+    <ClInclude Include="include\xml\IXMLAttribute.h" />
+    <ClInclude Include="include\xml\IXMLDocument.h" />
+    <ClInclude Include="include\xml\IXMLNode.h" />
+    <ClInclude Include="include\xml\XMLAttribute.h" />
+    <ClInclude Include="include\xml\XMLBase.h" />
+    <ClInclude Include="include\xml\XMLDocument.h" />
+    <ClInclude Include="include\xml\XMLHelper.h" />
+    <ClInclude Include="include\xml\XMLMemoryPool.h" />
+    <ClInclude Include="include\xml\XMLNode.h" />
+    <ClInclude Include="include\xml\XMLReader.h" />
+    <ClInclude Include="include\xml\XMLUtil.h" />
+    <ClInclude Include="include\xml\XMLWriter.h" />
+    <ClInclude Include="inspire\render\UID3DRender.h" />
+    <ClInclude Include="inspire\render\UIGDIRender.h" />
+    <ClInclude Include="inspire\util\InspireFreeList.h" />
+    <ClInclude Include="inspire\util\InspireLock.h" />
+    <ClInclude Include="inspire\xml\XMLNodeBase.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D143DC12-36AB-4DD9-A607-28DEBE249C0F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -41,7 +155,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir)\include\util\;$(ProjectDir)\include\control\;$(ProjectDir)\include\log\;$(ProjectDir)\include\xml\;$(ProjectDir)\include\render\;$(ProjectDir)\src\control\;$(ProjectDir)\src\xml\;$(ProjectDir)\src\log\;$(ProjectDir)\src\util\;$(ProjectDir)\src\render\;$(ProjectDir)\src\control\internal\</IncludePath>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir)\include\;$(ProjectDir)\include\inter\;$(ProjectDir)\include\log\;$(ProjectDir)\include\xml\;$(ProjectDir)\include\util\;$(ProjectDir)\include\ui\;$(ProjectDir)\include\ui\interface\;$(ProjectDir)\include\render\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -76,116 +190,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="include\control\IUIButton.h" />
-    <ClInclude Include="include\control\IUICheckBox.h" />
-    <ClInclude Include="include\control\IUIComboBox.h" />
-    <ClInclude Include="include\control\IUICustomWnd.h" />
-    <ClInclude Include="include\control\IUIEditBox.h" />
-    <ClInclude Include="include\control\IUIImage.h" />
-    <ClInclude Include="include\control\IUIItem.h" />
-    <ClInclude Include="include\control\IUIList.h" />
-    <ClInclude Include="include\control\IUIMenu.h" />
-    <ClInclude Include="include\control\IUIProgressBar.h" />
-    <ClInclude Include="include\control\IUIRichEditBox.h" />
-    <ClInclude Include="include\control\IUIScrollBar.h" />
-    <ClInclude Include="include\control\IUISlider.h" />
-    <ClInclude Include="include\control\IUIStaticText.h" />
-    <ClInclude Include="include\control\IUITree.h" />
-    <ClInclude Include="include\control\IUIWnd.h" />
-    <ClInclude Include="include\control\IUIWndManager.h" />
-    <ClInclude Include="include\log\IInspireLog.h" />
-    <ClInclude Include="include\log\LogBase.h" />
-    <ClInclude Include="include\render\IUIRender.h" />
-    <ClInclude Include="include\util\CharConverter.h" />
-    <ClInclude Include="include\util\Inspire.h" />
-    <ClInclude Include="include\util\InspireUtil.h" />
-    <ClInclude Include="include\util\InspireInternal.h" />
-    <ClInclude Include="include\xml\IXMLAttribute.h" />
-    <ClInclude Include="include\xml\IXMLDocument.h" />
-    <ClInclude Include="include\xml\IXMLNode.h" />
-    <ClInclude Include="include\xml\XMLBase.h" />
-    <ClInclude Include="include\xml\XMLUtil.h" />
-    <ClInclude Include="src\control\internal\InputManager.h" />
-    <ClInclude Include="src\control\internal\InvokerManager.h" />
-    <ClInclude Include="src\control\internal\MemoryPool.h" />
-    <ClInclude Include="src\control\internal\UIBase.h" />
-    <ClInclude Include="src\control\internal\UILayoutBuilder.h" />
-    <ClInclude Include="src\control\internal\UIRenderFactory.h" />
-    <ClInclude Include="src\control\internal\UIWndData.h" />
-    <ClInclude Include="src\control\internal\UIWndManager.h" />
-    <ClInclude Include="src\control\internal\UIWndFactory.h" />
-    <ClInclude Include="src\control\internal\UIHelper.h" />
-    <ClInclude Include="src\control\internal\UIInvoker.h" />
-    <ClInclude Include="src\control\internal\UIWndEvent.h" />
-    <ClInclude Include="src\control\UIButton.h" />
-    <ClInclude Include="src\control\UICheckBox.h" />
-    <ClInclude Include="src\control\UIComboBox.h" />
-    <ClInclude Include="src\control\UICustomWnd.h" />
-    <ClInclude Include="src\control\UIEditBox.h" />
-    <ClInclude Include="src\control\UIImage.h" />
-    <ClInclude Include="src\control\UIItem.h" />
-    <ClInclude Include="src\control\UIList.h" />
-    <ClInclude Include="src\control\UIMenu.h" />
-    <ClInclude Include="src\control\UIProgressBar.h" />
-    <ClInclude Include="src\control\UIRichEditBox.h" />
-    <ClInclude Include="src\control\UIScrollBar.h" />
-    <ClInclude Include="src\control\UISlider.h" />
-    <ClInclude Include="src\control\UIStaticText.h" />
-    <ClInclude Include="src\control\UITree.h" />
-    <ClInclude Include="src\control\UIWnd.h" />
-    <ClInclude Include="src\log\InspireLog.h" />
-    <ClInclude Include="src\log\LogHelper.h" />
-    <ClInclude Include="src\render\UID3DRender.h" />
-    <ClInclude Include="src\render\UIGDIRender.h" />
-    <ClInclude Include="src\util\InspireFreeList.h" />
-    <ClInclude Include="src\util\InspireLock.h" />
-    <ClInclude Include="src\xml\XMLAttribute.h" />
-    <ClInclude Include="src\xml\XMLDocument.h" />
-    <ClInclude Include="src\xml\XMLHelper.h" />
-    <ClInclude Include="src\xml\XMLMemoryPool.h" />
-    <ClInclude Include="src\xml\XMLNode.h" />
-    <ClInclude Include="src\xml\XMLReader.h" />
-    <ClInclude Include="src\xml\XMLWriter.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="include\util\MainTest.cpp" />
-    <ClCompile Include="src\control\InspireInternal.cpp" />
-    <ClCompile Include="src\control\internal\InputManager.cpp" />
-    <ClCompile Include="src\control\internal\InvokerManager.cpp" />
-    <ClCompile Include="src\control\internal\MemoryPool.cpp" />
-    <ClCompile Include="src\control\internal\UIBase.cpp" />
-    <ClCompile Include="src\control\internal\UILayoutBuilder.cpp" />
-    <ClCompile Include="src\control\internal\UIRenderFactory.cpp" />
-    <ClCompile Include="src\control\internal\UIWndManager.cpp" />
-    <ClCompile Include="src\control\internal\UIWndFactory.cpp" />
-    <ClCompile Include="src\control\UIButton.cpp" />
-    <ClCompile Include="src\control\UICheckBox.cpp" />
-    <ClCompile Include="src\control\UIComboBox.cpp" />
-    <ClCompile Include="src\control\UICustomWnd.cpp" />
-    <ClCompile Include="src\control\UIEditBox.cpp" />
-    <ClCompile Include="src\control\UIImage.cpp" />
-    <ClCompile Include="src\control\UIItem.cpp" />
-    <ClCompile Include="src\control\UIList.cpp" />
-    <ClCompile Include="src\control\UIMenu.cpp" />
-    <ClCompile Include="src\control\UIProgressBar.cpp" />
-    <ClCompile Include="src\control\UIRichEditBox.cpp" />
-    <ClCompile Include="src\control\UIScrollBar.cpp" />
-    <ClCompile Include="src\control\UISlider.cpp" />
-    <ClCompile Include="src\control\UIStaticText.cpp" />
-    <ClCompile Include="src\control\UITree.cpp" />
-    <ClCompile Include="src\control\UIWnd.cpp" />
-    <ClCompile Include="src\log\InspireLog.cpp" />
-    <ClCompile Include="src\util\CharConverter.cpp" />
-    <ClCompile Include="src\xml\XMLAttribute.cpp" />
-    <ClCompile Include="src\xml\XMLDocument.cpp" />
-    <ClCompile Include="src\xml\XMLHelper.cpp" />
-    <ClCompile Include="src\xml\XMLMemoryPool.cpp" />
-    <ClCompile Include="src\xml\XMLNode.cpp" />
-    <ClCompile Include="src\xml\XMLBase.cpp" />
-    <ClCompile Include="src\xml\XMLReader.cpp" />
-    <ClCompile Include="src\xml\XMLWriter.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

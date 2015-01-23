@@ -15,34 +15,24 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_IUI_MENU_H_
+#define _INSPIRE_IUI_MENU_H_
 
-#include "platform.h"
+#include "IUIWnd.h"
 
 namespace inspire {
+struct ItemData;
 
-class INSPIRE_EXPORT_API CharConverter
+class INSPIRE_EXPORT_API IUIMenu : virtual public IUIWnd
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   virtual ~IUIMenu() {};
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void AddItem( ItemData& item, int index ) = 0;
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual void RemoveItem( int index ) = 0;
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   virtual void Clear() = 0;
 };
 }
 #endif

@@ -15,34 +15,44 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_LAYOUT_BUILDER_H_
+#define _INSPIRE_UI_LAYOUT_BUILDER_H_
 
 #include "platform.h"
+#include <IXMLNode.h>
 
 namespace inspire {
+class IUIWndManager;
+class IUIWnd;
+class CUIWnd;
+class CUIWndFactory;
+enum WndType;
 
-class INSPIRE_EXPORT_API CharConverter
+class CUILayoutBuilder
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   CUILayoutBuilder(IUIWndManager* wnd_mng);
+   ~CUILayoutBuilder();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   CUIWnd* MakeClone(CUIWnd* wnd);
+   void CloneRootWnd(CUIWnd* wnd);
+   CUIWnd* AllocWndEntity(WndType wt);
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   void ParseLayout();
 
 private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   void ParseLayoutFile(const char* layout_file);
+   void ParseCommonWndData(IUIWnd* wnd, XML::IXMLNode* node);
+   void ParseControl( IUIWnd* wnd, XML::IXMLNode* node );
+   void ParseControlData(IUIWnd* wnd, XML::IXMLNode* node);
+
+private:
+   ///< control data.
+
+private:
+   IUIWndManager*   _IUIWndMng;
+   CUIWndFactory*   _Factory;
 };
+
 }
 #endif

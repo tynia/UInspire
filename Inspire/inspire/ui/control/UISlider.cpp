@@ -15,34 +15,71 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
-
-#include "platform.h"
+#include "UISlider.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+CUISlider::CUISlider() : CUIWnd( EWT_SLIDER )
+, _Enable( true )
+, _MaxStep( MAX_STEP )
+, _MaxValue( MAX_VALUE )
+, _CurrentValue( 0 )
 {
-public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
-
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
-
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
-};
 }
-#endif
+
+CUISlider::~CUISlider()
+{
+
+}
+
+void CUISlider::Draw()
+{
+
+}
+
+void CUISlider::Enable()
+{
+   _Enable = true;
+}
+
+void CUISlider::Disable()
+{
+   _Enable = false;
+}
+
+bool CUISlider::IsEnable() const
+{
+   return _Enable;
+}
+
+void CUISlider::SetChangeStep( int step )
+{
+   _MaxStep = step;
+}
+
+void CUISlider::SetMaxValue( int max_value )
+{
+   _MaxValue = max_value;
+}
+
+const int CUISlider::GetCurrentValue() const
+{
+   return _CurrentValue;
+}
+
+void CUISlider::CloneFrom( CUIWnd* wnd )
+{
+   CUIWnd::CloneFrom( wnd );
+
+   CUISlider* slider = dynamic_cast<CUISlider*>( wnd );
+   //todo:
+}
+
+void CUISlider::ParseData( XML::IXMLNode* node )
+{
+   CUIWnd::ParseData( node );
+   //todo:
+}
+
+}

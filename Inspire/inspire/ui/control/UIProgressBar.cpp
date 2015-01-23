@@ -15,34 +15,60 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
-
-#include "platform.h"
+#include "UIProgressBar.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+CUIProgressBar::CUIProgressBar() : CUIWnd( EWT_PROGRESSBAR )
+, _MaxValue( MAX_VALUE )
+, _MinValue( MIN_VALUE )
+, _CurrentValue( 0 )
 {
-public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
-
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
-
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
-};
 }
-#endif
+
+CUIProgressBar::~CUIProgressBar()
+{
+
+}
+
+void CUIProgressBar::Draw()
+{
+
+}
+
+void CUIProgressBar::SetMaxValue( int max_value )
+{
+   _MaxValue = max_value;
+}
+
+void CUIProgressBar::SetMinValue( int min_value /*= 0*/ )
+{
+   _MinValue = min_value;
+}
+
+void CUIProgressBar::SetValue( int cur_value )
+{
+   _CurrentValue = cur_value;
+}
+
+const int CUIProgressBar::GetCurrentValue() const
+{
+   return _CurrentValue;
+}
+
+void CUIProgressBar::CloneFrom( CUIWnd* wnd )
+{
+   CUIWnd::CloneFrom( wnd );
+
+   CUIProgressBar* bar = dynamic_cast<CUIProgressBar*>( wnd );
+   //todo:
+}
+
+void CUIProgressBar::ParseData( XML::IXMLNode* node )
+{
+   CUIWnd::ParseData( node );
+   //todo:
+}
+
+}

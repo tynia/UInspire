@@ -15,34 +15,50 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_LOCK_H_
+#define _INSPIRE_LOCK_H_
 
 #include "platform.h"
 
-namespace inspire {
-
-class INSPIRE_EXPORT_API CharConverter
+class InspireLockVariable
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
-
-   const char* GetUTF8() const
+   InspireLockVariable()
    {
-      return _UTF8String;
+      ::InitializeCriticalSection( &cs );
+   }
+   ~InspireLockVariable()
+   {
+      ::DeleteCriticalSection( &cs );
    }
 
-   const wchar_t* GetUnicode() const
+   void lock()
    {
-      return _UnicodeString;
+      ::EnterCriticalSection( &cs );
+   }
+
+   void unLock()
+   {
+      ::LeaveCriticalSection( &cs );
    }
 
 private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   CRITICAL_SECTION cs;
 };
-}
+
+class InspireLock
+{
+public:
+   InspireLock( InspireLockVariable* va ) : _va( va )
+   {
+      _va->lock();
+   }
+   ~InspireLock()
+   {
+      _va->unLock();
+   }
+private:
+   InspireLockVariable* _va;
+};
+
 #endif

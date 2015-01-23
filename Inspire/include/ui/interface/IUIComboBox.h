@@ -15,34 +15,36 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_IUI_COMBOBOX_H_
+#define _INSPIRE_IUI_COMBOBOX_H_
 
-#include "platform.h"
+#include "IUIWnd.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+class INSPIRE_EXPORT_API IUIComboBox : virtual public IUIWnd
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   virtual ~IUIComboBox() {};
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void AddItem( ItemData& item, int index ) = 0;
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual void RemoveItem( int index ) = 0;
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   virtual void Clear() = 0;
+
+   virtual void SetCurrentItem( int index ) = 0;
+
+   virtual const int GetCurrentItem() const = 0;
+
+   virtual void SetEditEnable( bool enable ) = 0;
+
+   virtual void SetEditText( const _tchar* info ) = 0;
+
+   ///< 窗口回调函数
+   virtual IOperation* SetPressFunc( IOperation* oper ) = 0;
+   virtual IOperation* SetItemChangeFunc( IOperation* oper ) = 0;
+   virtual IOperation* SetTextChangeFunc( IOperation* oper ) = 0;
 };
 }
 #endif

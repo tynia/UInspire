@@ -15,34 +15,22 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
-
-#include "platform.h"
+#ifndef _INSPIRE_NONE_COPYABLE_H_
+#define _INSPIRE_NONE_COPYABLE_H_
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+class noncopyable
 {
-public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
-
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
-
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+protected:
+   noncopyable() {}
+   virtual ~noncopyable() {}
 
 private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   noncopyable( const noncopyable& ) ;
+   const noncopyable& operator= ( const noncopyable& ) ;
 };
+
 }
+
 #endif

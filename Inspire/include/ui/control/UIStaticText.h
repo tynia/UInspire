@@ -15,34 +15,31 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_STATICTEXT_H_
+#define _INSPIRE_UI_STATICTEXT_H_
 
-#include "platform.h"
+#include "IUIStaticText.h"
+#include "UIWnd.h"
 
 namespace inspire {
-
-class INSPIRE_EXPORT_API CharConverter
+class CUIStaticText : public CUIWnd, public IUIStaticText
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   CUIStaticText();
+   virtual ~CUIStaticText();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void SetText( _tchar* text );
+   virtual void SetSubText( _tchar* text );
+   virtual void SetTextAlign( TEXT_HORIZON_ALIGN horizon, TEXT_VERTICAL_ALIGN vertical );
+   virtual IOperation* SetPressFunc( IOperation* oper );
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+public:
+   virtual void CloneFrom( CUIWnd* wnd );
+   virtual void ParseData( XML::IXMLNode* node );
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+protected:
+   IOperation*      _PressDownOper;
+   bool         _SubTextFlag;
 };
 }
 #endif

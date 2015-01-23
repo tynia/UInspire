@@ -15,34 +15,63 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
-
-#include "platform.h"
+#include "UIScrollBar.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+CUIScrollBar::CUIScrollBar() : CUIWnd( EWT_SCROLLBAR )
+, _Enable( true )
+, _MaxRange( MAX_RANGE )
+, _RectPrev( 0, 0, 0, 0 )
+, _RectNext( 0, 0, 0, 0 )
+, _PrevResourceID( L"" )
+, _NextResourceID( L"" )
 {
-public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
-
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
-
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
-};
 }
-#endif
+
+CUIScrollBar::~CUIScrollBar()
+{
+
+}
+
+void CUIScrollBar::Draw()
+{
+
+}
+
+void CUIScrollBar::Enable()
+{
+   _Enable = true;
+}
+
+void CUIScrollBar::Disable()
+{
+   _Enable = false;
+}
+
+bool CUIScrollBar::IsEnable()
+{
+   return _Enable;
+}
+
+void CUIScrollBar::SetScrollRange( int max_range )
+{
+   _MaxRange = max_range;
+}
+
+void CUIScrollBar::CloneFrom( CUIWnd* wnd )
+{
+   CUIWnd::CloneFrom( wnd );
+
+   CUIScrollBar* scrollbar = dynamic_cast<CUIScrollBar*>( wnd );
+   //todo:
+}
+
+void CUIScrollBar::ParseData( XML::IXMLNode* node )
+{
+   CUIWnd::ParseData( node );
+   //todo
+}
+
+}

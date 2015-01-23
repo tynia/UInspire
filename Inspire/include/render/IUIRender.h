@@ -18,9 +18,9 @@
 #ifndef _INSPIRE_RENDER_H_
 #define _INSPIRE_RENDER_H_
 
-#include "Inspire.h"
-#include "InspireInternal.h"
-INSPIRE_CLIENT_BENGIN
+#include "platform.h"
+#include "wnd.h"
+namespace inspire {
 enum RenderUID
 {
    RUID_GDI = 0,
@@ -28,7 +28,7 @@ enum RenderUID
    RUID_D3D,
 };
 
-class INSPIRE_LIB_API IUIRender
+class INSPIRE_EXPORT_API IUIRender
 {
 public:
    virtual ~IUIRender() {};
@@ -36,20 +36,22 @@ public:
    virtual bool InitUIRender() = 0;
    virtual void BeginDraw( const HWND hWnd ) = 0; 
    virtual void EndDraw() = 0;
+   ///< rect
    virtual void DrawRectangle( const CRect& rect ) = 0;
-   ///< 绘制图片区域
+   ///< texture
    virtual void DrawTexture( const CRect& rect ) = 0;
-   ///< 绘制边框的发光效果
+   ///< border
    virtual void DrawRectBorder( const CRect& rect ) = 0;
-   ///< 绘制线条
+   ///< line
    virtual void DrawLine( CPoint& begin, CPoint& end ) = 0;
-   ///< 绘制文字
+   ///< text
    virtual void TextOut( CRect& rect,  _tchar* text, DWORD dwTextColor ) = 0;
+   ///< effect
    virtual void DrawEffect( const char* effect_path ) = 0;
    virtual void DrawEffect() = 0;
 
    virtual void Release() = 0;
 };
 
-INSPIRE_CLIENT_END
+}
 #endif

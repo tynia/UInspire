@@ -15,34 +15,20 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_MENU_H_
+#define _INSPIRE_UI_MENU_H_
 
-#include "platform.h"
+#include "IUIMenu.h"
+#include "UIWnd.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+class CUIMenu : public CUIWnd//, public IUIMenu
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
-
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
-
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
-
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   CUIMenu();
+   virtual ~CUIMenu();
 };
+
 }
 #endif

@@ -15,34 +15,54 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
-
-#include "platform.h"
+#include "UIImage.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+CUIImage::CUIImage() : CUIWnd( EWT_IMAGE )
+, _PressDownOper( NULL )
 {
-public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
-
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
-
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
-};
 }
-#endif
+
+CUIImage::~CUIImage()
+{
+
+}
+
+void CUIImage::Draw()
+{
+
+}
+
+void CUIImage::DrawBorder()
+{
+
+}
+
+void CUIImage::ShowIndexNum()
+{
+
+}
+
+IOperation* CUIImage::SetPressFunc( IOperation* oper )
+{
+   IOperation* oldoper = _PressDownOper;
+   _PressDownOper = oper;
+   return oldoper;
+}
+
+void CUIImage::CloneFrom( CUIWnd* wnd )
+{
+   CUIWnd::CloneFrom( wnd );
+
+   CUIImage* image = dynamic_cast<CUIImage*>( wnd );
+}
+
+void CUIImage::ParseData( XML::IXMLNode* node )
+{
+   CUIWnd::ParseData( node );
+   //todo
+}
+
+}

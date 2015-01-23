@@ -15,34 +15,30 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_LOG_HELPER_H_
+#define _INSPIRE_LOG_HELPER_H_
 
-#include "platform.h"
+#include "util/Inspire.h"
 
-namespace inspire {
+#define LOG_BUFFER_SIZE 4096
+#define MAX_LOG_FILE_NAME 255
 
-class INSPIRE_EXPORT_API CharConverter
-{
-public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+/*
+ *@brief useful macro when log
+ **/
+#define LogError( fmt, ... )                                   \
+   __LOG_WRAPPER( inspire::PRIO_ERROR, fmt, __VA_ARGS__ )
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+#define LogDebug( fmt, ... )                                   \
+   __LOG_WRAPPER( inspire::PRIO_DEBUG, fmt, __VA_ARGS__ )
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+#define LogWarning( fmt, ... )                                 \
+   __LOG_WRAPPER( inspire::PRIO_WARNING, fmt, __VA_ARGS__ )
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
-};
-}
+#define LogNotice( fmt, ... )                                  \
+   __LOG_WRAPPER( inspire::PRIO_NOTICE, fmt, __VA_ARGS__ )
+
+#define LogInfo( fmt, ... )                                    \
+   __LOG_WRAPPER( inspire::PRIO_INFO, fmt, __VA_ARGS__ )
+
 #endif

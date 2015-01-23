@@ -15,34 +15,47 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_SLIDER_H_
+#define _INSPIRE_UI_SLIDER_H_
 
-#include "platform.h"
+#include "IUISlider.h"
+#include "UIWnd.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+class CUISlider : public CUIWnd, public IUISlider
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   CUISlider();
+   virtual ~CUISlider();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void Draw();
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual void Enable();
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   virtual void Disable();
+
+   virtual bool IsEnable() const;
+
+   virtual void SetChangeStep( int step );
+
+   virtual void SetMaxValue( int max_value );
+
+   virtual const int GetCurrentValue() const;
+
+public:
+   virtual void CloneFrom( CUIWnd* wnd );
+   virtual void ParseData( XML::IXMLNode* node );
+
+protected:
+   bool      _Enable;
+   int         _MaxStep;
+   int         _MaxValue;
+   int         _CurrentValue;
+
+   static int const MAX_STEP = 5;
+   static int const MAX_VALUE = 100;
 };
+
 }
 #endif

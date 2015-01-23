@@ -15,34 +15,47 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_SCROLLBAR_H_
+#define _INSPIRE_UI_SCROLLBAR_H_
 
-#include "platform.h"
+#include "IUIScrollBar.h"
+#include "UIWnd.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+class CUIWnd;
+
+class CUIScrollBar : public CUIWnd, public IUIScrollBar
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   CUIScrollBar();
+   virtual ~CUIScrollBar();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void Draw();
+   virtual void Enable();
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual void Disable();
+
+   virtual bool IsEnable();
+
+   virtual void SetScrollRange( int max_range );
+
+public:
+   virtual void CloneFrom( CUIWnd* wnd );
+   virtual void ParseData( XML::IXMLNode* node );
+
+protected:
+   bool      _Enable;
+   int         _MaxRange;
+   int         _CurrentPos;
+   CRect      _RectPrev;
+   CRect      _RectNext;
+   _tstring   _PrevResourceID;
+   _tstring   _NextResourceID;
 
 private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   static int const MAX_RANGE = 100;
 };
+
 }
 #endif

@@ -15,34 +15,30 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_IUI_BUTTON_H_
+#define _INSPIRE_IUI_BUTTON_H_
 
-#include "platform.h"
+#include "IUIWnd.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+class INSPIRE_EXPORT_API IUIButton : virtual public IUIWnd
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   virtual ~IUIButton() {};
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void Enable() = 0;
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual void Disable() = 0;
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   virtual bool IsEnable() const = 0;
+
+   virtual void Flash( bool flash ) = 0;
+
+   virtual bool IsFlash() const = 0;
+
+   ///< callback
+   virtual IOperation* SetPressFunc( IOperation* oper ) = 0;
 };
 }
 #endif

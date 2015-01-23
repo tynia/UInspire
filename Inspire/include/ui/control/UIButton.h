@@ -15,34 +15,48 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_UI_BUTTON_H_
+#define _INSPIRE_UI_BUTTON_H_
 
-#include "platform.h"
+#include "IUIButton.h"
+#include "UIWnd.h"
 
 namespace inspire {
 
-class INSPIRE_EXPORT_API CharConverter
+class CUIButton : public CUIWnd, public IUIButton
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   CUIButton();
+   virtual ~CUIButton();
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void Draw( void );
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual bool ProcessEvent( CKeyboardEvent* kb_event );
+   virtual bool ProcessEvent( CMouseEvent* ms_event );
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   virtual void Enable();
+
+   virtual void Disable();
+
+   virtual bool IsEnable() const;
+
+   virtual void Flash( bool flash );
+
+   virtual bool IsFlash() const;
+
+   ///< 窗口回调函数
+   virtual IOperation* SetPressFunc( IOperation* oper );
+
+public:
+   virtual void CloneFrom( CUIWnd* wnd );
+   virtual void ParseData( XML::IXMLNode* node );
+
+protected:
+   bool      _Enable;
+   bool      _Flash;
+
+   IOperation*   _PressDownOper;
 };
+
 }
 #endif

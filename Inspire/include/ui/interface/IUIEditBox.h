@@ -15,34 +15,37 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_IUI_EDITBOX_H_
+#define _INSPIRE_IUI_EDITBOX_H_
 
-#include "platform.h"
+#include "IUIWnd.h"
 
 namespace inspire {
-
-class INSPIRE_EXPORT_API CharConverter
+class INSPIRE_EXPORT_API IUIEditBox : virtual public IUIWnd
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
+   virtual ~IUIEditBox() {};
 
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
+   virtual void Clear() = 0;
 
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
+   virtual void SetText( const _tchar* text ) = 0;
 
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   virtual const _tchar* GetText() const = 0;
+
+   virtual void SetMaxInputLength( int len ) = 0;
+
+   virtual void Enable() = 0;
+
+   virtual void Disable() = 0;
+
+   virtual bool IsEnable() const = 0;
+
+   virtual void ShowCurser( bool show = true ) = 0;
+
+   virtual void SetTextAlign( TEXT_HORIZON_ALIGN horizon, TEXT_VERTICAL_ALIGN vertical ) = 0;
+
+   virtual IOperation* SetTextChangeFunc( IOperation* oper ) = 0;
 };
+
 }
 #endif

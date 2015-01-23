@@ -15,34 +15,24 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_CHAR_CONVERTER_H_
-#define _INSPIRE_CHAR_CONVERTER_H_
+#ifndef _INSPIRE_INVOKER_H_
+#define _INSPIRE_INVOKER_H_
 
-#include "platform.h"
+#include "UIWndEvent.h"
+#include "IUIWnd.h"
+#include "InvokerManager.h"
 
-namespace inspire {
-
-class INSPIRE_EXPORT_API CharConverter
+class IOperation
 {
 public:
-   CharConverter( const char* str );
-   CharConverter( const wchar_t* wstr );
-   ~CharConverter();
-
-   const char* GetUTF8() const
-   {
-      return _UTF8String;
-   }
-
-   const wchar_t* GetUnicode() const
-   {
-      return _UnicodeString;
-   }
-
-private:
-   bool     _IsUTF8;
-   char*    _UTF8String;
-   wchar_t* _UnicodeString;
+   virtual ~IOperation() {};
+   virtual void Invoke( inspire::IUIWnd* wnd, const inspire::EventArg& arg ) = 0;
 };
+
+template<class TObj, class TFunc>
+inline IOperation* MakeInvoker( TObj* obj, TFunc func )
+{
+   return InvokerManager::GetInvokerManager()->MakeInvoker( obj, func );
 }
+
 #endif

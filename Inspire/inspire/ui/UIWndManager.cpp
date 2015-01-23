@@ -16,12 +16,13 @@
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
 #include "UIWndManager.h"
-#include "UIWnd.h"
+#include "control/UIWnd.h"
 #include "UIWndFactory.h"
 #include "UIRenderFactory.h"
 #include "UIBase.h"
 #include "IUIRender.h"
 #include <XMLDocument.h>
+#include "LogHelper.h"
 
 namespace inspire {
 CUIWndManager* CUIWndManager::static_Instance = NULL;
@@ -287,22 +288,18 @@ bool CUIWndManager::InitWndInstance( IUIWnd* initWnd, HWND& hInitWnd, const HWND
    int posx = ( cx - rect.Width() ) / 2;
    int posy = ( cy - rect.Height() ) / 2;
    hInitWnd = ::CreateWindow( initWnd->GetID(),
-      NULL,
-      style,/*WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN,*/
-      posx,
-      posy,
-      rect.Width(),
-      rect.Height(),
-      hPareant,
-      NULL,
-      _hInstance,
-      NULL );
+                              NULL,
+                              style,/*WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN,*/
+                              posx,
+                              posy,
+                              rect.Width(),
+                              rect.Height(),
+                              hPareant,
+                              NULL,
+                              _hInstance,
+                              NULL );
 
-   if ( hInitWnd )
-   {
-      __asm int 3;
-      return false;
-   }
+   INSPIRE_ASSERT(hInitWnd, "Failed to create Window");
 
    ::ShowWindow( hInitWnd, SW_HIDE );
    ::UpdateWindow( hInitWnd );
@@ -348,20 +345,17 @@ void CUIWndManager::CloneMultiInstanceWnd( CUIWnd* wnd )
 
 void CUIWndManager::ParseLayout()
 {
-   XML::IXMLDocument* doc = new XML::XMLDocument();
-   bool ret = doc->load( "index.xml" );
-   if ( !ret )
+   inspire::XMLDocument doc;
+   if (doc.load("index.xml"))
    {
-      //can not find ui layout index file.
-      delete doc;
-      doc = NULL;
+      LogError("can not find ui layout index file.");
       return;
    }
 
-   XML::IXMLNode* node = doc->firstChild( "Layout" );
+   inspire::IXMLNode* node = doc.firstChild( "Layout" );
    if ( node )
    {
-      XML::IXMLNode* child = node->firstChild( "index" );
+      inspire::IXMLNode* child = node->firstChild( "index" );
       while ( child )
       {
          const char* layout = child->getValue();
@@ -372,21 +366,18 @@ void CUIWndManager::ParseLayout()
          child = child->nextSibling( "index" );
       }
    }
-
-   delete doc;
-   doc = NULL;
 }
 
 void CUIWndManager::ParseLayoutFile( const char* layout_file )
 {
-   XML::IXMLDocument* uilayout = new XML::XMLDocument();
+   inspire::IXMLDocument* uilayout = new inspire::XMLDocument();
    uilayout->load( layout_file );
 
    CUIWnd* wnd = NULL;
-   XML::IXMLNode* windows = uilayout->firstChild( "Windows" );
+   inspire::IXMLNode* windows = uilayout->firstChild( "Windows" );
    if ( windows )
    {
-      XML::IXMLNode* wndnode = windows->firstChild( "Window" );
+      inspire::IXMLNode* wndnode = windows->firstChild( "Window" );
       while ( wndnode )
       {
          const char* str_class_index = wndnode->getAttributeValue( "Class" );
@@ -394,11 +385,7 @@ void CUIWndManager::ParseLayoutFile( const char* layout_file )
          {
             WndType wt = ( WndType )atoi( str_class_index );
 #ifndef _DEBUG
-            if ( GetClassNameFromWndClass( wt ) != 0 )
-            {
-               //error...root wnd must be Window!
-               __asm int 3;
-            }
+            INSPIRE_ASSERT(GetClassNameFromWndClass(wt) != 0, "root wnd must be Window!");
 #endif // !_DEBUG
             wnd = _Factory->AllocWndEntity( wt );
             wnd->ParseData( wndnode );
@@ -421,12 +408,12 @@ void CUIWndManager::ParseLayoutFile( const char* layout_file )
    }
 }
 
-void CUIWndManager::ParseControl( CUIWnd* wnd, XML::IXMLNode* node )
+void CUIWndManager::ParseControl( CUIWnd* wnd, inspire::IXMLNode* node )
 {
-   XML::IXMLNode* controls = node->firstChild( "Controls" );
+   inspire::IXMLNode* controls = node->firstChild( "Controls" );
    if ( controls )
    {
-      XML::IXMLNode* ctrl_node = controls->firstChild( "Control" );
+      inspire::IXMLNode* ctrl_node = controls->firstChild( "Control" );
       while ( ctrl_node )
       {
          const char* ctrl_class = ctrl_node->getAttributeValue( "Class" );

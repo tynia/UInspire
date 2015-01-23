@@ -39,11 +39,11 @@ public:
    virtual bool IsEnable() const;
    virtual void ShowCurser( bool show = true );
    virtual void SetTextAlign( TEXT_HORIZON_ALIGN horizon, TEXT_VERTICAL_ALIGN vertical );
-   virtual IOperation* SetTextChangeFunc( IOperation* oper );
+   virtual IInvoker* SetTextChangeFunc( IInvoker* oper );
 
 public:
    virtual void CloneFrom( CUIWnd* wnd );
-   virtual void ParseData( XML::IXMLNode* node );
+   virtual void ParseData( inspire::IXMLNode* node );
 
 protected:
    bool      _Enable;
@@ -51,7 +51,7 @@ protected:
    int         _MaxInputLength;
    int         _xOffset;
    int         _yOffset;
-   IOperation*   _TextChangeOper;
+   IInvoker*   _TextChangeOper;
 };
 }
 #endif

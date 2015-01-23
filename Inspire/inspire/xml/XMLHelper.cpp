@@ -19,7 +19,7 @@
 #include "IXMLNode.h"
 #include "IXMLAttribute.h"
 
-XML_BEGIN
+namespace inspire {
 
 std::size_t caculateLen( const char* pszString )
 {
@@ -591,4 +591,4 @@ std::basic_ostream<char>& operator<< ( std::basic_ostream<char>& os, IXMLNode* n
    return os;
 }
 
-XML_END
+}

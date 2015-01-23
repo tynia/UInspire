@@ -42,9 +42,9 @@ public:
    virtual void SetEditText( const _tchar* info ) = 0;
 
    ///< 窗口回调函数
-   virtual IOperation* SetPressFunc( IOperation* oper ) = 0;
-   virtual IOperation* SetItemChangeFunc( IOperation* oper ) = 0;
-   virtual IOperation* SetTextChangeFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetPressFunc( IInvoker* oper ) = 0;
+   virtual IInvoker* SetItemChangeFunc( IInvoker* oper ) = 0;
+   virtual IInvoker* SetTextChangeFunc( IInvoker* oper ) = 0;
 };
 }
 #endif

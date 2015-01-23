@@ -14,6 +14,7 @@ public:
    static LogManager* Instance();
 
 private:
+   LogManager() ;
    void init();
 
 private:

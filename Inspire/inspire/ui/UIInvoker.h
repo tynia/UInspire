@@ -22,17 +22,17 @@
 #include "IUIWnd.h"
 #include "InvokerManager.h"
 
-class IOperation
+class IInvoker
 {
 public:
-   virtual ~IOperation() {};
+   virtual ~IInvoker() {};
    virtual void Invoke( inspire::IUIWnd* wnd, const inspire::EventArg& arg ) = 0;
 };
 
 template<class TObj, class TFunc>
-inline IOperation* MakeInvoker( TObj* obj, TFunc func )
+inline IInvoker* MakeInvoker( TObj* obj, TFunc func )
 {
-   return InvokerManager::GetInvokerManager()->MakeInvoker( obj, func );
+   return InvokerManager::Instance()->MakeInvoker( obj, func );
 }
 
 #endif

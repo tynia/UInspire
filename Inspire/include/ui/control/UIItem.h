@@ -39,18 +39,18 @@ public:
    virtual void SetTextAlign( TEXT_HORIZON_ALIGN horizon, TEXT_VERTICAL_ALIGN vertical );
    virtual void SetHeadImageResourceID( const _tchar* id );
    virtual void SetTailImageResourceID( const _tchar* id );
-   virtual IOperation* SetPressFunc( IOperation* oper );
-   virtual IOperation* SetHeadPressFunc( IOperation* oper );
-   virtual IOperation* SetTailPressFunc( IOperation* oper );
+   virtual IInvoker* SetPressFunc( IInvoker* oper );
+   virtual IInvoker* SetHeadPressFunc( IInvoker* oper );
+   virtual IInvoker* SetTailPressFunc( IInvoker* oper );
 
 public:
    virtual void CloneFrom( CUIWnd* wnd );
-   virtual void ParseData( XML::IXMLNode* node );
+   virtual void ParseData( inspire::IXMLNode* node );
 
 protected:
-   IOperation*      _PressDownOper;
-   IOperation*      _HeadPressDownOper;
-   IOperation*      _TailPressDownOper;
+   IInvoker*      _PressDownOper;
+   IInvoker*      _HeadPressDownOper;
+   IInvoker*      _TailPressDownOper;
    CRect         _RectHead;
    CRect         _RectTail;
    _tstring      _HeadResourceID;

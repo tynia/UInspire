@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\inter\MemoryPool.cpp" />
     <ClCompile Include="inspire\log\LogFile.cpp" />
+    <ClCompile Include="inspire\log\LogManager.cpp" />
     <ClCompile Include="inspire\ui\control\InspireInternal.cpp" />
     <ClCompile Include="inspire\ui\control\UIButton.cpp" />
     <ClCompile Include="inspire\ui\control\UICheckBox.cpp" />
@@ -49,7 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Inspire.h" />
-    <ClInclude Include="include\inter\MemoryPool.h" />
     <ClInclude Include="include\inter\noncopyable.h" />
     <ClInclude Include="include\log\Log.h" />
     <ClInclude Include="include\log\LogFile.h" />
@@ -91,20 +90,12 @@
     <ClInclude Include="include\ui\interface\IUITree.h" />
     <ClInclude Include="include\ui\interface\IUIWnd.h" />
     <ClInclude Include="include\ui\interface\IUIWndManager.h" />
-    <ClInclude Include="include\ui\InvokerManager.h" />
     <ClInclude Include="include\ui\UIBase.h" />
-    <ClInclude Include="include\ui\UIHelper - modify.h" />
-    <ClInclude Include="include\ui\UIHelper.h" />
-    <ClInclude Include="include\ui\UIInvoker.h" />
     <ClInclude Include="include\ui\UILayoutBuilder.h" />
-    <ClInclude Include="include\ui\UIRenderFactory.h" />
     <ClInclude Include="include\ui\UIWndData.h" />
     <ClInclude Include="include\ui\UIWndEvent.h" />
-    <ClInclude Include="include\ui\UIWndFactory.h" />
-    <ClInclude Include="include\ui\UIWndManager.h" />
     <ClInclude Include="include\ui\wnd.h" />
     <ClInclude Include="include\util\CharConverter.h" />
-    <ClInclude Include="include\util\FreeList.h" />
     <ClInclude Include="include\util\LockCondition.h" />
     <ClInclude Include="include\xml\IXMLAttribute.h" />
     <ClInclude Include="include\xml\IXMLDocument.h" />
@@ -116,10 +107,14 @@
     <ClInclude Include="include\xml\XMLMemoryPool.h" />
     <ClInclude Include="include\xml\XMLNode.h" />
     <ClInclude Include="include\xml\XMLReader.h" />
-    <ClInclude Include="include\xml\XMLUtil.h" />
     <ClInclude Include="include\xml\XMLWriter.h" />
     <ClInclude Include="inspire\render\UID3DRender.h" />
     <ClInclude Include="inspire\render\UIGDIRender.h" />
+    <ClInclude Include="inspire\ui\FreeList.h" />
+    <ClInclude Include="inspire\ui\InvokerManager.h" />
+    <ClInclude Include="inspire\ui\UIHelper.h" />
+    <ClInclude Include="inspire\ui\UIInvoker.h" />
+    <ClInclude Include="inspire\ui\UIRenderFactory.h" />
     <ClInclude Include="inspire\util\InspireFreeList.h" />
     <ClInclude Include="inspire\util\InspireLock.h" />
     <ClInclude Include="inspire\xml\XMLNodeBase.hpp" />
@@ -133,13 +128,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>

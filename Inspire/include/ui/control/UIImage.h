@@ -33,14 +33,14 @@ public:
 
    virtual void DrawBorder();
    virtual void ShowIndexNum();
-   virtual IOperation* SetPressFunc( IOperation* oper );
+   virtual IInvoker* SetPressFunc( IInvoker* oper );
 
 public:
    virtual void CloneFrom( CUIWnd* wnd );
-   virtual void ParseData( XML::IXMLNode* node );
+   virtual void ParseData( inspire::IXMLNode* node );
 
 protected:
-   IOperation* _PressDownOper;
+   IInvoker* _PressDownOper;
 };
 }
 #endif

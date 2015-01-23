@@ -42,7 +42,7 @@ public:
    virtual bool IsFlash() const = 0;
 
    ///< 窗口回调函数
-   virtual IOperation* SetPressFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetPressFunc( IInvoker* oper ) = 0;
 };
 }
 #endif

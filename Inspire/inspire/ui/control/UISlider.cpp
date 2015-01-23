@@ -76,7 +76,7 @@ void CUISlider::CloneFrom( CUIWnd* wnd )
    //todo:
 }
 
-void CUISlider::ParseData( XML::IXMLNode* node )
+void CUISlider::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    //todo:

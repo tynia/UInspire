@@ -22,7 +22,7 @@
 
 ///< invoker begin
 template<class TObj>
-class Invoker : public IOperation
+class Invoker : public IInvoker
 {
 public:
    typedef void ( TObj::*TFunc )( inspire::IUIWnd*, const inspire::EventArg& );
@@ -116,7 +116,7 @@ public:                                                                       \
    template<class TWnd>                                                       \
    void AttachInvoker( TObj* obj, TWnd* wnd )                                 \
    {                                                                          \
-      IOperation* _invoker = MakeInvoker( obj, _Func );                       \
+      IInvoker* _invoker = MakeInvoker( obj, _Func );                       \
       if ( _invoker )                                                         \
       {                                                                       \
          wnd->FuncName( _invoker );                                           \

@@ -41,7 +41,7 @@ public:
 
 public:
    virtual void CloneFrom( CUIWnd* wnd );
-   virtual void ParseData( XML::IXMLNode* node );
+   virtual void ParseData( inspire::IXMLNode* node );
 
 protected:
    int         _CurrentValue;

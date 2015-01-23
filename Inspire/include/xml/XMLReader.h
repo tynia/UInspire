@@ -18,9 +18,9 @@
 #ifndef _INSPIRE_XML_READER_H_
 #define _INSPIRE_XML_READER_H_
 
-#include "XMLUtil.h"
+#include "platform.h"
 
-XML_BEGIN
+namespace inspire {
 
 class IXMLDocument;
 class IXMLNode;
@@ -63,5 +63,5 @@ private:
    IXMLDocument*  _xmlDoc;
 };
 
-XML_END
+}
 #endif

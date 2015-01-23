@@ -19,7 +19,7 @@
 #include "IXMLDocument.h"
 #include "XMLHelper.h"
 
-XML_BEGIN
+namespace inspire {
 XMLAttribute::XMLAttribute() : XMLBase(), _prev( NULL ), _next( NULL )
 {
    
@@ -98,4 +98,4 @@ void XMLAttribute::linkToPrev( IXMLAttribute* attri )
    _prev = attri;
 }
 
-XML_END
+}

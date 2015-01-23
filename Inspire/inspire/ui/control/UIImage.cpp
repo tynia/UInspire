@@ -45,9 +45,9 @@ void CUIImage::ShowIndexNum()
 
 }
 
-IOperation* CUIImage::SetPressFunc( IOperation* oper )
+IInvoker* CUIImage::SetPressFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _PressDownOper;
+   IInvoker* oldoper = _PressDownOper;
    _PressDownOper = oper;
    return oldoper;
 }
@@ -59,7 +59,7 @@ void CUIImage::CloneFrom( CUIWnd* wnd )
    CUIImage* image = dynamic_cast<CUIImage*>( wnd );
 }
 
-void CUIImage::ParseData( XML::IXMLNode* node )
+void CUIImage::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    //todo

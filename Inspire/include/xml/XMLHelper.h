@@ -18,8 +18,8 @@
 #ifndef _INSPIRE_XML_HELPER_H_
 #define _INSPIRE_XML_HELPER_H_
 
-#include "XMLUtil.h"
-XML_BEGIN
+#include "platform.h"
+namespace inspire {
 std::size_t caculateLen( const char* pszString );
 
 
@@ -126,5 +126,5 @@ private:
    void*       _where;
 };
 
-XML_END
+}
 #endif

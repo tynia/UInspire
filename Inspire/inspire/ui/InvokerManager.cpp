@@ -16,26 +16,22 @@
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
 #include "InvokerManager.h"
-#include "MemoryPool.h"
 
 InvokerManager::InvokerManager()
 {
-   _memory_pool = new MemoryPool();
 }
 
 InvokerManager::~InvokerManager()
 {
-   delete _memory_pool;
-   _memory_pool = NULL;
 }
 
-InvokerManager* InvokerManager::GetInvokerManager()
+InvokerManager* InvokerManager::Instance()
 {
-   static InvokerManager invoker_mng;
-   return &invoker_mng;
+   static InvokerManager mng;
+   return &mng;
 }
 
-void InvokerManager::AddOperation( IOperation* oper )
+void InvokerManager::AddInvoker(IInvoker* oper)
 {
-   _oper_vector.push_back( oper );
+   _invokerVec.push_back(oper);
 }

@@ -18,13 +18,12 @@
 #ifndef _INSPIRE_XML_DOCUMENT_H_
 #define _INSPIRE_XML_DOCUMENT_H_
 
-#include "XMLBase.h"
 #include "IXMLDocument.h"
 #include "XMLNode.h"
 
-XML_BEGIN
+namespace inspire {
 
-class XMLMemoryPool;
+class XMLBufferPool;
 class XMLWriter;
 class XMLReader;
 class IXMLAttribute;
@@ -53,12 +52,12 @@ private:
    void readFile();
 
 private:
-   XMLMemoryPool*  _pool;
+   XMLBufferPool*  _pool;
    XMLWriter*      _writer;
    XMLReader*      _reader;
    const char*     _filename;
    char*           _data;
 };
 
-XML_END
+}
 #endif

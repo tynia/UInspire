@@ -71,9 +71,9 @@ bool CUIButton::IsFlash() const
    return _Flash;
 }
 
-IOperation* CUIButton::SetPressFunc( IOperation* oper )
+IInvoker* CUIButton::SetPressFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _PressDownOper;
+   IInvoker* oldoper = _PressDownOper;
    _PressDownOper = oper;
    return oldoper;
 }
@@ -88,7 +88,7 @@ void CUIButton::CloneFrom( CUIWnd* wnd )
    _Flash = btn->_Flash;
 }
 
-void CUIButton::ParseData( XML::IXMLNode* node )
+void CUIButton::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    // todo:

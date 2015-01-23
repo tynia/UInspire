@@ -18,9 +18,10 @@
 #ifndef _INSPIRE_XML_BASE_DEFINITION_H_
 #define _INSPIRE_XML_BASE_DEFINITION_H_
 
-#include "XMLUtil.h"
+#include "platform.h"
 
-XML_BEGIN
+namespace inspire {
+
 const int PARSE_NO_DATA_NODES             = 0x1;
 const int PARSE_NO_VALUE_ELEMENTS         = 0x2;
 const int PARSE_NO_STRING_TERMINATORS     = 0x4;
@@ -95,7 +96,7 @@ struct XMLLookupTable
 };
 
 class IXMLNode;
-class XML_LIB_API XMLBase
+class INSPIRE_EXPORT_API XMLBase
 {
 public:
    XMLBase();
@@ -128,6 +129,6 @@ protected:
    IXMLNode*   _parent;
 };
 
-XML_END
+}
 
 #endif

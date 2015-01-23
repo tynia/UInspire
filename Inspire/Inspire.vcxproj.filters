@@ -51,9 +51,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\inter\MemoryPool.cpp">
-      <Filter>include\inter</Filter>
-    </ClCompile>
     <ClCompile Include="inspire\log\LogFile.cpp">
       <Filter>inspire\log</Filter>
     </ClCompile>
@@ -156,11 +153,11 @@
     <ClCompile Include="inspire\ui\UIWndManager.cpp">
       <Filter>inspire\ui</Filter>
     </ClCompile>
+    <ClCompile Include="inspire\log\LogManager.cpp">
+      <Filter>inspire\log</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\inter\MemoryPool.h">
-      <Filter>include\inter</Filter>
-    </ClInclude>
     <ClInclude Include="include\inter\noncopyable.h">
       <Filter>include\inter</Filter>
     </ClInclude>
@@ -206,16 +203,10 @@
     <ClInclude Include="include\xml\XMLReader.h">
       <Filter>include\xml</Filter>
     </ClInclude>
-    <ClInclude Include="include\xml\XMLUtil.h">
-      <Filter>include\xml</Filter>
-    </ClInclude>
     <ClInclude Include="include\xml\XMLWriter.h">
       <Filter>include\xml</Filter>
     </ClInclude>
     <ClInclude Include="include\util\CharConverter.h">
-      <Filter>include\util</Filter>
-    </ClInclude>
-    <ClInclude Include="include\util\FreeList.h">
       <Filter>include\util</Filter>
     </ClInclude>
     <ClInclude Include="include\util\LockCondition.h">
@@ -272,37 +263,16 @@
     <ClInclude Include="include\ui\InputManager.h">
       <Filter>include\ui</Filter>
     </ClInclude>
-    <ClInclude Include="include\ui\InvokerManager.h">
-      <Filter>include\ui</Filter>
-    </ClInclude>
     <ClInclude Include="include\ui\UIBase.h">
       <Filter>include\ui</Filter>
     </ClInclude>
-    <ClInclude Include="include\ui\UIHelper - modify.h">
-      <Filter>include\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ui\UIHelper.h">
-      <Filter>include\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ui\UIInvoker.h">
-      <Filter>include\ui</Filter>
-    </ClInclude>
     <ClInclude Include="include\ui\UILayoutBuilder.h">
-      <Filter>include\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ui\UIRenderFactory.h">
       <Filter>include\ui</Filter>
     </ClInclude>
     <ClInclude Include="include\ui\UIWndData.h">
       <Filter>include\ui</Filter>
     </ClInclude>
     <ClInclude Include="include\ui\UIWndEvent.h">
-      <Filter>include\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ui\UIWndFactory.h">
-      <Filter>include\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ui\UIWndManager.h">
       <Filter>include\ui</Filter>
     </ClInclude>
     <ClInclude Include="include\ui\wnd.h">
@@ -382,6 +352,21 @@
     </ClInclude>
     <ClInclude Include="include\platform.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="inspire\ui\InvokerManager.h">
+      <Filter>inspire\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="inspire\ui\UIHelper.h">
+      <Filter>inspire\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="inspire\ui\UIInvoker.h">
+      <Filter>inspire\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="inspire\ui\UIRenderFactory.h">
+      <Filter>inspire\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="inspire\ui\FreeList.h">
+      <Filter>inspire\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

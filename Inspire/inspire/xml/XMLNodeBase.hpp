@@ -20,7 +20,7 @@
 
 #include "XMLUtil.hpp"
 
-XML_BEGIN
+namespace inspire {
 class IXMLNode;
 class IXMLNodeBase
 {
@@ -54,5 +54,5 @@ protected:
    std::size_t _valueSize;
    IXMLNode*   _parent;
 };
-XML_END
+}
 #endif

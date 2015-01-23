@@ -21,7 +21,7 @@
 #include "XMLBase.h"
 #include "IXMLNode.h"
 
-XML_BEGIN
+namespace inspire {
 class IXMLDocument;
 class IXMLAttribute;
 enum XMLNodeType;
@@ -80,5 +80,5 @@ private:
    IXMLNode*      _nextNode;
    IXMLAttribute* _firstAttri;
 };
-XML_END
+}
 #endif

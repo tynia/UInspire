@@ -21,7 +21,7 @@
 #include "XMLAttribute.h"
 #include "XMLHelper.h"
 
-XML_BEGIN
+namespace inspire {
 XMLNode::XMLNode( XMLNodeType nt ) :   XMLBase(),
                         _type( nt ),
                         _firstChild( NULL ),
@@ -393,4 +393,4 @@ void XMLNode::removeAllAttribute()
    _firstAttri = NULL;
 }
 
-XML_END
+}

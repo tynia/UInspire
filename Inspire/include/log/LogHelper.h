@@ -18,10 +18,35 @@
 #ifndef _INSPIRE_LOG_HELPER_H_
 #define _INSPIRE_LOG_HELPER_H_
 
-#include "util/Inspire.h"
+#include "Inspire.h"
+#include "Log.h"
 
-#define LOG_BUFFER_SIZE 4096
-#define MAX_LOG_FILE_NAME 255
+#define __LOG_WRAPPER( LEVEL, fmt, ... )                       \
+do                                                             \
+{                                                              \
+   inspire::Log( LEVEL, __FUNCTION__,                          \
+                 __FILE__, __LINE__, fmt, __VA_ARGS__ ) ;      \
+} while ( false )
+
+#ifdef _DEBUG
+#define INSPIRE_ASSERT( condition, fmt, ... )                  \
+do                                                             \
+{                                                              \
+   if ( !condition )                                           \
+   {                                                           \
+      inspire::Log( inspire::PRIO_ERROR, __FUNCTION__,         \
+                    __FILE__, __LINE__, fmt, __VA_ARGS__ ) ;   \
+      inspire::Panic() ;                                       \
+   }                                                           \
+} while ( false )
+#else
+#define INSPIRE_ASSERT( condition, fmt, ... )                  \
+do                                                             \
+{                                                              \
+   if ( !condition )                                           \
+         {}                                                          \
+} while ( false )
+#endif
 
 /*
  *@brief useful macro when log

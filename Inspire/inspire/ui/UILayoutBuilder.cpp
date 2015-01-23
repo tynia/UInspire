@@ -33,7 +33,7 @@ CUILayoutBuilder::~CUILayoutBuilder()
 
 void CUILayoutBuilder::ParseLayout()
 {
-   XML::XMLDocument doc;
+   inspire::XMLDocument doc;
    bool ret = doc.load("index.xml");
    if (!ret)
    {
@@ -41,10 +41,10 @@ void CUILayoutBuilder::ParseLayout()
       return;
    }
 
-   XML::IXMLNode* node = doc.firstChild("Layout");
+   inspire::IXMLNode* node = doc.firstChild("Layout");
    if (node)
    {
-      XML::IXMLNode* child = node->firstChild("index");
+      inspire::IXMLNode* child = node->firstChild("index");
       while (child)
       {
          const char* layout = child->getValue();
@@ -59,14 +59,14 @@ void CUILayoutBuilder::ParseLayout()
 
 void CUILayoutBuilder::ParseLayoutFile(const char* layout)
 {
-   XML::XMLDocument uilayout;
+   inspire::XMLDocument uilayout;
    uilayout.load(layout);
 
    CUIWnd* wnd = NULL;
-   XML::IXMLNode* windows = uilayout.firstChild("Windows");
+   inspire::IXMLNode* windows = uilayout.firstChild("Windows");
    if (windows)
    {
-      XML::IXMLNode* wndnode = windows->firstChild("Window");
+      inspire::IXMLNode* wndnode = windows->firstChild("Window");
       while (wndnode)
       {
          const char* str_class_index = wndnode->getAttributeValue("Class");
@@ -100,17 +100,17 @@ void CUILayoutBuilder::ParseLayoutFile(const char* layout)
    }
 }
 
-void CUILayoutBuilder::ParseCommonWndData( IUIWnd* wnd, XML::IXMLNode* node )
+void CUILayoutBuilder::ParseCommonWndData( IUIWnd* wnd, inspire::IXMLNode* node )
 {
    
 }
 
-void CUILayoutBuilder::ParseControl( IUIWnd* wnd, XML::IXMLNode* node )
+void CUILayoutBuilder::ParseControl( IUIWnd* wnd, inspire::IXMLNode* node )
 {
-   XML::IXMLNode* controls = node->firstChild("Controls");
+   inspire::IXMLNode* controls = node->firstChild("Controls");
    if (controls)
    {
-      XML::IXMLNode* ctrl_node = controls->firstChild("Control");
+      inspire::IXMLNode* ctrl_node = controls->firstChild("Control");
       while (ctrl_node)
       {
          const char* ctrl_class = ctrl_node->getAttributeValue("Class");
@@ -126,9 +126,9 @@ void CUILayoutBuilder::ParseControl( IUIWnd* wnd, XML::IXMLNode* node )
    }
 }
 
-void CUILayoutBuilder::ParseControlData( IUIWnd* wnd, XML::IXMLNode* node )
+void CUILayoutBuilder::ParseControlData( IUIWnd* wnd, inspire::IXMLNode* node )
 {
-   XML::IXMLNode* node_detail = node->firstChild("HAlign");
+   inspire::IXMLNode* node_detail = node->firstChild("HAlign");
    if (node_detail)
    {
       const char* str_horizon = node_detail->getValue();

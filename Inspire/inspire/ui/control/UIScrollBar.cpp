@@ -68,7 +68,7 @@ void CUIScrollBar::CloneFrom( CUIWnd* wnd )
    //todo:
 }
 
-void CUIScrollBar::ParseData( XML::IXMLNode* node )
+void CUIScrollBar::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    //todo

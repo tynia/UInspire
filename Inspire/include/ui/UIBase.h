@@ -18,6 +18,8 @@
 #ifndef _INSPIRE_UI_BASE_H_
 #define _INSPIRE_UI_BASE_H_
 
+#include "platform.h"
+
 class INSPIRE_EXPORT_API CUIBase
 {
 public:

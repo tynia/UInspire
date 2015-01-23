@@ -30,7 +30,7 @@ public:
    virtual void SetSubText( _tchar* text ) = 0;
    virtual void SetTextAlign( TEXT_HORIZON_ALIGN horizon, TEXT_VERTICAL_ALIGN vertical ) = 0;
 
-   virtual IOperation* SetPressFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetPressFunc( IInvoker* oper ) = 0;
 };
 }
 #endif

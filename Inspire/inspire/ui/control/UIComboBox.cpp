@@ -93,23 +93,23 @@ void CUIComboBox::SetEditText( const _tchar* text )
    SetCaption( text );
 }
 
-IOperation* CUIComboBox::SetPressFunc( IOperation* oper )
+IInvoker* CUIComboBox::SetPressFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _PressDownOper;
+   IInvoker* oldoper = _PressDownOper;
    _PressDownOper = oper;
    return oldoper;
 }
 
-IOperation* CUIComboBox::SetItemChangeFunc( IOperation* oper )
+IInvoker* CUIComboBox::SetItemChangeFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _ItemChangeOper;
+   IInvoker* oldoper = _ItemChangeOper;
    _ItemChangeOper = oper;
    return oldoper;
 }
 
-IOperation* CUIComboBox::SetTextChangeFunc( IOperation* oper )
+IInvoker* CUIComboBox::SetTextChangeFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _TextChangeOper;
+   IInvoker* oldoper = _TextChangeOper;
    _TextChangeOper = oper;
    return oldoper;
 }
@@ -137,7 +137,7 @@ void CUIComboBox::CloneFrom( CUIWnd* wnd )
    _Editable = combo->_Editable;
 }
 
-void CUIComboBox::ParseData( XML::IXMLNode* node )
+void CUIComboBox::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    // todo:

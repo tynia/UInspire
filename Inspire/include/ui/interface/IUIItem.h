@@ -48,11 +48,11 @@ public:
    */
    virtual void SetTailImageResourceID( const _tchar* id ) = 0;
 
-   virtual IOperation* SetHeadPressFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetHeadPressFunc( IInvoker* oper ) = 0;
 
-   virtual IOperation* SetTailPressFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetTailPressFunc( IInvoker* oper ) = 0;
 
-   virtual IOperation* SetPressFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetPressFunc( IInvoker* oper ) = 0;
 };
 }
 #endif

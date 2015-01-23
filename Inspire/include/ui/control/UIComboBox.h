@@ -53,13 +53,13 @@ public:
    virtual void SetEditText( const _tchar* info );
 
    ///< 窗口回调函数
-   virtual IOperation*   SetPressFunc( IOperation* oper );
-   virtual IOperation* SetItemChangeFunc( IOperation* oper );
-   virtual IOperation* SetTextChangeFunc( IOperation* oper );
+   virtual IInvoker*   SetPressFunc( IInvoker* oper );
+   virtual IInvoker* SetItemChangeFunc( IInvoker* oper );
+   virtual IInvoker* SetTextChangeFunc( IInvoker* oper );
 
 public:
    virtual void CloneFrom( CUIWnd* wnd );
-   virtual void ParseData( XML::IXMLNode* node );
+   virtual void ParseData( inspire::IXMLNode* node );
 
 private:
    const int GetCurrentItemID() const;
@@ -73,9 +73,9 @@ protected:
    int            _CurrentItem;
    bool         _Editable;
 
-   IOperation*      _PressDownOper;
-   IOperation*      _ItemChangeOper;
-   IOperation*      _TextChangeOper;
+   IInvoker*      _PressDownOper;
+   IInvoker*      _ItemChangeOper;
+   IInvoker*      _TextChangeOper;
 };
 
 }

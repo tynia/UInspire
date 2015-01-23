@@ -15,8 +15,8 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_H_
-#define _INSPIRE_H_
+#ifndef _INSPIRE_WND_H_
+#define _INSPIRE_WND_H_
 
 #include "platform.h"
 
@@ -176,10 +176,6 @@ public:
    */
    void TranslateXRectToWindow( HWND hWnd, RECT& rect_out );
 };
-
-///< 扩展的内存配分和释放函数
-typedef void* ( alloc )( std::size_t size );
-typedef void  ( free )( void* ptr );
 
 }
 #endif

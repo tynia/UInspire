@@ -17,18 +17,18 @@
 *******************************************************************************/
 #include <fstream>
 #include "XMLDocument.h"
-#include "XMLMemoryPool.h"
+#include "XMLBufferPool.h"
 #include "XMLNode.h"
 #include "XMLReader.h"
 #include "XMLWriter.h"
 
-XML_BEGIN
+namespace inspire {
 
 XMLDocument::XMLDocument() : XMLNode( XNT_DOCUMENT ), _filename( NULL ), _data( NULL )
 {
    _writer = new XMLWriter();
    _reader = new XMLReader();
-   _pool = new XMLMemoryPool();
+   _pool = new XMLBufferPool();
 }
 
 XMLDocument::~XMLDocument()
@@ -125,4 +125,4 @@ char* XMLDocument::allocString( const char* str )
 {
    return _pool->allocString( str );
 }
-XML_END
+}

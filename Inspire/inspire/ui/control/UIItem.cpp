@@ -97,23 +97,23 @@ void CUIItem::SetTailImageResourceID( const _tchar* id )
    _TailResourceID = id;
 }
 
-IOperation* CUIItem::SetPressFunc( IOperation* oper )
+IInvoker* CUIItem::SetPressFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _PressDownOper;
+   IInvoker* oldoper = _PressDownOper;
    _PressDownOper = oper;
    return oldoper;
 }
 
-IOperation* CUIItem::SetHeadPressFunc( IOperation* oper )
+IInvoker* CUIItem::SetHeadPressFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _HeadPressDownOper;
+   IInvoker* oldoper = _HeadPressDownOper;
    _HeadPressDownOper = oper;
    return oldoper;
 }
 
-IOperation* CUIItem::SetTailPressFunc( IOperation* oper )
+IInvoker* CUIItem::SetTailPressFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _TailPressDownOper;
+   IInvoker* oldoper = _TailPressDownOper;
    _TailPressDownOper = oper;
    return oldoper;
 }
@@ -126,7 +126,7 @@ void CUIItem::CloneFrom( CUIWnd* wnd )
    //todo:
 }
 
-void CUIItem::ParseData( XML::IXMLNode* node )
+void CUIItem::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    //todo

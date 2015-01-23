@@ -19,34 +19,6 @@
 #define _INSPIRE_H_
 
 #include "platform.h"
-#include "log\Log.h"
-
-#define __LOG_WRAPPER( LEVEL, fmt, ... )                       \
-do                                                             \
-{                                                              \
-   inspire::Log( LEVEL, __FUNCTION__,                          \
-                 __FILE__, __LINE__, fmt, __VA_ARGS__ ) ;      \
-} while ( false )
-
-#ifdef _DEBUG
-#define INSPIRE_ASSERT( condition, fmt, ... )                  \
-do                                                             \
-{                                                              \
-   if ( !condition )                                           \
-   {                                                           \
-      inspire::Log( inspire::PRIO_ERROR, __FUNCTION__,         \
-                    __FILE__, __LINE__, fmt, __VA_ARGS__ ) ;   \
-      inspire::Panic() ;                                       \
-   }                                                           \
-} while ( false )
-#else
-#define INSPIRE_ASSERT( condition, fmt, ... )                  \
-do                                                             \
-{                                                              \
-   if ( !condition )                                           \
-   {}                                                          \
-} while ( false )
-#endif
 
 //////////////////////////////////////////////////////////////////////////
 // useful function
@@ -71,9 +43,8 @@ inline std::string ItoA( int64 i )
    return buf;
 }
 
-inline void GetLocalTime( struct tm *t )
+inline void GetLocalTime(struct tm *t)
 {
-   INSPIRE_ASSERT( NULL != t, "ptr should be NULL" ) ;
    time_t tt = time( NULL ) ;
    localtime_s( t, &tt) ;
 }

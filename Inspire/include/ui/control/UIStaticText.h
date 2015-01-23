@@ -31,14 +31,14 @@ public:
    virtual void SetText( _tchar* text );
    virtual void SetSubText( _tchar* text );
    virtual void SetTextAlign( TEXT_HORIZON_ALIGN horizon, TEXT_VERTICAL_ALIGN vertical );
-   virtual IOperation* SetPressFunc( IOperation* oper );
+   virtual IInvoker* SetPressFunc( IInvoker* oper );
 
 public:
    virtual void CloneFrom( CUIWnd* wnd );
-   virtual void ParseData( XML::IXMLNode* node );
+   virtual void ParseData( inspire::IXMLNode* node );
 
 protected:
-   IOperation*      _PressDownOper;
+   IInvoker*      _PressDownOper;
    bool         _SubTextFlag;
 };
 }

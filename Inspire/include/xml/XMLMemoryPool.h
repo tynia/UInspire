@@ -20,17 +20,17 @@
 
 #include "XMLBase.h"
 
-XML_BEGIN
+namespace inspire {
 
 class IXMLNode;
 class IXMLAttribute;
 enum XMLNodeType;
 
-class XMLMemoryPool
+class XMLBufferPool
 {
 public:
-   XMLMemoryPool();
-   ~XMLMemoryPool();
+   XMLBufferPool();
+   ~XMLBufferPool();
 
    void* alloc( std::size_t size );
 
@@ -42,7 +42,7 @@ public:
 
    char* allocString( const char* str );
 
-   void setMemoryFunc( XML::alloc* af, XML::free * ff )
+   void setMemoryFunc( inspire::alloc* af, inspire::free * ff )
    {
       _alloc = af;
       _free  = ff;
@@ -59,8 +59,8 @@ private:
    char*    _ptrEnd;
    char*    _curPtr;
 
-   XML::alloc*  _alloc;
-   XML::free*   _free;
+   inspire::alloc*  _alloc;
+   inspire::free*   _free;
 
 private:
    // MB : Memory block
@@ -69,12 +69,12 @@ private:
       char* prevHeader;
    };
 
-   void  initMemoryPool();
+   void  initBufferPool();
    char* addMemory( std::size_t size );
 
    // 内存对齐，使偏移为sizeof( void* )的整数倍
    char* align( char* ptr );
 };
 
-XML_END
+}
 #endif

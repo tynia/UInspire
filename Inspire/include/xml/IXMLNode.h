@@ -20,11 +20,11 @@
 
 #include "XMLBase.h"
 
-XML_BEGIN
+namespace inspire {
 class IXMLAttribute;
 class IXMLDocument;
 
-class XML_LIB_API IXMLNode : virtual public XMLBase
+class INSPIRE_EXPORT_API IXMLNode : virtual public XMLBase
 {
 public:
 
@@ -76,5 +76,5 @@ public:
 
    virtual void removeAllAttribute() = 0;
 };
-XML_END
+}
 #endif

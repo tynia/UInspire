@@ -78,7 +78,7 @@ private:
    void CloneMultiInstanceWnd( CUIWnd* wnd );
    void ParseLayout();
    void ParseLayoutFile( const char* layout_file );
-   void ParseControl( CUIWnd* wnd, XML::IXMLNode* node );
+   void ParseControl( CUIWnd* wnd, inspire::IXMLNode* node );
 
 private:
    CUIBase* GetUIBase( const HWND& hWnd );

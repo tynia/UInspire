@@ -39,20 +39,20 @@ public:
    virtual void Check( bool check );
    virtual bool IsCheck();
 
-   virtual IOperation*   SetDoubleClickFunc( IOperation* oper );
-   virtual IOperation* SetPressFunc( IOperation* oper );
+   virtual IInvoker*   SetDoubleClickFunc( IInvoker* oper );
+   virtual IInvoker* SetPressFunc( IInvoker* oper );
 
 public:
    virtual void CloneFrom( CUIWnd* wnd );
-   virtual void ParseData( XML::IXMLNode* node );
+   virtual void ParseData( inspire::IXMLNode* node );
 
 private:
    void OnRootItemPressed( IUIWnd* wnd, const EventArg& arg );
 
 protected:
    typedef CUITree UITreeNode;
-   IOperation*      _PressDownOper;
-   IOperation*      _DoubleClickOper;
+   IInvoker*      _PressDownOper;
+   IInvoker*      _DoubleClickOper;
    bool         _Check;
    bool         _MultiChildCheck;
 

@@ -41,6 +41,8 @@ typedef __int64 int64;
 typedef long long int64;
 #endif
 
+#define NULL 0
+
 ///< disable 4250 warning on diamond inheritance 
 ///< 消除菱形继承的警告
 #pragma warning( disable : 4250 )
@@ -56,6 +58,7 @@ typedef long long int64;
 #include <cassert>
 #include <cmath>
 #include <ctime>
+#include <time.h>
 #include <fstream>
 
 // STL
@@ -82,4 +85,10 @@ typedef char              _tchar;
 #define INSPIRE_EXPORT_API __declspec( dllimport )
 #endif // ifdef INSPIRE_DLL_BUILD
 
-#endif // _INSPIRE_H_
+#if defined(_WIN32) || defined(WIN32)
+#define NEWLINE "\r\n"
+#else
+#define NEWLINE "\n"
+#endif
+
+#endif // _INSPIRE_PLATFORM_H_

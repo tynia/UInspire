@@ -15,35 +15,27 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_XML_UTIL_H_
-#define _INSPIRE_XML_UTIL_H_
+#ifndef _INSPIRE_UI_RENDER_FACTORY_H_
+#define _INSPIRE_UI_RENDER_FACTORY_H_
 
-#if defined( _WIN32 ) || defined( _WINDOWS ) || defined( WIN32 )
-#include <tchar.h>
-#include <cstdlib>   // std::size_t
-#include <cstring>
-#include <assert.h>
-using namespace std;
-#define XML_IN_WINDOWS_PLATFORM
-#define XML_INTERNAL_UNICODE
-#define XML_LIB_BUILD
-#endif // if define( _WIN32 ) end
+#include "IUIRender.h"
+#include "noncopyable.h"
 
-///< disable 4250 warning on diamond inheritance 
-///< 消除菱形继承的警告
-#pragma warning( disable : 4250 )
+namespace inspire {
+class CUIRenderFactory : public noncopyable
+{
+public:
+   ~CUIRenderFactory();
 
-#ifdef XML_LIB_BUILD
-#define XML_LIB_API __declspec( dllexport )
-#else
-#define XML_LIB_API __declspec( dllimport )
-#endif // ifdef XML_LIB_BUILD
+   static CUIRenderFactory* Instance();
+   bool QueryInterface( const RenderUID ruid, void** ppvObject );
 
-#define XML_BEGIN namespace XML {
-#define XML_END }
-#define USE_XML using namespace XML;
+   void Release( const RenderUID ruid );
 
-#include <ostream>
-#include <iterator>
-
+private:
+   CUIRenderFactory();
+   static int const RENDER_SUPPORT_COUNT = 4;
+   IUIRender* _Render;
+};
+}
 #endif

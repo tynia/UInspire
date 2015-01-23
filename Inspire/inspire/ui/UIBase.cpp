@@ -18,6 +18,7 @@
 #include "UIBase.h"
 #include "IUIWnd.h"
 #include "Inspire.h"
+#include "LogHelper.h"
 
 CUIBase::CUIBase( const _tchar* wndID, HWND hParentWnd , bool multiInstance )
 : _hWnd( NULL )
@@ -26,20 +27,16 @@ CUIBase::CUIBase( const _tchar* wndID, HWND hParentWnd , bool multiInstance )
 , _style( WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN )
 {
    _mainWnd = GetWindow( wndID );
-   if ( _mainWnd == NULL )
-   {
-      LogError( "Cannot find UIWnd: %s", inspire::CharConverter( WndID ).GetUTF8() );
-      __asm int 3;
-      return;
-   }
 
-   if ( !InitWndInstance( WndID ) )
+   INSPIRE_ASSERT(_mainWnd, "Cannot find UIWnd: %s", inspire::CharConverter(wndID).GetUTF8());
+
+   if ( !InitWndInstance( wndID ) )
    {
-      inspire::CharConverter con_id( WndID );
+      inspire::CharConverter con_id( wndID );
       LogError( "RegisterWndClass: %s fail...", con_id.GetUTF8() );
    }
 
-   AttachRootWindow( WndID );
+   AttachRootWindow( wndID );
 }
 
 CUIBase::~CUIBase()

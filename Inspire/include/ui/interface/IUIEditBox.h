@@ -44,7 +44,7 @@ public:
 
    virtual void SetTextAlign( TEXT_HORIZON_ALIGN horizon, TEXT_VERTICAL_ALIGN vertical ) = 0;
 
-   virtual IOperation* SetTextChangeFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetTextChangeFunc( IInvoker* oper ) = 0;
 };
 
 }

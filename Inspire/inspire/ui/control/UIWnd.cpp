@@ -225,58 +225,58 @@ void CUIWnd::Draw( void )
 
 }
 
-IOperation* CUIWnd::SetInitFunc( IOperation* oper )
+IInvoker* CUIWnd::SetInitFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _InitOper;
+   IInvoker* oldoper = _InitOper;
    _InitOper = oper;
    return oldoper;
 }
 
-IOperation* CUIWnd::SetCloseFunc( IOperation* oper )
+IInvoker* CUIWnd::SetCloseFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _CloseOper;
+   IInvoker* oldoper = _CloseOper;
    _CloseOper = oper;
    return oldoper;
 }
 
-IOperation* CUIWnd::SetEscapeFunc( IOperation* oper )
+IInvoker* CUIWnd::SetEscapeFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _EscapeOper;
+   IInvoker* oldoper = _EscapeOper;
    _EscapeOper = oper;
    return oldoper;
 }
 
-IOperation* CUIWnd::SetMouseInFunc( IOperation* oper )
+IInvoker* CUIWnd::SetMouseInFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _MonseInOper;
+   IInvoker* oldoper = _MonseInOper;
    _MonseInOper = oper;
    return oldoper;
 }
 
-IOperation* CUIWnd::SetMouseOutFunc( IOperation* oper )
+IInvoker* CUIWnd::SetMouseOutFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _MonseOutOper;
+   IInvoker* oldoper = _MonseOutOper;
    _MonseOutOper = oper;
    return oldoper;
 }
 
-IOperation* CUIWnd::SetGetFocusFunc( IOperation* oper )
+IInvoker* CUIWnd::SetGetFocusFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _GetFocusOper;
+   IInvoker* oldoper = _GetFocusOper;
    _GetFocusOper = oper;
    return oldoper;
 }
 
-IOperation* CUIWnd::SetLostFocusFunc( IOperation* oper )
+IInvoker* CUIWnd::SetLostFocusFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _LoseFocusOper;
+   IInvoker* oldoper = _LoseFocusOper;
    _LoseFocusOper = oper;
    return oldoper;
 }
 
-IOperation* CUIWnd::SetFocusChangeFunc( IOperation* oper )
+IInvoker* CUIWnd::SetFocusChangeFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _FocusChangeOper;
+   IInvoker* oldoper = _FocusChangeOper;
    _FocusChangeOper = oper;
    return oldoper;
 }
@@ -317,9 +317,9 @@ void CUIWnd::CloneFrom( CUIWnd* wnd )
    }
 }
 
-void CUIWnd::ParseData( XML::IXMLNode* node )
+void CUIWnd::ParseData( inspire::IXMLNode* node )
 {
-   XML::IXMLNode* node_detail = node->firstChild( "ID" );
+   inspire::IXMLNode* node_detail = node->firstChild( "ID" );
    if ( node_detail )
    {
       const char* str_wndid = node_detail->getValue();

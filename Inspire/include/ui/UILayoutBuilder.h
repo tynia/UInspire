@@ -42,9 +42,9 @@ public:
 
 private:
    void ParseLayoutFile(const char* layout_file);
-   void ParseCommonWndData(IUIWnd* wnd, XML::IXMLNode* node);
-   void ParseControl( IUIWnd* wnd, XML::IXMLNode* node );
-   void ParseControlData(IUIWnd* wnd, XML::IXMLNode* node);
+   void ParseCommonWndData(IUIWnd* wnd, inspire::IXMLNode* node);
+   void ParseControl( IUIWnd* wnd, inspire::IXMLNode* node );
+   void ParseControlData(IUIWnd* wnd, inspire::IXMLNode* node);
 
 private:
    ///< control data.

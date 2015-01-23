@@ -64,16 +64,16 @@ bool CUITree::IsCheck()
    return _Check;
 }
 
-IOperation* CUITree::SetDoubleClickFunc( IOperation* oper )
+IInvoker* CUITree::SetDoubleClickFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _DoubleClickOper;
+   IInvoker* oldoper = _DoubleClickOper;
    _DoubleClickOper = oper;
    return oldoper;
 }
 
-IOperation* CUITree::SetPressFunc( IOperation* oper )
+IInvoker* CUITree::SetPressFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _PressDownOper;
+   IInvoker* oldoper = _PressDownOper;
    _PressDownOper = oper;
    return oldoper;
 }
@@ -86,7 +86,7 @@ void CUITree::CloneFrom( CUIWnd* wnd )
    //todo:
 }
 
-void CUITree::ParseData( XML::IXMLNode* node )
+void CUITree::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    //todo:

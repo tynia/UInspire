@@ -65,7 +65,7 @@ void CUIProgressBar::CloneFrom( CUIWnd* wnd )
    //todo:
 }
 
-void CUIProgressBar::ParseData( XML::IXMLNode* node )
+void CUIProgressBar::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    //todo:

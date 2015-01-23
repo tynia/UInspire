@@ -24,14 +24,14 @@
 #include "wnd.h"
 
 namespace inspire {
-class IOperation;
+class IInvoker;
 
 struct ItemData
 {
    int index;
    _tstring strItem;
    _tstring imgItem;
-   IOperation* oper;
+   IInvoker* oper;
 };
 
 typedef std::map<int, ItemData> ItemDataList;
@@ -157,20 +157,20 @@ public:
 
 
    ///< ´°¿Úº¯Êý
-   virtual IOperation* SetInitFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetInitFunc( IInvoker* oper ) = 0;
 
-   virtual IOperation* SetCloseFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetCloseFunc( IInvoker* oper ) = 0;
 
-   virtual IOperation* SetEscapeFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetEscapeFunc( IInvoker* oper ) = 0;
 
-   virtual IOperation* SetGetFocusFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetGetFocusFunc( IInvoker* oper ) = 0;
 
-   virtual IOperation* SetLostFocusFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetLostFocusFunc( IInvoker* oper ) = 0;
 
-   virtual IOperation* SetFocusChangeFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetFocusChangeFunc( IInvoker* oper ) = 0;
 
-   virtual IOperation* SetMouseInFunc( IOperation* oper ) = 0;
-   virtual IOperation* SetMouseOutFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetMouseInFunc( IInvoker* oper ) = 0;
+   virtual IInvoker* SetMouseOutFunc( IInvoker* oper ) = 0;
 };
 
 //////////////////////////////////////////////////////////////////////////

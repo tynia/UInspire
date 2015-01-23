@@ -22,7 +22,7 @@
 #include "IXMLNode.h"
 #include "IXMLDocument.h"
 
-XML_BEGIN
+namespace inspire {
 
 XMLReader::XMLReader() : _parseOptions( PARSE_DEFAULT )
 {
@@ -779,4 +779,4 @@ char XMLReader::appendData( IXMLNode* node, char*& data, char* start )
    return *data;
 }
 
-XML_END
+}

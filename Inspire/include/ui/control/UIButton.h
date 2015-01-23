@@ -45,17 +45,17 @@ public:
    virtual bool IsFlash() const;
 
    ///< 窗口回调函数
-   virtual IOperation* SetPressFunc( IOperation* oper );
+   virtual IInvoker* SetPressFunc( IInvoker* oper );
 
 public:
    virtual void CloneFrom( CUIWnd* wnd );
-   virtual void ParseData( XML::IXMLNode* node );
+   virtual void ParseData( inspire::IXMLNode* node );
 
 protected:
    bool      _Enable;
    bool      _Flash;
 
-   IOperation*   _PressDownOper;
+   IInvoker*   _PressDownOper;
 };
 
 }

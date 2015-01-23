@@ -19,7 +19,9 @@
 #define _INSPIRE_LOG_H_
 
 #include "Inspire.h"
-#include "LogHelper.h"
+
+#define LOG_BUFFER_SIZE 4096
+#define MAX_LOG_FILE_NAME 255
 
 namespace inspire {
 
@@ -39,34 +41,6 @@ inline void Panic()
    int *p = NULL;
    *p = 1;
 #endif
-}
-
-inline void Log( const int level, const char* func,
-                 const char* file, const int line,
-                 const char* fmt, ... )
-{
-   struct tm otm;
-   GetLocalTime( &otm ) ;
-   
-   char userInfo[ LOG_BUFFER_SIZE ] = { 0 } ;
-   va_list ap ;
-   va_start(ap, fmt);
-   vsprintf_s( userInfo, LOG_BUFFER_SIZE, fmt, ap);
-   va_end(ap);
-
-   char buffer[ LOG_BUFFER_SIZE ] = { 0 } ;
-   sprintf_s( buffer, LOG_BUFFER_SIZE, formatLog,
-              otm.tm_year + 1900,
-              otm.tm_mon + 1,
-              otm.tm_mday,
-              otm.tm_hour,
-              otm.tm_min,
-              otm.tm_sec,
-              GetLevelString( level ),
-              GetProcessID(),
-              GetThreadID(),
-              func, file, line, userInfo ) ;
-//   LogManager::Instance()->WriteLog( level, buffer ) ;
 }
 
 /*
@@ -123,5 +97,32 @@ inline const char* GetLevelString( const int level )
    return str;
 }
 
+inline void Log( const int level, const char* func,
+                 const char* file, const int line,
+                 const char* fmt, ... )
+{
+   struct tm otm;
+   GetLocalTime(&otm);
+
+   char userInfo[LOG_BUFFER_SIZE] = { 0 };
+   va_list ap;
+   va_start(ap, fmt);
+   vsprintf_s(userInfo, LOG_BUFFER_SIZE, fmt, ap);
+   va_end(ap);
+
+   char buffer[LOG_BUFFER_SIZE] = { 0 };
+   sprintf_s(buffer, LOG_BUFFER_SIZE, formatLog,
+             otm.tm_year + 1900,
+             otm.tm_mon + 1,
+             otm.tm_mday,
+             otm.tm_hour,
+             otm.tm_min,
+             otm.tm_sec,
+             GetLevelString(level),
+             GetProcessID(),
+             GetThreadID(),
+             func, file, line, userInfo);
+   //   LogManager::Instance()->WriteLog( level, buffer ) ;
+}
 }
 #endif

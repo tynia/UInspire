@@ -38,9 +38,9 @@ public:
 
    virtual bool IsCheck() = 0;
 
-   virtual IOperation*   SetDoubleClickFunc( IOperation* oper ) = 0;
+   virtual IInvoker*   SetDoubleClickFunc( IInvoker* oper ) = 0;
 
-   virtual IOperation* SetPressFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetPressFunc( IInvoker* oper ) = 0;
 };
 }
 #endif

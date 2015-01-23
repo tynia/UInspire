@@ -1,8 +1,8 @@
 #ifndef _INSPIRE_LOG_FILE_H_
 #define _INSPIRE_LOG_FILE_H_
 
-#include "log/LogHelper.h"
-#include "log/log.h"
+#include "LogHelper.h"
+#include "Log.h"
 
 namespace inspire {
 

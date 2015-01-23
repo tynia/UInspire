@@ -18,9 +18,9 @@
 #ifndef _INSPIRE_XML_WRITER_H_
 #define _INSPIRE_XML_WRITER_H_
 
-#include "XMLUtil.h"
+#include "platform.h"
 #include <ostream>
-XML_BEGIN
+namespace inspire {
 
 class IXMLNode;
 
@@ -30,8 +30,8 @@ public:
    XMLWriter();
    ~XMLWriter();
 
-   bool toStream( std::basic_ostream<char>& basic_os, XML::IXMLNode* doc_node );
+   bool toStream( std::basic_ostream<char>& basic_os, inspire::IXMLNode* doc_node );
 };
 
-XML_END
+}
 #endif

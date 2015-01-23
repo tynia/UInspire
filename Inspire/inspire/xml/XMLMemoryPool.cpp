@@ -17,36 +17,36 @@
 *******************************************************************************/
 #include <new>
 #include "XMLHelper.h"
-#include "XMLMemoryPool.h"
+#include "XMLBufferPool.h"
 #include "XMLAttribute.h"
 #include "XMLNode.h"
 
-XML_BEGIN
+namespace inspire {
 class XMLNode;
 
-XMLMemoryPool::XMLMemoryPool() :
+XMLBufferPool::XMLBufferPool() :
 _alloc( NULL ),
 _free( NULL ),
 _ptrBegin( NULL ),
 _ptrEnd( NULL ),
 _curPtr( NULL )
 {
-   initMemoryPool();
+   initBufferPool();
 }
 
-XMLMemoryPool::~XMLMemoryPool()
+XMLBufferPool::~XMLBufferPool()
 {
    release();
 }
 
-void XMLMemoryPool::initMemoryPool()
+void XMLBufferPool::initBufferPool()
 {
    _ptrBegin = _begin;
    _curPtr = align( _ptrBegin );
    _ptrEnd = _begin + sizeof( _begin );
 }
 
-void XMLMemoryPool::release()
+void XMLBufferPool::release()
 {
    while( _ptrBegin != _begin )
    {
@@ -61,16 +61,16 @@ void XMLMemoryPool::release()
       }
       _ptrBegin = prevBlock;
    }
-   initMemoryPool();
+   initBufferPool();
 }
 
-char* XMLMemoryPool::align( char* ptr )
+char* XMLBufferPool::align( char* ptr )
 {
    std::size_t offset = ( ( XML_ALIGNMENT - ( std::size_t( ptr ) & ( XML_ALIGNMENT - 1 ) ) ) & ( XML_ALIGNMENT - 1 ) );
    return ptr + offset;
 }
 
-char* XMLMemoryPool::addMemory( std::size_t size )
+char* XMLBufferPool::addMemory( std::size_t size )
 {
    void* pMemory = NULL;
    if ( _alloc )
@@ -92,7 +92,7 @@ char* XMLMemoryPool::addMemory( std::size_t size )
    return static_cast<char*>( pMemory );
 }
 
-void* XMLMemoryPool::alloc( std::size_t size )
+void* XMLBufferPool::alloc( std::size_t size )
 {
    char* pReturn = align( _curPtr );
 
@@ -121,7 +121,7 @@ void* XMLMemoryPool::alloc( std::size_t size )
    return pReturn;
 }
 
-IXMLNode* XMLMemoryPool::allocNode( XMLNodeType nt, const char* name, const char* value )
+IXMLNode* XMLBufferPool::allocNode( XMLNodeType nt, const char* name, const char* value )
 {
    void* memory = alloc( sizeof( XMLNode ) );
    XMLNode* node = new( memory ) XMLNode( nt );
@@ -138,7 +138,7 @@ IXMLNode* XMLMemoryPool::allocNode( XMLNodeType nt, const char* name, const char
    return node;
 }
 
-IXMLAttribute* XMLMemoryPool::allocAttribute( const char* name, const char* value )
+IXMLAttribute* XMLBufferPool::allocAttribute( const char* name, const char* value )
 {
    void* memory = alloc( sizeof( XMLAttribute ) );
    IXMLAttribute* attri = new( memory ) XMLAttribute();
@@ -155,7 +155,7 @@ IXMLAttribute* XMLMemoryPool::allocAttribute( const char* name, const char* valu
    return attri;
 }
 
-char* XMLMemoryPool::allocString( const char* str )
+char* XMLBufferPool::allocString( const char* str )
 {
    if ( str == NULL )
    {
@@ -169,4 +169,4 @@ char* XMLMemoryPool::allocString( const char* str )
    return memory;
 }
 
-XML_END
+}

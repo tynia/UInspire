@@ -75,9 +75,9 @@ void CUIRichEditBox::SetVerticeCenter( bool v_center )
    _VerticeCenter = v_center;
 }
 
-IOperation* CUIRichEditBox::SetTextChangeFunc( IOperation* oper )
+IInvoker* CUIRichEditBox::SetTextChangeFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _TextChangeOper;
+   IInvoker* oldoper = _TextChangeOper;
    _TextChangeOper = oper;
    return oldoper;
 }
@@ -91,7 +91,7 @@ void CUIRichEditBox::CloneFrom( CUIWnd* wnd )
    _Enable = richedit->_Enable;
 }
 
-void CUIRichEditBox::ParseData( XML::IXMLNode* node )
+void CUIRichEditBox::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    //todo:

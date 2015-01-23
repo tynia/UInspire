@@ -49,9 +49,9 @@ void CUIStaticText::SetTextAlign( TEXT_HORIZON_ALIGN horizon, TEXT_VERTICAL_ALIG
    _Verticial = vertical;
 }
 
-IOperation* CUIStaticText::SetPressFunc( IOperation* oper )
+IInvoker* CUIStaticText::SetPressFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _PressDownOper;
+   IInvoker* oldoper = _PressDownOper;
    _PressDownOper = oper;
    return oldoper;
 }
@@ -63,7 +63,7 @@ void CUIStaticText::CloneFrom( CUIWnd* wnd )
    CUIStaticText* statictext = dynamic_cast<CUIStaticText*>( wnd );
 }
 
-void CUIStaticText::ParseData( XML::IXMLNode* node )
+void CUIStaticText::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    //todo:

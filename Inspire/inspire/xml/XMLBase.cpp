@@ -17,7 +17,7 @@
 *******************************************************************************/
 #include "XMLBase.h"
 
-XML_BEGIN
+namespace inspire {
 
 XMLBase::XMLBase() :
 _name( NULL ),
@@ -83,4 +83,4 @@ IXMLNode* XMLBase::getParent() const
    return _parent;
 }
 
-XML_END
+}

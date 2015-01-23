@@ -80,9 +80,9 @@ void CUIEditBox::SetTextAlign( TEXT_HORIZON_ALIGN horizon, TEXT_VERTICAL_ALIGN v
 
 }
 
-IOperation* CUIEditBox::SetTextChangeFunc( IOperation* oper )
+IInvoker* CUIEditBox::SetTextChangeFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _TextChangeOper;
+   IInvoker* oldoper = _TextChangeOper;
    _TextChangeOper = oper;
    return oldoper;
 }
@@ -99,7 +99,7 @@ void CUIEditBox::CloneFrom( CUIWnd* wnd )
    _yOffset = edit->_yOffset;
 }
 
-void CUIEditBox::ParseData( XML::IXMLNode* node )
+void CUIEditBox::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    // todo:

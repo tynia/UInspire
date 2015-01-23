@@ -81,9 +81,9 @@ bool CUICheckBox::IsFlash() const
    return _Flash;
 }
 
-IOperation* CUICheckBox::SetPressFunc( IOperation* oper )
+IInvoker* CUICheckBox::SetPressFunc( IInvoker* oper )
 {
-   IOperation* oldoper = _PressDownOper;
+   IInvoker* oldoper = _PressDownOper;
    _PressDownOper = oper;
    return oldoper;
 }
@@ -100,7 +100,7 @@ void CUICheckBox::CloneFrom( CUIWnd* wnd )
    _yOffset = checkbox->_yOffset;
 }
 
-void CUICheckBox::ParseData( XML::IXMLNode* node )
+void CUICheckBox::ParseData( inspire::IXMLNode* node )
 {
    CUIWnd::ParseData( node );
    // todo:

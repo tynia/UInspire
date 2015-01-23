@@ -21,7 +21,7 @@
 #include "XMLBase.h"
 #include "IXMLAttribute.h"
 
-XML_BEGIN
+namespace inspire {
 class IXMLNode;
 class IXMLDocument;
 
@@ -46,5 +46,5 @@ private:
    IXMLAttribute*   _prev;
    IXMLAttribute*   _next;
 };
-XML_END
+}
 #endif

@@ -38,7 +38,7 @@ public:
    virtual bool IsFlash() const = 0;
 
    ///< callback
-   virtual IOperation* SetPressFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetPressFunc( IInvoker* oper ) = 0;
 };
 }
 #endif

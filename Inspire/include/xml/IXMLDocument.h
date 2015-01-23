@@ -20,11 +20,11 @@
 
 #include "IXMLNode.h"
 
-XML_BEGIN
+namespace inspire {
 
 class IXMLAttribute;
 
-class XML_LIB_API IXMLDocument : virtual public IXMLNode
+class INSPIRE_EXPORT_API IXMLDocument : virtual public IXMLNode
 {
 public:
    virtual ~IXMLDocument() {}
@@ -41,5 +41,5 @@ public:
 
    virtual char* allocString( const char* str ) = 0;
 };
-XML_END
+}
 #endif

@@ -20,12 +20,12 @@
 
 #include "XMLBase.h"
 
-XML_BEGIN
+namespace inspire {
 
 class IXMLNode;
 class IXMLDocument;
 
-class XML_LIB_API IXMLAttribute : virtual public XMLBase
+class INSPIRE_EXPORT_API IXMLAttribute : virtual public XMLBase
 {
 public:
    virtual ~IXMLAttribute() {}
@@ -43,5 +43,5 @@ public:
    virtual void linkToPrev( IXMLAttribute* attri ) = 0;
 };
 
-XML_END
+}
 #endif

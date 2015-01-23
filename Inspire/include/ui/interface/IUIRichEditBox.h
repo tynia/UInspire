@@ -40,7 +40,7 @@ public:
 
    virtual void SetVerticeCenter( bool v_center ) = 0;
 
-   virtual IOperation* SetTextChangeFunc( IOperation* oper ) = 0;
+   virtual IInvoker* SetTextChangeFunc( IInvoker* oper ) = 0;
 };
 }
 #endif

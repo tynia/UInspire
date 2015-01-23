@@ -16,7 +16,8 @@
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
 #include "UIWndFactory.h"
-
+#include "wnd.h"
+#include "IUIWnd.h"
 namespace inspire {
 CUIWndFactory::CUIWndFactory()
 {
@@ -28,9 +29,9 @@ CUIWndFactory::~CUIWndFactory()
 
 }
 
-CUIWnd* CUIWndFactory::AllocWndEntity( WndType wt )
+IUIWnd* CUIWndFactory::AllocWndEntity( WndType wt )
 {
-   CUIWnd* new_wnd = NULL;
+   IUIWnd* new_wnd = NULL;
    switch ( wt )
    {
    case EWT_WND :
@@ -94,52 +95,52 @@ void CUIWndFactory::DeallocWndEntity( IUIWnd* wnd )
    switch ( wt )
    {
    case EWT_WND :
-      _mempool_wnd.dealloc( dynamic_cast<CUIWnd*>( wnd ) );
+      _mempool_wnd.dealloc( wnd );
       break;
    case EWT_BUTTON :
-      _mempool_btn.dealloc( dynamic_cast<CUIButton*>( wnd ) );
+      _mempool_btn.dealloc( wnd );
       break;
    case EWT_CHECKBOX :
-      _mempool_chk.dealloc( dynamic_cast<CUICheckBox*>( wnd ) );
+      _mempool_chk.dealloc( wnd );
       break;
    case EWT_EDITBOX :
-      _mempool_edb.dealloc( dynamic_cast<CUIEditBox*>( wnd ) );
+      _mempool_edb.dealloc( wnd );
       break;
    case EWT_IMAGE :
-      _mempool_img.dealloc( dynamic_cast<CUIImage*>( wnd ) );
+      _mempool_img.dealloc( wnd );
       break;
    case EWT_STATICTEXT :
-      _mempool_stt.dealloc( dynamic_cast<CUIStaticText*>( wnd ) );
+      _mempool_stt.dealloc( wnd );
       break;
    case EWT_COMBOBOX :
-      _mempool_cbb.dealloc( dynamic_cast<CUIComboBox*>( wnd ) );
+      _mempool_cbb.dealloc( wnd );
       break;
    case EWT_PROGRESSBAR :
-      _mempool_pgb.dealloc( dynamic_cast<CUIProgressBar*>( wnd ) );
+      _mempool_pgb.dealloc( wnd );
       break;
    case EWT_RICHEDITBOX :
-      _mempool_reb.dealloc( dynamic_cast<CUIRichEditBox*>( wnd ) );
+      _mempool_reb.dealloc( wnd );
       break;
    case EWT_ITEM :
-      _mempool_itm.dealloc( dynamic_cast<CUIItem*>( wnd ) );
+      _mempool_itm.dealloc( wnd );
       break;
    case EWT_LIST :
-      _mempool_lst.dealloc( dynamic_cast<CUIList*>( wnd ) );
+      _mempool_lst.dealloc( wnd );
       break;
    case EWT_MENU :
-      _mempool_mun.dealloc( dynamic_cast<CUIMenu*>( wnd ) );
+      _mempool_mun.dealloc( wnd );
       break;
    case EWT_SCROLLBAR :
-      _mempool_scl.dealloc( dynamic_cast<CUIScrollBar*>( wnd ) );
+      _mempool_scl.dealloc( wnd );
       break;
    case EWT_SLIDER :
-      _mempool_sld.dealloc( dynamic_cast<CUISlider*>( wnd ) );
+      _mempool_sld.dealloc( wnd );
       break;
    case EWT_TREE :
-      _mempool_tre.dealloc( dynamic_cast<CUITree*>( wnd ) );
+      _mempool_tre.dealloc( wnd );
       break;
    case EWT_CUSTOMWND :
-      _mempool_ctw.dealloc( dynamic_cast<CUICustomWnd*>( wnd ) );
+      _mempool_ctw.dealloc( wnd );
       break;
    default:
       //log error..

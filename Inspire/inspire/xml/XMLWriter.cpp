@@ -20,7 +20,7 @@
 #include "IXMLNode.h"
 #include "XMLHelper.h"
 
-XML_BEGIN
+namespace inspire {
 
 XMLWriter::XMLWriter()
 {
@@ -32,7 +32,7 @@ XMLWriter::~XMLWriter()
 
 }
 
-bool XMLWriter::toStream( std::basic_ostream<char>& basic_os, XML::IXMLNode* docNode )
+bool XMLWriter::toStream( std::basic_ostream<char>& basic_os, inspire::IXMLNode* docNode )
 {
    if ( docNode->getType() != XNT_DOCUMENT )
    {
@@ -44,4 +44,4 @@ bool XMLWriter::toStream( std::basic_ostream<char>& basic_os, XML::IXMLNode* doc
    return true;
 }
 
-XML_END
+}

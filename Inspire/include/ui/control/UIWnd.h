@@ -19,11 +19,11 @@
 #define _INSPIRE_UI_WND_H_
 
 #include "IUIWnd.h"
-#include "IXMLNode.h"
 
 namespace inspire {
 class CKeyboardEvent;
 class CMouseEvent;
+class IXMLNode;
 
 class CUIWnd : virtual public IUIWnd
 {
@@ -111,18 +111,18 @@ public:   ///< IUIWnd 接口
    virtual void Draw();
 
    ///< 窗口函数
-   virtual IOperation* SetInitFunc( IOperation* oper );
-   virtual IOperation* SetCloseFunc( IOperation* oper );
-   virtual IOperation* SetEscapeFunc( IOperation* oper );
-   virtual IOperation* SetMouseInFunc( IOperation* oper );
-   virtual IOperation* SetMouseOutFunc( IOperation* oper );
-   virtual IOperation* SetGetFocusFunc( IOperation* oper );
-   virtual IOperation* SetLostFocusFunc( IOperation* oper );
-   virtual IOperation* SetFocusChangeFunc( IOperation* oper );
+   virtual IInvoker* SetInitFunc( IInvoker* oper );
+   virtual IInvoker* SetCloseFunc( IInvoker* oper );
+   virtual IInvoker* SetEscapeFunc( IInvoker* oper );
+   virtual IInvoker* SetMouseInFunc( IInvoker* oper );
+   virtual IInvoker* SetMouseOutFunc( IInvoker* oper );
+   virtual IInvoker* SetGetFocusFunc( IInvoker* oper );
+   virtual IInvoker* SetLostFocusFunc( IInvoker* oper );
+   virtual IInvoker* SetFocusChangeFunc( IInvoker* oper );
 
 public:
    virtual void CloneFrom( CUIWnd* wnd );
-   virtual void ParseData( XML::IXMLNode* node );
+   virtual void ParseData( inspire::IXMLNode* node );
    virtual void AddChild( CUIWnd* child );
    virtual void RemoveChild( CUIWnd* child );
    virtual void RemoveChild( const _tchar* id );
@@ -177,14 +177,14 @@ protected:
    int            _TimeDelay;            ///< 鼠标滑入回调的延迟时间
 
    ///< 回调操作
-   IOperation*      _InitOper;
-   IOperation*      _CloseOper;
-   IOperation*      _GetFocusOper;
-   IOperation*      _LoseFocusOper;
-   IOperation*      _EscapeOper;
-   IOperation*      _FocusChangeOper;   ///< 如果有LoseFocusOper,貌似这个没有用，先放在这里@
-   IOperation*      _MonseInOper;
-   IOperation*      _MonseOutOper;
+   IInvoker*      _InitOper;
+   IInvoker*      _CloseOper;
+   IInvoker*      _GetFocusOper;
+   IInvoker*      _LoseFocusOper;
+   IInvoker*      _EscapeOper;
+   IInvoker*      _FocusChangeOper;   ///< 如果有LoseFocusOper,貌似这个没有用，先放在这里@
+   IInvoker*      _MonseInOper;
+   IInvoker*      _MonseOutOper;
 
    ///< 备用
 //    bool         _Moveable;

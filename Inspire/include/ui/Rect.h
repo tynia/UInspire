@@ -15,24 +15,39 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_IUI_PROGRESSBAR_H_
-#define _INSPIRE_IUI_PROGRESSBAR_H_
 
-#include "IUIWnd.h"
+#include "platform.h"
+#include "Point.h"
 
 namespace inspire {
-class INSPIRE_EXPORT_API IUIProgressBar : virtual public IUIWnd
+
+class INSPIRE_EXPORT_API CRect
 {
 public:
-   virtual ~IUIProgressBar() {};
+   int left;
+   int top;
+   int right;
+   int bottom;
 
-   virtual void SetMaxValue( int max_value ) = 0;
+   CRect();
+   CRect( int l, int t, int r, int b );
+   CRect( const CRect& rect );
 
-   virtual void SetMinValue( int min_value = 0 ) = 0;
+   void Set( int l, int t, int r, int b );
 
-   virtual void SetValue( int cur_value ) = 0;
+   void Translate( int x, int y );
 
-   virtual const int GetCurrentValue() const = 0;
+   int Width() const;
+
+   int Height() const;
+
+   bool PointInRect( const CPoint& point ) const;
+
+   bool PointInRect( int x, int y ) const;
+
+   void TranslateToXRect( HWND hWnd, const RECT& rect_in );
+
+   void TranslateXRectToWindow( HWND hWnd, RECT& rect_out );
 };
+
 }
-#endif

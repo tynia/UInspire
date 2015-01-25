@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -21,30 +21,28 @@
 
 namespace inspire {
 
-std::size_t caculateLen( const char* pszString )
+std::size_t Length( const char* str )
 {
-   const char* tmp = pszString;
+   const char* tmp = str;
    while ( *tmp )
    {
       ++tmp;
    }
 
-   return tmp - pszString;
+   return tmp - str;
 }
 
-// 比较字符串
-// 大小写敏感
-bool compareString( const char* _First, std::size_t size_first, const char* _Second, std::size_t size_second )
+bool Equals( const char* first, std::size_t szFirst, const char* second, std::size_t szSecond )
 {
-   if ( size_first != size_second )
+   if ( szFirst != szSecond )
    {
       return false;
    }
 
-   const char* end = _First + size_first;
-   for ( ; _First < end; ++_First, ++_Second )
+   const char* end = first + szFirst;
+   for ( ; first < end; ++first, ++second )
    {
-      if ( *_First != *_Second )
+      if ( *first != *second )
       {
          return false;
       }
@@ -53,13 +51,13 @@ bool compareString( const char* _First, std::size_t size_first, const char* _Sec
    return true;
 }
 
-const unsigned char XMLLookupTable::XMT_Digits[256] = 
+const unsigned char XML::DIGITAL[256] = 
 {
    //   0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
    255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,   // 0
    255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,   // 1
    255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,   // 2
-   0,  1,  2,  3,  4,  5,  6,  7,  8,  9,255,255,255,255,255,255,      // 3
+     0,  1,  2,  3,  4,  5,  6,  7,  8,  9,255,255,255,255,255,255,   // 3
    255, 10, 11, 12, 13, 14, 15,255,255,255,255,255,255,255,255,255,   // 4
    255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,   // 5
    255, 10, 11, 12, 13, 14, 15,255,255,255,255,255,255,255,255,255,   // 6
@@ -71,59 +69,50 @@ const unsigned char XMLLookupTable::XMT_Digits[256] =
    255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,   // C
    255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,   // D
    255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,   // E
-   255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255      // F
+   255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255    // F
 };
 
-bool isWhiteSpace( const char cch )
+bool IsWhiteSpace( const char cch )
 {
-   if ( cch == char( ' ' )  ||
-        cch == char( '\t' ) ||
-        cch == char( '\n' ) ||
-        cch == char( '\r' ) )
+   if ( cch == char( ' ' )  || cch == char( '\t' ) ||
+        cch == char( '\n' ) || cch == char( '\r' ) )
    {
       return true;
    }
    return false;
 }
 
-bool isNodeName( const char cch )
+bool IsNameText( const char cch )
 {
-   if ( cch == char( '\n' ) ||
-        cch == char( '\r' ) ||
-        cch == char( '\t' ) ||
-        cch == char( '/' )  ||
-        cch == char( '\0' ) ||
-        cch == char( '>' )  ||
-        cch == char( ' ' )  ||
-        cch == char( '?' )  )
+   if ( cch == char( '\n' ) || cch == char( '\r' ) ||
+        cch == char( '\t' ) || cch == char( '/' )  ||
+        cch == char( '\0' ) || cch == char( '>' )  ||
+        cch == char( ' ' )  || cch == char( '?' )  )
    {
       return false;
    }
    return true;
 }
 
-bool isText( const char cch )
+bool IsText( const char cch )
 {
-   if ( cch == char( '<' ) ||
-        cch == char( '\0' ) )
+   if ( cch == char( '<' ) || cch == char( '\0' ) )
    {
       return false;
    }
    return true;
 }
 
-bool isTextWithoutWhitespace( const char cch )
+bool IsTextNoneWS( const char cch )
 {
-   if ( cch == char( '<' )  ||
-        cch == char( '\0' ) ||
-        cch == char( '&' )  )
+   if ( cch == char( '<' )  || cch == char( '\0' ) || cch == char( '&' )  )
    {
       return false;
    }
    return true;
 }
 
-bool isTextWithWhitespace( const char cch )
+bool IsTextWithWS( const char cch )
 {
    if ( cch == char( '<' )  ||
         cch == char( '\0' ) ||
@@ -138,7 +127,7 @@ bool isTextWithWhitespace( const char cch )
    return true;
 }
 
-bool isAttributeName( const char cch )
+bool IsAttriName( const char cch )
 {
    if ( cch == char( '\n' ) ||
         cch == char( '\r' ) ||
@@ -156,7 +145,7 @@ bool isAttributeName( const char cch )
    return true;
 }
 
-bool isSingleQuoteData( const char cch )
+bool IsSingleQuote( const char cch )
 {
    if ( cch == char( '\'' ) ||
         cch == char( '\0' ) )
@@ -166,7 +155,7 @@ bool isSingleQuoteData( const char cch )
    return true;
 }
 
-bool isPureSingleQuoteData( const char cch )
+bool IsPureSingleQuote( const char cch )
 {
    if ( cch == char( '\'' ) ||
         cch == char( '\0' ) ||
@@ -177,51 +166,48 @@ bool isPureSingleQuoteData( const char cch )
    return true;
 }
 
-bool isDoubleQuoteData( const char cch )
+bool IsDoubleQuote( const char cch )
 {
-   if ( cch == char( '\"' ) ||
-        cch == char( '\0' ) )
+   if ( cch == char( '\"' ) || cch == char( '\0' ) )
    {
       return false;
    }
    return true;
 }
 
-bool isPureDoubleQuoteData( const char cch )
+bool IsPureDoubleQuote( const char cch )
 {
-   if ( cch == char( '\"' ) ||
-        cch == char( '\0' ) ||
-        cch == char( '&' )  )
+   if ( cch == char( '\"' ) || cch == char( '\0' ) || cch == char( '&' ) )
    {
       return false;
    }
    return true;
 }
 
-bool needSkip( int skip_idx, const char cch )
+bool NeedSkip( int SKIP_TYPE, const char cch )
 {
-   switch( skip_idx )
+   switch( SKIP_TYPE )
    {
-   case ESI_WhiteSpace :
-      return isWhiteSpace( cch );
-   case ESI_NodeName :
-      return isNodeName( cch );
-   case ESI_Text :
-      return isText( cch );
-   case ESI_Text_NONE_WS :
-      return isTextWithoutWhitespace( cch );
-   case ESI_Text_WS :
-      return isTextWithWhitespace( cch );
-   case ESI_AttributeName :
-      return isAttributeName( cch );
-   case ESI_SingleQuote :
-      return isSingleQuoteData( cch );
-   case ESI_PureSingleQuote :
-      return isPureSingleQuoteData( cch );
-   case ESI_DoubleQuote :
-      return isDoubleQuoteData( cch );
-   case ESI_PureDoubleQuote :
-      return isPureDoubleQuoteData( cch );
+   case WHITE_SPACE :
+      return IsWhiteSpace( cch );
+   case NODE_NAME :
+      return IsNameText( cch );
+   case TEXT :
+      return IsText( cch );
+   case TEXT_NONE_WS :
+      return IsTextNoneWS( cch );
+   case TEXT_WITH_WS :
+      return IsTextWithWS( cch );
+   case ATTRI_NAME :
+      return IsAttriName( cch );
+   case SINGLE_QUOTE :
+      return IsSingleQuote( cch );
+   case PURE_SINGLE_QUOTE :
+      return IsPureSingleQuote( cch );
+   case DOUBLE_QUOTE :
+      return IsDoubleQuote( cch );
+   case PURE_DOUBLE_QUOTE :
+      return IsPureDoubleQuote( cch );
    default:
       return 0;
    }
@@ -230,7 +216,7 @@ bool needSkip( int skip_idx, const char cch )
 template<class OutIt>
 OutIt printNode( OutIt out, IXMLNode* node, const int WriteFlag, int indent )
 {
-   switch ( node->getType() )
+   switch ( node->GetType() )
    {
    case XNT_DOCUMENT :
       out = printChildNode( out, node, WriteFlag, indent );
@@ -272,7 +258,7 @@ OutIt printNode( OutIt out, IXMLNode* node, const int WriteFlag, int indent )
 template<class OutIt>
 OutIt printChildNode( OutIt out, IXMLNode* node, const int WriteFlag, int indent )
 {
-   for ( IXMLNode* child = node->firstChild(); child; child = child->nextSibling() )
+   for ( IXMLNode* child = node->FirstChild(); child; child = child->NextSibling() )
    {
       out = printNode( out, child, WriteFlag, indent );
    }
@@ -288,10 +274,10 @@ OutIt printElementNode( OutIt out, IXMLNode* node, const int WriteFlag, int inde
       out = fillChar( out, indent, char( '\t' ) );
    }
    *out = char( '<' ), ++out;
-   out = copyChar( node->getName(), node->getName() + node->getNameSize(), out );
+   out = copyChar( node->GetName(), node->GetName() + node->GetNameSize(), out );
    out = printAttribute( out, node );
 
-   if ( node->getValueSize() == 0 && !node->firstChild() )
+   if ( node->GetValueSize() == 0 && !node->FirstChild() )
    {
       *out = char( '/' ), ++out;
       *out = char( '>' ), ++out;
@@ -300,14 +286,14 @@ OutIt printElementNode( OutIt out, IXMLNode* node, const int WriteFlag, int inde
    {
       *out = char( '>' ), ++out;
 
-      IXMLNode* child = node->firstChild();
+      IXMLNode* child = node->FirstChild();
       if ( !child )
       {
-         out = copyAndExpandChar( node->getValue(), node->getValue() + node->getValueSize(), char( 0 ), out );
+         out = copyAndExpandChar( node->GetValue(), node->GetValue() + node->GetValueSize(), char( 0 ), out );
       }
-      else if ( child->nextSibling() == NULL && child->getType() == XNT_DATA )
+      else if ( child->NextSibling() == NULL && child->GetType() == XNT_DATA )
       {
-         out = copyAndExpandChar( child->getValue(), child->getValue() + child->getValueSize(), char( 0 ), out );
+         out = copyAndExpandChar( child->GetValue(), child->GetValue() + child->GetValueSize(), char( 0 ), out );
       }
       else
       {
@@ -324,7 +310,7 @@ OutIt printElementNode( OutIt out, IXMLNode* node, const int WriteFlag, int inde
 
       *out = char( '<' ), ++out;
       *out = char( '/' ), ++out;
-      out = copyChar( node->getName(), node->getName() + node->getNameSize(), out );
+      out = copyChar( node->GetName(), node->GetName() + node->GetNameSize(), out );
       *out = char( '>' ), ++out;
    }
 
@@ -338,7 +324,7 @@ OutIt printDataNode( OutIt out, IXMLNode* node, const int WriteFlag, int indent 
    {
       out = fillChar( out, indent, char( '\t' ) );
    }
-   out = copyAndExpandChar( node->getValue(), node->getValue() + node->getValueSize(), char( 0 ), out );
+   out = copyAndExpandChar( node->GetValue(), node->GetValue() + node->GetValueSize(), char( 0 ), out );
    return out;
 }
 
@@ -359,7 +345,7 @@ OutIt printCDataNode( OutIt out, IXMLNode* node, const int WriteFlag, int indent
    *out = char( 'T' ); ++out;
    *out = char( 'A' ); ++out;
    *out = char( '[' ); ++out;
-   out = copyChar( node->getValue(), node->getValue() + node->getValueSize(), out );
+   out = copyChar( node->GetValue(), node->GetValue() + node->GetValueSize(), out );
    *out = char( ']' ); ++out;
    *out = char( ']' ); ++out;
    *out = char( '>' ); ++out;
@@ -400,7 +386,7 @@ OutIt printCommentNode( OutIt out, IXMLNode* node, const int WriteFlag, int inde
    *out = char( '!' ), ++out;
    *out = char( '-' ), ++out;
    *out = char( '-' ), ++out;
-   out = copyChar( node->getValue(), node->getValue() + node->getValueSize(), out );
+   out = copyChar( node->GetValue(), node->GetValue() + node->GetValueSize(), out );
    *out = char( '-' ), ++out;
    *out = char( '-' ), ++out;
    *out = char( '>' ), ++out;
@@ -426,7 +412,7 @@ OutIt printDoctypeNode( OutIt out, IXMLNode* node, const int WriteFlag, int inde
    *out = char( 'P' ), ++out;
    *out = char( 'E' ), ++out;
    *out = char( ' ' ), ++out;
-   out = copyChar( node->getValue(), node->getValue() + node->getValueSize(), out );
+   out = copyChar( node->GetValue(), node->GetValue() + node->GetValueSize(), out );
    *out = char( '>' ), ++out;
 
    return out;
@@ -442,9 +428,9 @@ OutIt printPINode( OutIt out, IXMLNode* node, const int WriteFlag, int indent )
 
    *out = char( '<' ), ++out;
    *out = char( '?' ), ++out;
-   out = copyChar( node->getName(), node->getName() + node->getNameSize(), out );
+   out = copyChar( node->GetName(), node->GetName() + node->GetNameSize(), out );
    *out = char( ' ' ), ++out;
-   out = copyChar( node->getValue(), node->getValue() + node->getValueSize(), out );
+   out = copyChar( node->GetValue(), node->GetValue() + node->GetValueSize(), out );
    *out = char( '?' ), ++out;
    *out = char( '>' ), ++out;
 
@@ -454,23 +440,23 @@ OutIt printPINode( OutIt out, IXMLNode* node, const int WriteFlag, int indent )
 template<class OutIt>
 OutIt printAttribute( OutIt out, IXMLNode* node )
 {
-   for ( IXMLAttribute* attri = node->firstAttribute(); attri; attri = attri->nextAttribute() )
+   for ( IXMLAttribute* attri = node->FirstAttribute(); attri; attri = attri->NextAttribute() )
    {
-      if ( attri->getName() && attri->getValue() )
+      if ( attri->GetName() && attri->GetValue() )
       {
          *out = char( ' ' ), ++out;
-         out = copyChar( attri->getName(), attri->getName() + attri->getNameSize(), out );
+         out = copyChar( attri->GetName(), attri->GetName() + attri->GetNameSize(), out );
          *out = char( '=' ), ++out;
-         if ( findChar<char, char( '"' )>( attri->getValue(), attri->getValue() + attri->getValueSize() ) )
+         if ( findChar<char, char( '"' )>( attri->GetValue(), attri->GetValue() + attri->GetValueSize() ) )
          {
             *out = char( '\'' ), ++out;
-            out = copyAndExpandChar( attri->getValue(), attri->getValue() + attri->getValueSize(), char( '"' ), out );
+            out = copyAndExpandChar( attri->GetValue(), attri->GetValue() + attri->GetValueSize(), char( '"' ), out );
             *out = char( '\'' ), ++out;
          }
          else
          {
             *out = char( '"' ), ++out;
-            out = copyAndExpandChar( attri->getValue(), attri->getValue() + attri->getValueSize(), char( '\'' ), out );
+            out = copyAndExpandChar( attri->GetValue(), attri->GetValue() + attri->GetValueSize(), char( '\'' ), out );
             *out = char( '"' ), ++out;
          }
       }
@@ -502,7 +488,6 @@ OutIt copyAndExpandChar( const char* begin, const char* end, char notepand, OutI
       {
          switch( *begin )
          {
-            // *out++ = char( '&' );  -----> *out = char( '&' ); ++out;
          case char( '<' ) :
             {
                *out++ = char( '&' );

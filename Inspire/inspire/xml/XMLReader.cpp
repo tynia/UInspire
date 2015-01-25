@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -33,7 +33,7 @@ XMLReader::~XMLReader()
 
 }
 
-bool XMLReader::parse( char* data, IXMLDocument* doc )
+bool XMLReader::Parse( char* data, IXMLDocument* doc )
 {
    if ( data == NULL )
    {
@@ -42,11 +42,11 @@ bool XMLReader::parse( char* data, IXMLDocument* doc )
 
    _xmlDoc = doc;
    // skip UTF-8 FEFF
-   parseBOM( data );
+   ParseBOM( data );
 
    while( 1 )
    {
-      skip( ESI_WhiteSpace, data );
+      Skip( WHITE_SPACE, data );
       if ( *data == 0 )
       {
          break;
@@ -54,9 +54,9 @@ bool XMLReader::parse( char* data, IXMLDocument* doc )
       if ( *data == char( '<' ) )
       {
          ++data;
-         if ( IXMLNode* node = parseNode( data ) )
+         if ( IXMLNode* node = ParseNode( data ) )
          {
-            _xmlDoc->appendChild( node );
+            _xmlDoc->AppendChild( node );
          }
       }
       else
@@ -67,7 +67,7 @@ bool XMLReader::parse( char* data, IXMLDocument* doc )
    return true;
 }
 
-void XMLReader::parseBOM( char*& data )
+void XMLReader::ParseBOM( char*& data )
 {
    if ( static_cast<unsigned char>( data[0] ) == 0xEF && 
       static_cast<unsigned char>( data[1] ) == 0xBB && 
@@ -77,7 +77,7 @@ void XMLReader::parseBOM( char*& data )
    }
 }
 
-IXMLNode* XMLReader::parseNode( char*& data )
+IXMLNode* XMLReader::ParseNode( char*& data )
 {
    switch ( data[0] )
    {
@@ -86,14 +86,14 @@ IXMLNode* XMLReader::parseNode( char*& data )
       if ( ( data[0] == char( 'x' ) || data[0] == char( 'X' ) ) &&
          ( data[1] == char( 'm' ) || data[1] == char( 'M' ) ) &&
          ( data[2] == char( 'l' ) || data[2] == char( 'L' ) ) &&
-         isWhiteSpace( data[3] ) )
+         IsWhiteSpace( data[3] ) )
       {
          data += 4;
-         return parseDeclaration( data );
+         return ParseDeclaration( data );
       }
       else
       {
-         return parsePI( data );
+         return ParsePI( data );
       }
    case char( '!' ) :
       {
@@ -103,7 +103,7 @@ IXMLNode* XMLReader::parseNode( char*& data )
             if ( data[2] == char( '-' ) )
             {
                data += 3;
-               return parseComment( data );
+               return ParseComment( data );
             }
             break;
          case char( '[' ) : //// '<![CDATA[' - cdata
@@ -111,16 +111,16 @@ IXMLNode* XMLReader::parseNode( char*& data )
                data[5] == char( 'T' ) && data[6] == char( 'A' ) && data[7] == char( '[' ) )
             {
                data += 8;
-               return parseCData( data );
+               return ParseCData( data );
             }
             break;
          case char( 'D' ) :
             if ( data[2] == char( 'O' ) && data[3] == char( 'C' ) && data[4] == char( 'T' ) &&
                data[5] == char( 'Y' ) && data[6] == char( 'P' ) && data[7] == char( 'E' ) &&
-               isWhiteSpace( data[8] ) )
+               IsWhiteSpace( data[8] ) )
             {
                data += 9;
-               return parseDoctype( data );
+               return ParseDoctype( data );
             }
             break;
          }
@@ -139,26 +139,26 @@ IXMLNode* XMLReader::parseNode( char*& data )
       }
 
    default:
-      return parseElement( data );
+      return ParseElement( data );
    }
 }
 
-void XMLReader::parseAttribute( char*& data, IXMLNode* node )
+void XMLReader::ParseAttribute( char*& data, IXMLNode* node )
 {
-   while ( isAttributeName( *data ) )
+   while ( IsAttriName( *data ) )
    {
       char* name = data;
       ++data;
-      skip( ESI_AttributeName, data );
+      Skip( ATTRI_NAME, data );
       if ( name == data )
       {
          XML_PARSE_ERROR( "must be attribute name", data );
       }
-      IXMLAttribute* attri = _xmlDoc->allocAttribute();
-      attri->setName( name, data - name );
-      node->appendAttribute( attri );
+      IXMLAttribute* attri = _xmlDoc->AllocAttribute();
+      attri->SetName( name, data - name );
+      node->AppendAttribute( attri );
 
-      skip( ESI_WhiteSpace, data );
+      Skip( WHITE_SPACE, data );
       if ( *data != char( '=' ) )
       {
          XML_PARSE_ERROR( "must be =", data );
@@ -167,9 +167,9 @@ void XMLReader::parseAttribute( char*& data, IXMLNode* node )
 
       if ( !( _parseOptions & PARSE_NO_STRING_TERMINATORS ) )
       {
-         const_cast<char*>( attri->getName() )[attri->getNameSize()] = char( '\0' );
+         const_cast<char*>( attri->GetName() )[attri->GetNameSize()] = char( '\0' );
       }
-      skip( ESI_WhiteSpace, data );
+      Skip( WHITE_SPACE, data );
       char quote = *data;
       if ( quote != char( '\'' ) && quote != char( '"' ) )
       {
@@ -182,13 +182,13 @@ void XMLReader::parseAttribute( char*& data, IXMLNode* node )
       const int flag = _parseOptions & ~PARSE_NORMALIZE_WHITESPACE;
       if ( quote == char( '\'' ) )
       {
-         end = skipAndExpandRefs( ESI_SingleQuote, ESI_PureSingleQuote, flag, data );
+         end = SkipAndExpandRefs( SINGLE_QUOTE, PURE_SINGLE_QUOTE, flag, data );
       }
       else
       {
-         end = skipAndExpandRefs( ESI_DoubleQuote, ESI_PureDoubleQuote, flag, data );
+         end = SkipAndExpandRefs( DOUBLE_QUOTE, PURE_DOUBLE_QUOTE, flag, data );
       }
-      attri->setValue( value, end - value );
+      attri->SetValue( value, end - value );
 
       if ( *data != quote )
       {
@@ -201,11 +201,11 @@ void XMLReader::parseAttribute( char*& data, IXMLNode* node )
           const_cast<char*>( attri->getValue() )[attri->getValueSize()] = char( '\0' );
       }
 
-      skip( ESI_WhiteSpace, data );
+      Skip( WHITE_SPACE, data );
    }
 }
 
-IXMLNode* XMLReader::parseDeclaration( char*& data )
+IXMLNode* XMLReader::ParseDeclaration( char*& data )
 {
    if ( !( _parseOptions & PARSE_DECLARATION_NODE ) )
    {
@@ -221,9 +221,9 @@ IXMLNode* XMLReader::parseDeclaration( char*& data )
       return 0;
    }
 
-   IXMLNode* declaration = _xmlDoc->allocNode( XNT_DECLARATION );
-   skip( ESI_WhiteSpace, data );
-   parseAttribute( data, declaration );
+   IXMLNode* declaration = _xmlDoc->AllocNode( XNT_DECLARATION );
+   Skip( WHITE_SPACE, data );
+   ParseAttribute( data, declaration );
 
    if ( data[0] != char( '?' ) || data[1] != char( '>' ) )
    {
@@ -233,7 +233,7 @@ IXMLNode* XMLReader::parseDeclaration( char*& data )
    return declaration;
 }
 
-IXMLNode* XMLReader::parseComment( char*& data )
+IXMLNode* XMLReader::ParseComment( char*& data )
 {
    if ( !( _parseOptions & PARSE_COMMENT_NODES ) )
    {
@@ -259,8 +259,8 @@ IXMLNode* XMLReader::parseComment( char*& data )
       ++data;
    }
 
-   IXMLNode* comment = _xmlDoc->allocNode( XNT_COMMENT );
-   comment->setValue( value, data - value );
+   IXMLNode* comment = _xmlDoc->AllocNode( XNT_COMMENT );
+   comment->SetValue( value, data - value );
 
    if ( !( _parseOptions & PARSE_NO_STRING_TERMINATORS ) )
    {
@@ -271,27 +271,27 @@ IXMLNode* XMLReader::parseComment( char*& data )
    return comment;
 }
 
-IXMLNode* XMLReader::parseElement( char*& data )
+IXMLNode* XMLReader::ParseElement( char*& data )
 {
-   IXMLNode* node = _xmlDoc->allocNode( XNT_ELEMENT );
+   IXMLNode* node = _xmlDoc->AllocNode( XNT_ELEMENT );
 
    char* name = data;
-   skip( ESI_NodeName, data );
+   Skip( NODE_NAME, data );
    if ( data == name )
    {
       XML_PARSE_ERROR( "must be a node name", data );
    }
 
-   node->setName( name, data - name );
+   node->SetName( name, data - name );
 
-   skip( ESI_WhiteSpace, data );
+   Skip( WHITE_SPACE, data );
 
-   parseAttribute( data, node );
+   ParseAttribute( data, node );
 
    if ( *data == char( '>' ) )
    {
       ++data;
-      parseNodeText( data, node );
+      ParseNodeText( data, node );
    }
    else if ( *data == char( '/' ) )
    {
@@ -309,26 +309,26 @@ IXMLNode* XMLReader::parseElement( char*& data )
 
    if ( !( _parseOptions & PARSE_NO_STRING_TERMINATORS ) )
    {
-      const_cast<char*>( node->getName() )[node->getNameSize()] = char( '\0' );
+      const_cast<char*>( node->GetName() )[node->GetNameSize()] = char( '\0' );
    }
 
    return node;
 }
 
-IXMLNode* XMLReader::parsePI( char*& data )
+IXMLNode* XMLReader::ParsePI( char*& data )
 {
    if ( _parseOptions & PARSE_PI_NODES )
    {
-      IXMLNode* pi_node = _xmlDoc->allocNode( XNT_PI );
+      IXMLNode* pi_node = _xmlDoc->AllocNode( XNT_PI );
       char* name = data;
-      skip( ESI_NodeName, data );
+      Skip( NODE_NAME, data );
       if ( data == name )
       {
          XML_PARSE_ERROR( "must be PI target", data );
       }
-      pi_node->setName( name, data - name );
+      pi_node->SetName( name, data - name );
 
-      skip( ESI_WhiteSpace, data );
+      Skip( WHITE_SPACE, data );
       char* value = data;
 
       while( data[0] != char( '?' ) || data[1] == char( '>' ) )
@@ -339,7 +339,7 @@ IXMLNode* XMLReader::parsePI( char*& data )
          }
          ++data;
       }
-      pi_node->setValue( value, data - value );
+      pi_node->SetValue( value, data - value );
 
       if ( !( _parseOptions & PARSE_NO_STRING_TERMINATORS ) )
       {
@@ -364,7 +364,7 @@ IXMLNode* XMLReader::parsePI( char*& data )
    return NULL;
 }
 
-IXMLNode* XMLReader::parseCData( char*& data )
+IXMLNode* XMLReader::ParseCData( char*& data )
 {
    if ( _parseOptions & PARSE_NO_DATA_NODES )
    {
@@ -390,8 +390,8 @@ IXMLNode* XMLReader::parseCData( char*& data )
       ++data;
    }
 
-   IXMLNode* cdata = _xmlDoc->allocNode( XNT_CDATA );
-   cdata->setValue( value, data - value );
+   IXMLNode* cdata = _xmlDoc->AllocNode( XNT_CDATA );
+   cdata->SetValue( value, data - value );
 
    if ( !( _parseOptions & PARSE_NO_STRING_TERMINATORS ) )
    {
@@ -401,7 +401,7 @@ IXMLNode* XMLReader::parseCData( char*& data )
    return cdata;
 }
 
-IXMLNode* XMLReader::parseDoctype( char*& data )
+IXMLNode* XMLReader::ParseDoctype( char*& data )
 {
    char* value = data;
 
@@ -442,8 +442,8 @@ IXMLNode* XMLReader::parseDoctype( char*& data )
 
    if ( _parseOptions & PARSE_DOCTYPE_NODES )
    {
-      IXMLNode* doctype = _xmlDoc->allocNode( XNT_DOCTYPE );
-      doctype->setValue( value, data - value );
+      IXMLNode* doctype = _xmlDoc->AllocNode( XNT_DOCTYPE );
+      doctype->SetValue( value, data - value );
 
       if ( !( _parseOptions & PARSE_NO_STRING_TERMINATORS ) )
       {
@@ -459,12 +459,12 @@ IXMLNode* XMLReader::parseDoctype( char*& data )
    }
 }
 
-void XMLReader::parseNodeText( char*& data, IXMLNode* node )
+void XMLReader::ParseNodeText( char*& data, IXMLNode* node )
 {
    while ( 1 )
    {
       char* content_begin = data;
-      skip( ESI_WhiteSpace, data );
+      Skip( WHITE_SPACE, data );
       char nextChar = *data;
       
    finish :
@@ -478,18 +478,18 @@ void XMLReader::parseNodeText( char*& data, IXMLNode* node )
                if ( _parseOptions & PARSE_VALIDATE_END_TAG )
                {
                   char* name = data;
-                  skip( ESI_NodeName, data );
-                  if ( !compareString( node->getName(), node->getNameSize(), name, data - name ) )
+                  Skip( NODE_NAME, data );
+                  if ( !Equals( node->GetName(), node->GetNameSize(), name, data - name ) )
                   {
                      XML_PARSE_ERROR( "invalid closing tag name.", data );
                   }
                }
                else
                {
-                  skip( ESI_NodeName, data );
+                  Skip( NODE_NAME, data );
                }
 
-               skip( ESI_WhiteSpace, data );
+               Skip( WHITE_SPACE, data );
                if ( *data != char( '>' ) )
                {
                   XML_PARSE_ERROR( "must be >", data );
@@ -500,9 +500,9 @@ void XMLReader::parseNodeText( char*& data, IXMLNode* node )
             else
             {
                ++data;
-               if ( IXMLNode* child = parseNode( data ) )
+               if ( IXMLNode* child = ParseNode( data ) )
                {
-                  node->appendChild( child );
+                  node->AppendChild( child );
                }
                break;
             }
@@ -512,39 +512,39 @@ void XMLReader::parseNodeText( char*& data, IXMLNode* node )
             }
             break;
          default:
-            nextChar = appendData( node, data, content_begin );
+            nextChar = AppendData( node, data, content_begin );
             goto finish;
          }
       }
    }
 }
 
-void XMLReader::skip( int skip_idx, char*& data )
+void XMLReader::Skip( int SKIP_TYPE, char*& data )
 {
    char* tmp = data;
-   while( needSkip( skip_idx, *tmp ) )
+   while( NeedSkip( SKIP_TYPE, *tmp ) )
    {
       ++tmp;
    }
    data = tmp;
 }
 
-char* XMLReader::skipAndExpandRefs( int skip_idx_1, int skip_idx_2, int flag, char*& data )
+char* XMLReader::SkipAndExpandRefs( int SKIP_TYPE_1, int SKIP_TYPE_2, int flag, char*& data )
 {
    if ( ( flag & PARSE_NO_ENTITY_TRANSLATION ) &&
-      !( flag & PARSE_NORMALIZE_WHITESPACE )  &&
-      !( flag & PARSE_TRIM_WHITESPACE ) )
+       !( flag & PARSE_NORMALIZE_WHITESPACE )  &&
+       !( flag & PARSE_TRIM_WHITESPACE ) )
    {
-      skip( skip_idx_1, data );
+      Skip( SKIP_TYPE_1, data );
       return data;
    }
 
-   skip( skip_idx_2, data );
+   Skip( SKIP_TYPE_2, data );
 
    char* src = data;
    char* dest = src;
 
-   while( needSkip( skip_idx_1, *src ) )
+   while( NeedSkip( SKIP_TYPE_1, *src ) )
    {
       if ( !( flag & PARSE_NO_ENTITY_TRANSLATION ) )
       {
@@ -611,13 +611,13 @@ char* XMLReader::skipAndExpandRefs( int skip_idx_1, int skip_idx_2, int flag, ch
                   src += 3;   // Skip &#x
                   while ( 1 )
                   {
-                     unsigned char digit = XMLLookupTable::XMT_Digits[static_cast<unsigned char>( *src )];
+                     unsigned char digit = XML::DIGITAL[static_cast<unsigned char>( *src )];
                      if ( digit == 0xFF )
                         break;
                      code = code * 16 + digit;
                      ++src;
                   }
-                  insertCodedChar( dest, code );    // Put character in output
+                  InsertCodedChar( dest, code );    // Put character in output
                }
                else
                {
@@ -625,13 +625,13 @@ char* XMLReader::skipAndExpandRefs( int skip_idx_1, int skip_idx_2, int flag, ch
                   src += 2;   // Skip &#
                   while ( 1 )
                   {
-                     unsigned char digit = XMLLookupTable::XMT_Digits[static_cast<unsigned char>( *src )];
+                     unsigned char digit = XML::DIGITAL[static_cast<unsigned char>( *src )];
                      if ( digit == 0xFF )
                         break;
                      code = code * 10 + digit;
                      ++src;
                   }
-                  insertCodedChar( dest, code );    // Put character in output
+                  InsertCodedChar( dest, code );    // Put character in output
                }
                if ( *src == char( ';' ) )
                {
@@ -651,12 +651,12 @@ char* XMLReader::skipAndExpandRefs( int skip_idx_1, int skip_idx_2, int flag, ch
       
       if ( _parseOptions & PARSE_NORMALIZE_WHITESPACE )
       {
-         if ( isWhiteSpace( *src ) )
+         if ( IsWhiteSpace( *src ) )
          {
             *dest = char( ' ' );
             ++dest;
             ++src;
-            while( isWhiteSpace( *src ) )
+            while( IsWhiteSpace( *src ) )
             {
                ++src;
             }
@@ -671,7 +671,7 @@ char* XMLReader::skipAndExpandRefs( int skip_idx_1, int skip_idx_2, int flag, ch
    return dest;
 }
 
-void XMLReader::insertCodedChar( char*& data, unsigned long code )
+void XMLReader::InsertCodedChar( char*& data, unsigned long code )
 {
    if ( _parseOptions & PARSE_NO_UTF8 )
    {
@@ -719,7 +719,7 @@ void XMLReader::insertCodedChar( char*& data, unsigned long code )
    }
 }
 
-char XMLReader::appendData( IXMLNode* node, char*& data, char* start )
+char XMLReader::AppendData( IXMLNode* node, char*& data, char* start )
 {
    if ( !( _parseOptions & PARSE_TRIM_WHITESPACE ) )
    {
@@ -730,11 +730,11 @@ char XMLReader::appendData( IXMLNode* node, char*& data, char* start )
    char* end;
    if ( _parseOptions & PARSE_NORMALIZE_WHITESPACE )
    {
-      end = skipAndExpandRefs( ESI_Text, ESI_Text_WS, _parseOptions, data );
+      end = SkipAndExpandRefs( TEXT, TEXT_WITH_WS, _parseOptions, data );
    }
    else
    {
-      end = skipAndExpandRefs( ESI_Text, ESI_Text_NONE_WS, _parseOptions, data );
+      end = SkipAndExpandRefs( TEXT, TEXT_NONE_WS, _parseOptions, data );
    }
    
    if ( _parseOptions & PARSE_TRIM_WHITESPACE )
@@ -748,7 +748,7 @@ char XMLReader::appendData( IXMLNode* node, char*& data, char* start )
       }
       else
       {
-         while( isWhiteSpace( *( end - 1 ) ) )
+         while( IsWhiteSpace( *( end - 1 ) ) )
          {
             --end;
          }
@@ -757,16 +757,16 @@ char XMLReader::appendData( IXMLNode* node, char*& data, char* start )
 
    if ( !( _parseOptions & PARSE_NO_DATA_NODES ) )
    {
-      IXMLNode* dataNode = _xmlDoc->allocNode( XNT_DATA );
-      dataNode->setValue( value, end - value );
-      node->appendChild( dataNode );
+      IXMLNode* dataNode = _xmlDoc->AllocNode( XNT_DATA );
+      dataNode->SetValue( value, end - value );
+      node->AppendChild( dataNode );
    }
 
    if ( !( _parseOptions & PARSE_NO_VALUE_ELEMENTS ) )
    {
-      if ( node->getValue() == NULL )
+      if ( node->GetValue() == NULL )
       {
-         node->setValue( value, end - value );
+         node->SetValue( value, end - value );
       }
    }
    if ( !( _parseOptions & PARSE_NO_STRING_TERMINATORS ) )

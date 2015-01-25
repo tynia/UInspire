@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -346,24 +346,24 @@ void CUIWndManager::CloneMultiInstanceWnd( CUIWnd* wnd )
 void CUIWndManager::ParseLayout()
 {
    inspire::XMLDocument doc;
-   if (doc.load("index.xml"))
+   if (doc.LoadXML("index.xml"))
    {
       LogError("can not find ui layout index file.");
       return;
    }
 
-   inspire::IXMLNode* node = doc.firstChild( "Layout" );
+   inspire::IXMLNode* node = doc.FirstChild( "Layout" );
    if ( node )
    {
-      inspire::IXMLNode* child = node->firstChild( "index" );
+      inspire::IXMLNode* child = node->FirstChild( "index" );
       while ( child )
       {
-         const char* layout = child->getValue();
+         const char* layout = child->GetValue();
          if ( layout )
          {
             ParseLayoutFile( layout );
          }
-         child = child->nextSibling( "index" );
+         child = child->NextSibling( "index" );
       }
    }
 }
@@ -371,16 +371,16 @@ void CUIWndManager::ParseLayout()
 void CUIWndManager::ParseLayoutFile( const char* layout_file )
 {
    inspire::IXMLDocument* uilayout = new inspire::XMLDocument();
-   uilayout->load( layout_file );
+   uilayout->LoadXML( layout_file );
 
    CUIWnd* wnd = NULL;
-   inspire::IXMLNode* windows = uilayout->firstChild( "Windows" );
+   inspire::IXMLNode* windows = uilayout->FirstChild( "Windows" );
    if ( windows )
    {
-      inspire::IXMLNode* wndnode = windows->firstChild( "Window" );
+      inspire::IXMLNode* wndnode = windows->FirstChild( "Window" );
       while ( wndnode )
       {
-         const char* str_class_index = wndnode->getAttributeValue( "Class" );
+         const char* str_class_index = wndnode->GetAttributeValue( "Class" );
          if ( str_class_index )
          {
             WndType wt = ( WndType )atoi( str_class_index );
@@ -392,7 +392,7 @@ void CUIWndManager::ParseLayoutFile( const char* layout_file )
             ParseControl( wnd, wndnode );
             wnd->SetParent( NULL );
 
-            const char* multiInstance = wndnode->getAttributeValue( "MultiInstance" );
+            const char* multiInstance = wndnode->GetAttributeValue( "MultiInstance" );
             int val = atoi( multiInstance );
             if ( val != 0 )
             {
@@ -403,20 +403,20 @@ void CUIWndManager::ParseLayoutFile( const char* layout_file )
                PushToWndContainer( wnd );
             }
          }
-         wndnode = wndnode->nextSibling( "Window" );
+         wndnode = wndnode->NextSibling( "Window" );
       }
    }
 }
 
 void CUIWndManager::ParseControl( CUIWnd* wnd, inspire::IXMLNode* node )
 {
-   inspire::IXMLNode* controls = node->firstChild( "Controls" );
+   inspire::IXMLNode* controls = node->FirstChild( "Controls" );
    if ( controls )
    {
-      inspire::IXMLNode* ctrl_node = controls->firstChild( "Control" );
+      inspire::IXMLNode* ctrl_node = controls->FirstChild( "Control" );
       while ( ctrl_node )
       {
-         const char* ctrl_class = ctrl_node->getAttributeValue( "Class" );
+         const char* ctrl_class = ctrl_node->GetAttributeValue( "Class" );
          if ( ctrl_class )
          {
             WndType wt = ( WndType )atoi( ctrl_class );
@@ -429,7 +429,7 @@ void CUIWndManager::ParseControl( CUIWnd* wnd, inspire::IXMLNode* node )
                ctrl->SetParent( wnd );
             }
          }
-         ctrl_node = controls->nextSibling( "Control" );
+         ctrl_node = controls->NextSibling( "Control" );
       }
    }
 }

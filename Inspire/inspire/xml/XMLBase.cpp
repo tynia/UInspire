@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -41,44 +41,44 @@ XMLBase::~XMLBase()
 
 }
 
-void XMLBase::setName( const char* name, const std::size_t len )
+void XMLBase::SetName( const char* name, const std::size_t len )
 {
    _name = const_cast<char*>( name );
    _nameSize = len;
 }
 
-const char* XMLBase::getName() const
+const char* XMLBase::GetName() const
 {
    return _name;
 }
 
-const std::size_t XMLBase::getNameSize() const
+const std::size_t XMLBase::GetNameSize() const
 {
    return _nameSize;
 }
 
-void XMLBase::setValue( const char* value, const std::size_t len )
+void XMLBase::SetValue( const char* value, const std::size_t len )
 {
    _value = const_cast<char*>( value );
    _valueSize = len;
 }
 
-const char* XMLBase::getValue() const
+const char* XMLBase::GetValue() const
 {
    return _value;
 }
 
-const std::size_t XMLBase::getValueSize() const
+const std::size_t XMLBase::GetValueSize() const
 {
    return _valueSize;
 }
 
-void XMLBase::setParent( IXMLNode* node )
+void XMLBase::SetParent( IXMLNode* node )
 {
    _parent = node;
 }
 
-IXMLNode* XMLBase::getParent() const
+IXMLNode* XMLBase::GetParent() const
 {
    return _parent;
 }

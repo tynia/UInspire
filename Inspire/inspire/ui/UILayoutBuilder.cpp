@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -34,25 +34,25 @@ CUILayoutBuilder::~CUILayoutBuilder()
 void CUILayoutBuilder::ParseLayout()
 {
    inspire::XMLDocument doc;
-   bool ret = doc.load("index.xml");
+   bool ret = doc.LoadXML("index.xml");
    if (!ret)
    {
       //can not find ui layout index file.
       return;
    }
 
-   inspire::IXMLNode* node = doc.firstChild("Layout");
+   inspire::IXMLNode* node = doc.FirstChild("Layout");
    if (node)
    {
-      inspire::IXMLNode* child = node->firstChild("index");
+      inspire::IXMLNode* child = node->FirstChild("index");
       while (child)
       {
-         const char* layout = child->getValue();
+         const char* layout = child->GetValue();
          if (layout)
          {
             ParseLayoutFile(layout);
          }
-         child = child->nextSibling("index");
+         child = child->NextSibling("index");
       }
    }
 }
@@ -60,16 +60,16 @@ void CUILayoutBuilder::ParseLayout()
 void CUILayoutBuilder::ParseLayoutFile(const char* layout)
 {
    inspire::XMLDocument uilayout;
-   uilayout.load(layout);
+   uilayout.LoadXML(layout);
 
    CUIWnd* wnd = NULL;
-   inspire::IXMLNode* windows = uilayout.firstChild("Windows");
+   inspire::IXMLNode* windows = uilayout.FirstChild("Windows");
    if (windows)
    {
-      inspire::IXMLNode* wndnode = windows->firstChild("Window");
+      inspire::IXMLNode* wndnode = windows->FirstChild("Window");
       while (wndnode)
       {
-         const char* str_class_index = wndnode->getAttributeValue("Class");
+         const char* str_class_index = wndnode->GetAttributeValue("Class");
          if (str_class_index)
          {
             WndType wt = (WndType)atoi(str_class_index);
@@ -84,7 +84,7 @@ void CUILayoutBuilder::ParseLayoutFile(const char* layout)
             ParseCommonWndData(wnd, wndnode);
             wnd->SetParent(NULL);
 
-            const char* multiInstance = wndnode->getAttributeValue("MultiInstance");
+            const char* multiInstance = wndnode->GetAttributeValue("MultiInstance");
             int val = atoi(multiInstance);
             if (val != 0)
             {
@@ -95,7 +95,7 @@ void CUILayoutBuilder::ParseLayoutFile(const char* layout)
                //_IUIWndMng->PushToWndContainer(wnd);
             }
          }
-         wndnode = wndnode->nextSibling("Window");
+         wndnode = wndnode->NextSibling("Window");
       }
    }
 }
@@ -107,13 +107,13 @@ void CUILayoutBuilder::ParseCommonWndData( IUIWnd* wnd, inspire::IXMLNode* node 
 
 void CUILayoutBuilder::ParseControl( IUIWnd* wnd, inspire::IXMLNode* node )
 {
-   inspire::IXMLNode* controls = node->firstChild("Controls");
+   inspire::IXMLNode* controls = node->FirstChild("Controls");
    if (controls)
    {
-      inspire::IXMLNode* ctrl_node = controls->firstChild("Control");
+      inspire::IXMLNode* ctrl_node = controls->FirstChild("Control");
       while (ctrl_node)
       {
-         const char* ctrl_class = ctrl_node->getAttributeValue("Class");
+         const char* ctrl_class = ctrl_node->GetAttributeValue("Class");
          if (ctrl_class)
          {
             WndType wt = (WndType)atoi(ctrl_class);
@@ -121,37 +121,37 @@ void CUILayoutBuilder::ParseControl( IUIWnd* wnd, inspire::IXMLNode* node )
             ParseControlData(ctrl, ctrl_node);
             ctrl->SetParent(wnd);
          }
-         ctrl_node = controls->nextSibling("Control");
+         ctrl_node = controls->NextSibling("Control");
       }
    }
 }
 
 void CUILayoutBuilder::ParseControlData( IUIWnd* wnd, inspire::IXMLNode* node )
 {
-   inspire::IXMLNode* node_detail = node->firstChild("HAlign");
+   inspire::IXMLNode* node_detail = node->FirstChild("HAlign");
    if (node_detail)
    {
-      const char* str_horizon = node_detail->getValue();
+      const char* str_horizon = node_detail->GetValue();
       if (str_horizon)
       {
          int horizon = atoi(str_horizon);
       }
    }
 
-   node_detail = node->firstChild("VAlign");
+   node_detail = node->FirstChild("VAlign");
    if (node_detail)
    {
-      const char* str_vertical = node_detail->getValue();
+      const char* str_vertical = node_detail->GetValue();
       if (str_vertical)
       {
          int horizon = atoi(str_vertical);
       }
    }
 
-   node_detail = node->firstChild("Caption");
+   node_detail = node->FirstChild("Caption");
    if (node_detail)
    {
-      const char* str_caption = node_detail->getValue();
+      const char* str_caption = node_detail->GetValue();
       inspire::CharConverter con(str_caption);
       //todo
       //wnd->SetID(con.GetUnicode());

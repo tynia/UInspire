@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -15,69 +15,10 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#include "InspireInternal.h"
+#include "Rect.h"
 
 namespace inspire {
-CPoint::CPoint()
-{
 
-}
-
-CPoint::CPoint( int xx, int yy ) : x( xx ), y( yy )
-{
-
-}
-
-CPoint::CPoint( const CPoint& pt ) : x( pt.x ), y( pt.y )
-{
-
-}
-
-const CPoint& CPoint::operator= ( const CPoint& pt )
-{
-   x = pt.x;
-   y = pt.y;
-   return ( *this );
-}
-
-const CPoint& CPoint::operator+= ( const CPoint& pt )
-{
-   x += pt.x;
-   y += pt.y;
-   return ( *this );
-}
-
-const CPoint CPoint::operator- ( const CPoint& pt )
-{
-   return ( CPoint( x - pt.x, y - pt.y ) );
-}
-const CPoint CPoint::operator+ ( const CPoint& pt )
-{
-   return ( CPoint( x + pt.x, y + pt.y ) );
-}
-
-void CPoint::TranslateToXPoint( __in const HWND hWnd, __in const POINT& pt )
-{
-   int win_x = pt.x;   ///< Windows 客户区域x坐标
-   int win_y = pt.y;   ///< Windows 客户区域y坐标
-
-   RECT rect;
-   ::GetWindowRect( hWnd, &rect );
-   ///< 转换成自己的坐标系
-   x = win_x;
-   y = ( rect.top - rect.bottom ) - win_y;
-}
-
-void CPoint::TranslateToWindow( __in const HWND hWnd, __inout POINT& pt )
-{
-   RECT rect;
-   ::GetWindowRect( hWnd, &rect );
-
-   pt.x = x;
-   pt.y = ( rect.top - rect.bottom ) - y;
-}
-//////////////////////////////////////////////////////////////////////////
-///< CRect
 CRect::CRect()
 {
 

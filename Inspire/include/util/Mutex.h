@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -15,19 +15,20 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_LOCK_H_
-#define _INSPIRE_LOCK_H_
+#ifndef _INSPIRE_MUTEX_H_
+#define _INSPIRE_MUTEX_H_
 
 #include "platform.h"
 
-class InspireLockVariable
+class INSPIRE_EXPORT_API Mutex
 {
 public:
-   InspireLockVariable()
+   Mutex()
    {
       ::InitializeCriticalSection( &cs );
    }
-   ~InspireLockVariable()
+
+   ~Mutex()
    {
       ::DeleteCriticalSection( &cs );
    }
@@ -44,21 +45,6 @@ public:
 
 private:
    CRITICAL_SECTION cs;
-};
-
-class InspireLock
-{
-public:
-   InspireLock( InspireLockVariable* va ) : _va( va )
-   {
-      _va->lock();
-   }
-   ~InspireLock()
-   {
-      _va->unLock();
-   }
-private:
-   InspireLockVariable* _va;
 };
 
 #endif

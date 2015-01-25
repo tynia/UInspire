@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -17,7 +17,7 @@
 *******************************************************************************/
 #include <fstream>
 #include "XMLDocument.h"
-#include "XMLBufferPool.h"
+#include "XMLBuffer.h"
 #include "XMLNode.h"
 #include "XMLReader.h"
 #include "XMLWriter.h"
@@ -28,12 +28,12 @@ XMLDocument::XMLDocument() : XMLNode( XNT_DOCUMENT ), _filename( NULL ), _data( 
 {
    _writer = new XMLWriter();
    _reader = new XMLReader();
-   _pool = new XMLBufferPool();
+   _pool = new XMLBuffer();
 }
 
 XMLDocument::~XMLDocument()
 {
-   _pool->release();
+   _pool->Release();
 
    if ( _writer )
    {
@@ -62,7 +62,7 @@ XMLDocument::~XMLDocument()
    _filename = NULL;
 }
 
-bool XMLDocument::load( const char* filename )
+bool XMLDocument::LoadXML( const char* filename )
 {
    if ( filename == NULL )
    {
@@ -70,12 +70,12 @@ bool XMLDocument::load( const char* filename )
       return false;
    }
    _filename = filename;
-   _reader->setParseOptions( PARSE_FULL );
-   readFile();
-   return _reader->parse( _data, this );
+   _reader->SetParseOptions( PARSE_FULL );
+   ReadFile();
+   return _reader->Parse( _data, this );
 }
 
-void XMLDocument::readFile()
+void XMLDocument::ReadFile()
 {
    std::fstream instream;
    instream.open( _filename, std::fstream::binary | std::fstream::in );
@@ -85,8 +85,8 @@ void XMLDocument::readFile()
       return;
    }
 
-   instream.unsetf( ios::skipws );
-   instream.seekg( 0, ios::end );
+   instream.unsetf( std::ios::skipws );
+   instream.seekg( 0, std::ios::end );
    std::size_t len = instream.tellg();
    instream.seekg( 0 );
 
@@ -97,32 +97,32 @@ void XMLDocument::readFile()
    instream.close();
 }
 
-bool XMLDocument::save()
+bool XMLDocument::SaveXML()
 {
    bool suc = false;
    std::ofstream outstream;
-   outstream.open( _filename, ios::out | ios::binary );
+   outstream.open( _filename, std::ios::out | std::ios::binary );
    if ( !outstream.fail() )
    {
       IXMLDocument* ixmldoc = this;
-      suc = _writer->toStream( outstream, ixmldoc/*this*/ );
+      suc = _writer->toStream( outstream, ixmldoc );
    }
    outstream.close();
    return suc;
 }
 
-IXMLNode* XMLDocument::allocNode( XMLNodeType nt, const char* name/* = NULL*/, const char* value/* = NULL*/ )
+IXMLNode* XMLDocument::AllocNode( XMLNodeType nt, const char* name, const char* value )
 {
-   return _pool->allocNode( nt, name, value );
+   return _pool->AllocNode( nt, name, value );
 }
 
-IXMLAttribute* XMLDocument::allocAttribute( const char* name/* = NULL*/, const char* value/* = NULL*/ )
+IXMLAttribute* XMLDocument::AllocAttribute( const char* name, const char* value )
 {
-   return _pool->allocAttribute( name, value );
+   return _pool->AllocAttribute( name, value );
 }
 
-char* XMLDocument::allocString( const char* str )
+char* XMLDocument::AllocString( const char* str )
 {
-   return _pool->allocString( str );
+   return _pool->AllocString( str );
 }
 }

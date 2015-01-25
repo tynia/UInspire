@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -19,46 +19,23 @@
 #define _INSPIRE_LOCK_H_
 
 #include "platform.h"
+#include "Mutex.h"
 
-class LockVariable
+class INSPIRE_EXPORT_API ScopeMutex
 {
 public:
-   LockVariable()
-   {
-      ::InitializeCriticalSection( &cs );
-   }
-   ~LockVariable()
-   {
-      ::DeleteCriticalSection( &cs );
-   }
-
-   void lock()
-   {
-      ::EnterCriticalSection( &cs );
-   }
-
-   void unLock()
-   {
-      ::LeaveCriticalSection( &cs );
-   }
-
-private:
-   CRITICAL_SECTION cs;
-};
-
-class LockCondition
-{
-public:
-   LockCondition( LockVariable* va ) : _va( va )
+   ScopeMutex( Mutex* va ) : _va( va )
    {
       _va->lock();
    }
-   ~LockCondition()
+
+   ~ScopeMutex()
    {
       _va->unLock();
    }
+
 private:
-   LockVariable* _va;
+   Mutex* _va;
 };
 
 #endif

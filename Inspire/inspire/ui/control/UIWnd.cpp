@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -319,79 +319,79 @@ void CUIWnd::CloneFrom( CUIWnd* wnd )
 
 void CUIWnd::ParseData( inspire::IXMLNode* node )
 {
-   inspire::IXMLNode* node_detail = node->firstChild( "ID" );
+   inspire::IXMLNode* node_detail = node->FirstChild( "ID" );
    if ( node_detail )
    {
-      const char* str_wndid = node_detail->getValue();
+      const char* str_wndid = node_detail->GetValue();
       inspire::CharConverter con( str_wndid );
       _ID = con.GetUnicode();
    }
 
-   node_detail = node->firstChild( "Position" );
+   node_detail = node->FirstChild( "Position" );
    if ( node_detail )
    {
-      const char* str_position = node_detail->getValue();
+      const char* str_position = node_detail->GetValue();
       CPoint pt;
       sscanf_s( str_position, "%d %d", &pt.x, &pt.y );
       SetPosition( pt.x, pt.y );
    }
 
-   node_detail = node->firstChild( "Rect" );
+   node_detail = node->FirstChild( "Rect" );
    if ( node_detail )
    {
-      const char* str_rect = node_detail->getValue();
+      const char* str_rect = node_detail->GetValue();
       CRect rect;
       sscanf_s( str_rect, "%d %d %d %d", &rect.left, &rect.top, &rect.right, &rect.bottom );
       SetRect( rect );
    }
 
-   node_detail = node->firstChild( "TileMode" );
+   node_detail = node->FirstChild( "TileMode" );
    if ( node_detail )
    {
-      const char* str_tile = node_detail->getValue();
+      const char* str_tile = node_detail->GetValue();
       int tilemode;
       sscanf_s( str_tile, "%d", &tilemode );
       _TileMode = ( TiledMode )tilemode;
    }
 
-   node_detail = node->firstChild( "Tile" );
+   node_detail = node->FirstChild( "Tile" );
    if ( node_detail )
    {
-      const char* str_tile = node_detail->getValue();
+      const char* str_tile = node_detail->GetValue();
       Tile tile;
       sscanf_s( str_tile, "%d %d", &tile.x, &tile.y );
    }
 
-   node_detail = node->firstChild( "TileHeadTail" );
+   node_detail = node->FirstChild( "TileHeadTail" );
    if ( node_detail )
    {
-      const char* str_tile = node_detail->getValue();
+      const char* str_tile = node_detail->GetValue();
       Tile tileheadtail;
       sscanf_s( str_tile, "%d %d", &tileheadtail.x, &tileheadtail.y );
       _TileHeadTail = tileheadtail;
    }
 
-   node_detail = node->firstChild( "TileSize" );
+   node_detail = node->FirstChild( "TileSize" );
    if ( node_detail )
    {
-      const char* str_tile = node_detail->getValue();
+      const char* str_tile = node_detail->GetValue();
       Tile tilesize;
       sscanf_s( str_tile, "%d %d", &tilesize.x, &tilesize.y );
       _TileSize = tilesize;
    }
 
-   node_detail = node->firstChild( "ZLevel" );
+   node_detail = node->FirstChild( "ZLevel" );
    if ( node_detail )
    {
-      const char* str_zlevel = node_detail->getValue();
+      const char* str_zlevel = node_detail->GetValue();
       int zlevel = atoi( str_zlevel );
       _Zlevel = zlevel;
    }
 
-   node_detail = node->firstChild( "ResourceID" );
+   node_detail = node->FirstChild( "ResourceID" );
    if ( node_detail )
    {
-      const char* str_resid = node_detail->getValue();
+      const char* str_resid = node_detail->GetValue();
       inspire::CharConverter con( str_resid );
       _ResourceID = con.GetUnicode();
    }

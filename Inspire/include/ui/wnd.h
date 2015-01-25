@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -116,66 +116,6 @@ inline const _tchar* GetClassNameFromWndClass( WndType wc )
       return L"Error";
    }
 }
-
-///< 有必要把Point类做成模板吗？
-class INSPIRE_EXPORT_API CPoint
-{
-public:
-   ///< 成员
-   int x;
-   int y;
-
-   ///< 构造
-   CPoint();
-   CPoint( int xx, int yy );
-   CPoint( const CPoint& pt );
-
-   ///< 运算符
-   const CPoint& operator= ( const CPoint& pt );
-   const CPoint& operator+= ( const CPoint& pt );
-   const CPoint operator- ( const CPoint& pt );
-   const CPoint operator+ ( const CPoint& pt );
-
-   void TranslateToXPoint( const HWND hWnd, const POINT& pt );
-   void TranslateToWindow( const HWND hWnd, POINT& pt );
-};
-///< Tile 等也用的是同样的数据结构，不愿写了，就typedef了
-typedef CPoint Tile;
-
-class INSPIRE_EXPORT_API CRect
-{
-public:
-   int left;
-   int top;
-   int right;
-   int bottom;
-
-   CRect();
-   CRect( int l, int t, int r, int b );
-   CRect( const CRect& rect );
-
-   void Set( int l, int t, int r, int b );
-
-   void Translate( int x, int y );
-
-   int Width() const;
-
-   int Height() const;
-
-   bool PointInRect( const CPoint& point ) const;
-
-   bool PointInRect( int x, int y ) const;
-
-   /*
-    *@brief Window的Rect转换成把自己的rect
-   */
-   void TranslateToXRect( HWND hWnd, const RECT& rect_in );
-
-   /*
-    *@brief 把自己的rect转换成Window的Rect （注意，不是Screen的）
-   */
-   void TranslateXRectToWindow( HWND hWnd, RECT& rect_out );
-};
 
 }
 #endif

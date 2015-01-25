@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -31,32 +31,32 @@ public:
    XMLReader();
    ~XMLReader();
 
-   bool parse( char* data, IXMLDocument* doc );
+   bool Parse( char* data, IXMLDocument* doc );
 
-   void setParseOptions( int parseOptions )
+   void SetParseOptions( int parseOptions )
    {
       _parseOptions = parseOptions;
    }
 
 private:
-   void parseBOM( char*& data );
-   IXMLNode* parseNode( char*& data );
-   IXMLNode* parseDeclaration( char*& data );
-   IXMLNode* parseComment( char*& data );
-   IXMLNode* parseElement( char*& data );
-   IXMLNode* parsePI( char*& data );
-   IXMLNode* parseCData( char*& data );
-   IXMLNode* parseDoctype( char*& data );
+   void ParseBOM( char*& data );
+   IXMLNode* ParseNode( char*& data );
+   IXMLNode* ParseDeclaration( char*& data );
+   IXMLNode* ParseComment( char*& data );
+   IXMLNode* ParseElement( char*& data );
+   IXMLNode* ParsePI( char*& data );
+   IXMLNode* ParseCData( char*& data );
+   IXMLNode* ParseDoctype( char*& data );
 
-   void parseAttribute( char*& data, IXMLNode* node );
-   void parseNodeText( char*& data, IXMLNode* node );
+   void ParseAttribute( char*& data, IXMLNode* node );
+   void ParseNodeText( char*& data, IXMLNode* node );
    
-   char appendData( IXMLNode* node, char*& data, char* start );
+   char AppendData( IXMLNode* node, char*& data, char* start );
 
-   void skip( int skip_idx, char*& data );
+   void Skip( int SKIP_TYPE, char*& data );
 
-   char* skipAndExpandRefs( int skip_idx_1, int skip_idx_2, int flag, char*& data );
-   void insertCodedChar( char*& data, unsigned long code );
+   char* SkipAndExpandRefs( int SKIP_TYPE_1, int SKIP_TYPE_2, int flag, char*& data );
+   void InsertCodedChar( char*& data, unsigned long code );
 
 private:
    int            _parseOptions;

@@ -66,9 +66,6 @@
     <ClCompile Include="inspire\xml\XMLHelper.cpp">
       <Filter>inspire\xml</Filter>
     </ClCompile>
-    <ClCompile Include="inspire\xml\XMLMemoryPool.cpp">
-      <Filter>inspire\xml</Filter>
-    </ClCompile>
     <ClCompile Include="inspire\xml\XMLNode.cpp">
       <Filter>inspire\xml</Filter>
     </ClCompile>
@@ -80,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="inspire\util\CharConverter.cpp">
       <Filter>inspire\util</Filter>
-    </ClCompile>
-    <ClCompile Include="inspire\ui\control\InspireInternal.cpp">
-      <Filter>inspire\ui\control</Filter>
     </ClCompile>
     <ClCompile Include="inspire\ui\control\UIButton.cpp">
       <Filter>inspire\ui\control</Filter>
@@ -156,6 +150,15 @@
     <ClCompile Include="inspire\log\LogManager.cpp">
       <Filter>inspire\log</Filter>
     </ClCompile>
+    <ClCompile Include="inspire\ui\Point.cpp">
+      <Filter>inspire\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="inspire\ui\Rect.cpp">
+      <Filter>inspire\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="inspire\xml\XMLBuffer.cpp">
+      <Filter>inspire\xml</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\inter\noncopyable.h">
@@ -194,9 +197,6 @@
     <ClInclude Include="include\xml\XMLHelper.h">
       <Filter>include\xml</Filter>
     </ClInclude>
-    <ClInclude Include="include\xml\XMLMemoryPool.h">
-      <Filter>include\xml</Filter>
-    </ClInclude>
     <ClInclude Include="include\xml\XMLNode.h">
       <Filter>include\xml</Filter>
     </ClInclude>
@@ -207,9 +207,6 @@
       <Filter>include\xml</Filter>
     </ClInclude>
     <ClInclude Include="include\util\CharConverter.h">
-      <Filter>include\util</Filter>
-    </ClInclude>
-    <ClInclude Include="include\util\LockCondition.h">
       <Filter>include\util</Filter>
     </ClInclude>
     <ClInclude Include="include\ui\control\UIButton.h">
@@ -275,9 +272,6 @@
     <ClInclude Include="include\ui\UIWndEvent.h">
       <Filter>include\ui</Filter>
     </ClInclude>
-    <ClInclude Include="include\ui\wnd.h">
-      <Filter>include\ui</Filter>
-    </ClInclude>
     <ClInclude Include="include\ui\interface\IUIButton.h">
       <Filter>include\ui\interface</Filter>
     </ClInclude>
@@ -335,12 +329,6 @@
     <ClInclude Include="inspire\xml\XMLNodeBase.hpp">
       <Filter>inspire\xml</Filter>
     </ClInclude>
-    <ClInclude Include="inspire\util\InspireFreeList.h">
-      <Filter>inspire\util</Filter>
-    </ClInclude>
-    <ClInclude Include="inspire\util\InspireLock.h">
-      <Filter>inspire\util</Filter>
-    </ClInclude>
     <ClInclude Include="inspire\render\UID3DRender.h">
       <Filter>inspire\render</Filter>
     </ClInclude>
@@ -365,8 +353,26 @@
     <ClInclude Include="inspire\ui\UIRenderFactory.h">
       <Filter>inspire\ui</Filter>
     </ClInclude>
-    <ClInclude Include="inspire\ui\FreeList.h">
-      <Filter>inspire\ui</Filter>
+    <ClInclude Include="include\util\ScopeMutex.h">
+      <Filter>include\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util\Mutex.h">
+      <Filter>include\util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ui\Wnd.h">
+      <Filter>include\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ui\Point.h">
+      <Filter>include\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ui\Rect.h">
+      <Filter>include\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="inspire\util\FreeList.h">
+      <Filter>inspire\util</Filter>
+    </ClInclude>
+    <ClInclude Include="inspire\xml\XMLBuffer.h">
+      <Filter>inspire\xml</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

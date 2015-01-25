@@ -15,24 +15,34 @@
    
    Any problem, please ping xduilib@gmail.com, free service may be supported.
 *******************************************************************************/
-#ifndef _INSPIRE_IUI_PROGRESSBAR_H_
-#define _INSPIRE_IUI_PROGRESSBAR_H_
+#ifndef _INSPIRE_POINT_H_
+#define _INSPIRE_POINT_H_
 
-#include "IUIWnd.h"
+#include "platform.h"
 
 namespace inspire {
-class INSPIRE_EXPORT_API IUIProgressBar : virtual public IUIWnd
+
+class INSPIRE_EXPORT_API CPoint
 {
 public:
-   virtual ~IUIProgressBar() {};
+   ///< 成员
+   int x;
+   int y;
 
-   virtual void SetMaxValue( int max_value ) = 0;
+   ///< 构造
+   CPoint();
+   CPoint( int xx, int yy );
+   CPoint( const CPoint& pt );
 
-   virtual void SetMinValue( int min_value = 0 ) = 0;
+   ///< 运算符
+   const CPoint& operator= ( const CPoint& pt );
+   const CPoint& operator+= ( const CPoint& pt );
+   const CPoint operator- ( const CPoint& pt );
+   const CPoint operator+ ( const CPoint& pt );
 
-   virtual void SetValue( int cur_value ) = 0;
-
-   virtual const int GetCurrentValue() const = 0;
+   void TranslateToXPoint( const HWND hWnd, const POINT& pt );
+   void TranslateToWindow( const HWND hWnd, POINT& pt );
 };
+
 }
 #endif

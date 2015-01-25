@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -30,17 +30,17 @@ class INSPIRE_EXPORT_API IXMLAttribute : virtual public XMLBase
 public:
    virtual ~IXMLAttribute() {}
 
-   virtual IXMLDocument* getDocument() const = 0;
+   virtual IXMLDocument* GetDocument() const = 0;
 
-   virtual void append( IXMLAttribute* attri ) = 0;
+   virtual void Append( IXMLAttribute* attri ) = 0;
 
-   virtual IXMLAttribute* nextAttribute( const char* name = NULL ) const = 0;
+   virtual IXMLAttribute* NextAttribute( const char* name = NULL ) const = 0;
 
-   virtual IXMLAttribute* prevAttribute( const char* name = NULL ) const = 0;
+   virtual IXMLAttribute* PrevAttribute( const char* name = NULL ) const = 0;
 
-   virtual void linkToNext( IXMLAttribute* attri ) = 0;
+   virtual void LinkToNext( IXMLAttribute* attri ) = 0;
 
-   virtual void linkToPrev( IXMLAttribute* attri ) = 0;
+   virtual void LinkToPrev( IXMLAttribute* attri ) = 0;
 };
 
 }

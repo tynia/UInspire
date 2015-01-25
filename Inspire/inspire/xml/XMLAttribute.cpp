@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -36,30 +36,30 @@ XMLAttribute::~XMLAttribute()
 
 }
 
-IXMLDocument* XMLAttribute::getDocument() const
+IXMLDocument* XMLAttribute::GetDocument() const
 {
-   IXMLNode* node = getParent();
-   while ( node->getParent() )
+   IXMLNode* node = GetParent();
+   while ( node->GetParent() )
    {
-      node = node->getParent();
+      node = node->GetParent();
    }
 
-   return node->getType() == XNT_DOCUMENT ? dynamic_cast<IXMLDocument*>( node ) : NULL;
+   return node->GetType() == XNT_DOCUMENT ? dynamic_cast<IXMLDocument*>( node ) : NULL;
 }
 
-void XMLAttribute::append( IXMLAttribute* attri )
+void XMLAttribute::Append( IXMLAttribute* attri )
 {
    _next = attri;
 }
 
-IXMLAttribute* XMLAttribute::nextAttribute( const char* name ) const
+IXMLAttribute* XMLAttribute::NextAttribute( const char* name ) const
 {
    if ( name )
    {
-      for ( IXMLAttribute* attri = _next; attri; attri = attri->nextAttribute( name ) )
+      for ( IXMLAttribute* attri = _next; attri; attri = attri->NextAttribute( name ) )
       {
-         if ( compareString( name, caculateLen( name ),
-                             attri->getName(), attri->getNameSize() ) )
+         if ( Equals( name, Length( name ),
+                             attri->GetName(), attri->GetNameSize() ) )
          {
             return attri;
          }
@@ -67,17 +67,17 @@ IXMLAttribute* XMLAttribute::nextAttribute( const char* name ) const
       return NULL;
    }
 
-   return getParent() ? _next : NULL;
+   return GetParent() ? _next : NULL;
 }
 
-IXMLAttribute* XMLAttribute::prevAttribute( const char* name ) const
+IXMLAttribute* XMLAttribute::PrevAttribute( const char* name ) const
 {
    if ( name )
    {
-      for ( IXMLAttribute* attri = _prev; attri; attri = attri->prevAttribute( name ) )
+      for ( IXMLAttribute* attri = _prev; attri; attri = attri->PrevAttribute( name ) )
       {
-         if ( compareString( name, caculateLen( name ),
-                             attri->getName(), attri->getNameSize() ) )
+         if ( Equals( name, Length( name ),
+                             attri->GetName(), attri->GetNameSize() ) )
          {
             return attri;
          }
@@ -85,15 +85,15 @@ IXMLAttribute* XMLAttribute::prevAttribute( const char* name ) const
       return NULL;
    }
 
-   return getParent() ? _prev : NULL;
+   return GetParent() ? _prev : NULL;
 }
 
-void XMLAttribute::linkToNext( IXMLAttribute* attri )
+void XMLAttribute::LinkToNext( IXMLAttribute* attri )
 {
    _next = attri;
 }
 
-void XMLAttribute::linkToPrev( IXMLAttribute* attri )
+void XMLAttribute::LinkToPrev( IXMLAttribute* attri )
 {
    _prev = attri;
 }

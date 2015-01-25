@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -22,12 +22,12 @@
 #include "XMLHelper.h"
 
 namespace inspire {
-XMLNode::XMLNode( XMLNodeType nt ) :   XMLBase(),
-                        _type( nt ),
-                        _firstChild( NULL ),
-                        _prevNode( NULL ),
-                        _nextNode( NULL ),
-                        _firstAttri( NULL )
+XMLNode::XMLNode( XMLNodeType nt ) : XMLBase(),
+   _type( nt ),
+   _firstChild( NULL ),
+   _prevNode( NULL ),
+   _nextNode( NULL ),
+   _firstAttri( NULL )
 {
 
 }
@@ -48,82 +48,82 @@ XMLNode::~XMLNode()
    _firstAttri = NULL;
 }
 
-IXMLDocument* XMLNode::getDocument() const
+IXMLDocument* XMLNode::GetDocument() const
 {
-   IXMLNode* node = XMLBase::getParent(); 
-   while ( node->getParent() )
+   IXMLNode* node = XMLBase::GetParent(); 
+   while ( node->GetParent() )
    {
-      node = node->getParent();
+      node = node->GetParent();
    }
 
-   return ( node->getType() == XNT_DOCUMENT ) ? dynamic_cast<IXMLDocument*>( node ) : NULL;
+   return ( node->GetType() == XNT_DOCUMENT ) ? dynamic_cast<IXMLDocument*>( node ) : NULL;
 }
 
-const std::size_t XMLNode::getChildNum() const
+const std::size_t XMLNode::GetChildNum() const
 {
    std::size_t count = 0;
-   for ( IXMLNode* child = _firstChild; child; child = child->nextSibling() )
+   for ( IXMLNode* child = _firstChild; child; child = child->NextSibling() )
    {
       ++count;
    }
    return count;
 }
 
-IXMLNode* XMLNode::clone()
+IXMLNode* XMLNode::Clone()
 {
    return NULL;
 }
 
-IXMLNode* XMLNode::clone( IXMLNode* node )
+IXMLNode* XMLNode::Clone( IXMLNode* node )
 {
    return NULL;
 }
 
-IXMLNode* XMLNode::prevNode() const
+IXMLNode* XMLNode::PrevNode() const
 {
    return _prevNode;
 }
 
-IXMLNode* XMLNode::nextNode() const
+IXMLNode* XMLNode::NextNode() const
 {
    return _nextNode;
 }
 
-void XMLNode::linkToPrev( IXMLNode* next_node )
+void XMLNode::LinkToPrev( IXMLNode* node )
 {
-   _nextNode = next_node;
+   _nextNode = node;
 }
 
-void XMLNode::linkToNext( IXMLNode* prev_node )
+void XMLNode::LinkToNext( IXMLNode* node )
 {
-   _prevNode = prev_node;
+   _prevNode = node;
 }
 
-IXMLNode* XMLNode::firstChild( const char* name )
+IXMLNode* XMLNode::FirstChild( const char* name )
 {
    if ( name )
    {
-      for ( IXMLNode* node = _firstChild; node; node->nextSibling( name ) )
+      for ( IXMLNode* node = _firstChild; node; node->NextSibling( name ) )
       {
-         if( compareString( name, caculateLen( name ), node->getName(), node->getNameSize() ) )
+         if( Equals( name, Length( name ), node->GetName(), node->GetNameSize() ) )
          {
             return node;
          }
       }
-      //LogError( "cannot find node [ ", name, " ]" );
+
       return NULL;
    }
 
    return _firstChild;
 }
 
-IXMLNode* XMLNode::nextSibling( const char* name )
+IXMLNode* XMLNode::NextSibling( const char* name )
 {
    if ( name )
    {
-      for ( IXMLNode* node = _nextNode; node; node = node->nextNode() )
+      for ( IXMLNode* node = _nextNode; node; node = node->NextNode() )
       {
-         if ( compareString( name, caculateLen( name ), node->getName(), node->getNameSize() ) )
+         if ( Equals( name, Length( name ), node->GetName(), node->GetNameSize() ) )
          {
             return node;
          }
@@ -135,17 +135,17 @@ IXMLNode* XMLNode::nextSibling( const char* name )
    return _nextNode;
 }
 
-void XMLNode::appendChild( IXMLNode* add_node )
+void XMLNode::AppendChild( IXMLNode* add_node )
 {
-   add_node->setParent( this );
+   add_node->SetParent( this );
    if ( _firstChild )
    {
       IXMLNode* node = _firstChild;
-      while ( node->nextNode() )
+      while ( node->NextNode() )
       {
-         node = node->nextNode();
+         node = node->NextNode();
       }
-      node->linkToPrev( add_node );
+      node->LinkToPrev( add_node );
    }
    else
    {
@@ -153,56 +153,56 @@ void XMLNode::appendChild( IXMLNode* add_node )
    }
 }
 
-void XMLNode::insertChild( IXMLNode* _Where, IXMLNode* add_node, bool behind/* = true*/ )
+void XMLNode::InsertChild( IXMLNode* _Where, IXMLNode* add_node, bool behind/* = true*/ )
 {
-   add_node->setParent( this );
+   add_node->SetParent( this );
 
    if ( behind )
    {
-      IXMLNode* next_node = _Where->nextNode();
+      IXMLNode* next_node = _Where->NextNode();
       if ( next_node )
       {
-         add_node->linkToPrev( next_node );
-         next_node->linkToNext( add_node );
+         add_node->LinkToPrev( next_node );
+         next_node->LinkToNext( add_node );
 
-         _Where->linkToPrev( add_node );
-         add_node->linkToNext( _Where );
+         _Where->LinkToPrev( add_node );
+         add_node->LinkToNext( _Where );
       }
       else
       {
-         _Where->linkToPrev( add_node );
-         add_node->linkToNext( _Where );
+         _Where->LinkToPrev( add_node );
+         add_node->LinkToNext( _Where );
       }
    }
    else
    {
-      IXMLNode* prev_node = _Where->prevNode();
+      IXMLNode* prev_node = _Where->PrevNode();
       if ( prev_node )
       {
-         add_node->linkToNext( prev_node );
-         prev_node->linkToPrev( add_node );
+         add_node->LinkToNext( prev_node );
+         prev_node->LinkToPrev( add_node );
 
-         add_node->linkToPrev( _Where );
-         _Where->linkToNext( _Where );
+         add_node->LinkToPrev( _Where );
+         _Where->LinkToNext( _Where );
       }
       else
       {
-         add_node->linkToPrev( _Where );
-         _Where->linkToNext( _Where );
+         add_node->LinkToPrev( _Where );
+         _Where->LinkToNext( _Where );
 
          _firstChild = add_node;
       }
    }
 }
 
-void XMLNode::removeChild( IXMLNode* _Where )
+void XMLNode::RemoveChild( IXMLNode* _Where )
 {
-   IXMLNode* prev_node = _Where->prevNode();
-   IXMLNode* next_node = _Where->nextNode();
+   IXMLNode* prev_node = _Where->PrevNode();
+   IXMLNode* next_node = _Where->NextNode();
 
    if ( prev_node )
    {
-      prev_node->linkToPrev( next_node );
+      prev_node->LinkToPrev( next_node );
    }
    else
    {
@@ -211,48 +211,48 @@ void XMLNode::removeChild( IXMLNode* _Where )
 
    if ( next_node )
    {
-      next_node->linkToNext( prev_node );
+      next_node->LinkToNext( prev_node );
    }
 
-   _Where->setParent( NULL );
+   _Where->SetParent( NULL );
 }
 
-void XMLNode::removeAllChild()
+void XMLNode::RemoveAllChild()
 {
-   for ( IXMLNode* node = _firstChild; node; node = node->nextNode() )
+   for ( IXMLNode* node = _firstChild; node; node = node->NextNode() )
    {
-      node->setParent( NULL );
-      node->removeAllChild();
-      node->removeAllAttribute();
+      node->SetParent( NULL );
+      node->RemoveAllChild();
+      node->RemoveAllAttribute();
    }
    _firstChild = NULL;
 }
 
 // ElementÏà¹Ø
-void XMLNode::setAttribute( const char* name, const char* value )
+void XMLNode::SetAttribute( const char* name, const char* value )
 {
    if ( name == NULL )
    {
       return;
    }
 
-   for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->nextAttribute() )
+   for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->NextAttribute() )
    {
-      if ( compareString( name, caculateLen( name ), attri->getName(), attri->getNameSize() ) )
+      if ( Equals( name, Length( name ), attri->GetName(), attri->GetNameSize() ) )
       {
-         attri->setValue( value, caculateLen( value ) );
+         attri->SetValue( value, Length( value ) );
          return;
       }
    }
 }
 
-IXMLAttribute* XMLNode::firstAttribute( const char* name/* = NULL*/ )
+IXMLAttribute* XMLNode::FirstAttribute( const char* name/* = NULL*/ )
 {
    if ( name )
    {
-      for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->nextAttribute() )
+      for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->NextAttribute() )
       {
-         if ( compareString( name, caculateLen( name ), attri->getName(), attri->getNameSize() ) )
+         if ( Equals( name, Length( name ), attri->GetName(), attri->GetNameSize() ) )
          {
             return attri;
          }
@@ -264,16 +264,16 @@ IXMLAttribute* XMLNode::firstAttribute( const char* name/* = NULL*/ )
    return _firstAttri;
 }
 
-IXMLAttribute* XMLNode::getAttribute( const char* name )
+IXMLAttribute* XMLNode::GetAttribute( const char* name )
 {
    if ( name == NULL )
    {
       return NULL;
    }
 
-   for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->nextAttribute() )
+   for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->NextAttribute() )
    {
-      if ( compareString( name, caculateLen( name ), attri->getName(), attri->getNameSize() ) )
+      if ( Equals( name, Length( name ), attri->GetName(), attri->GetNameSize() ) )
       {
          return attri;
       }
@@ -283,18 +283,18 @@ IXMLAttribute* XMLNode::getAttribute( const char* name )
    return NULL;
 }
 
-const char* XMLNode::getAttributeValue( const char* name )
+const char* XMLNode::GetAttributeValue( const char* name )
 {
    if ( name == NULL )
    {
       return NULL;
    }
 
-   for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->nextAttribute() )
+   for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->NextAttribute() )
    {
-      if ( compareString( name, caculateLen( name ), attri->getName(), attri->getNameSize() ) )
+      if ( Equals( name, Length( name ), attri->GetName(), attri->GetNameSize() ) )
       {
-         return attri->getValue();
+         return attri->GetValue();
       }
    }
 
@@ -302,18 +302,18 @@ const char* XMLNode::getAttributeValue( const char* name )
    return NULL;
 }
 
-void XMLNode::appendAttribute( IXMLAttribute* add_attri )
+void XMLNode::AppendAttribute( IXMLAttribute* add_attri )
 {
-   add_attri->setParent( this );
+   add_attri->SetParent( this );
 
    if ( _firstAttri )
    {
       IXMLAttribute* attri = _firstAttri;
-      while ( attri->nextAttribute() )
+      while ( attri->NextAttribute() )
       {
-         attri = attri->nextAttribute();
+         attri = attri->NextAttribute();
       }
-      attri->append( add_attri );
+      attri->Append( add_attri );
    }
    else
    {
@@ -321,55 +321,55 @@ void XMLNode::appendAttribute( IXMLAttribute* add_attri )
    }
 }
 
-void XMLNode::insertAttribute( IXMLAttribute* _Where, IXMLAttribute* add_attri, bool behind/* = true*/ )
+void XMLNode::InsertAttribute( IXMLAttribute* _Where, IXMLAttribute* add_attri, bool behind/* = true*/ )
 {
-   add_attri->setParent( this );
+   add_attri->SetParent( this );
 
    if ( behind )
    {
-      IXMLAttribute* next_attri = _Where->nextAttribute();
+      IXMLAttribute* next_attri = _Where->NextAttribute();
       if ( next_attri )
       {
-         next_attri->linkToPrev( add_attri );
-         add_attri->linkToNext( next_attri );
+         next_attri->LinkToPrev( add_attri );
+         add_attri->LinkToNext( next_attri );
 
-         add_attri->linkToPrev( _Where );
-         _Where->linkToNext( add_attri );
+         add_attri->LinkToPrev( _Where );
+         _Where->LinkToNext( add_attri );
       }
       else
       {
-         add_attri->linkToPrev( _Where );
-         _Where->linkToNext( add_attri );
+         add_attri->LinkToPrev( _Where );
+         _Where->LinkToNext( add_attri );
       }
    }
    else
    {
-      IXMLAttribute* prev_attri = _Where->prevAttribute();
+      IXMLAttribute* prev_attri = _Where->PrevAttribute();
       if ( prev_attri )
       {
-         prev_attri->linkToNext( add_attri );
-         add_attri->linkToPrev( prev_attri );
+         prev_attri->LinkToNext( add_attri );
+         add_attri->LinkToPrev( prev_attri );
 
-         add_attri->linkToNext( _Where );
-         _Where->linkToPrev( add_attri );
+         add_attri->LinkToNext( _Where );
+         _Where->LinkToPrev( add_attri );
       }
       else
       {
-         add_attri->linkToNext( _Where );
-         _Where->linkToPrev( add_attri );
+         add_attri->LinkToNext( _Where );
+         _Where->LinkToPrev( add_attri );
 
          _firstAttri = add_attri;
       }
    }
 }
 
-void XMLNode::removeAttribute( IXMLAttribute* _Where )
+void XMLNode::RemoveAttribute( IXMLAttribute* _Where )
 {
-   IXMLAttribute* prev_attri = _Where->prevAttribute();
-   IXMLAttribute* next_attri = _Where->nextAttribute();
+   IXMLAttribute* prev_attri = _Where->PrevAttribute();
+   IXMLAttribute* next_attri = _Where->NextAttribute();
    if ( prev_attri )
    {
-      prev_attri->linkToNext( next_attri );
+      prev_attri->LinkToNext( next_attri );
    }
    else
    {
@@ -378,17 +378,17 @@ void XMLNode::removeAttribute( IXMLAttribute* _Where )
    
    if ( next_attri )
    {
-      next_attri->linkToPrev( prev_attri );
+      next_attri->LinkToPrev( prev_attri );
    }
 
-   _Where->setParent( NULL );
+   _Where->SetParent( NULL );
 }
 
-void XMLNode::removeAllAttribute()
+void XMLNode::RemoveAllAttribute()
 {
-   for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->nextAttribute() )
+   for ( IXMLAttribute* attri = _firstAttri; attri; attri = attri->NextAttribute() )
    {
-      attri->setParent( NULL );
+      attri->SetParent( NULL );
    }
    _firstAttri = NULL;
 }

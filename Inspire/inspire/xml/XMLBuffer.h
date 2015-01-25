@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -26,29 +26,23 @@ class IXMLNode;
 class IXMLAttribute;
 enum XMLNodeType;
 
-class XMLBufferPool
+class XMLBuffer
 {
 public:
-   XMLBufferPool();
-   ~XMLBufferPool();
+   XMLBuffer();
+   ~XMLBuffer();
 
-   void* alloc( std::size_t size );
+   void* Alloc( std::size_t size );
 
-   IXMLNode* allocNode( XMLNodeType nt, const char* name = NULL,
+   IXMLNode* AllocNode( XMLNodeType nt, const char* name = NULL,
                                         const char* value = NULL );
 
-   IXMLAttribute* allocAttribute( const char* name = NULL,
+   IXMLAttribute* AllocAttribute( const char* name = NULL,
                                  const char* value = NULL );
 
-   char* allocString( const char* str );
+   char* AllocString( const char* str );
 
-   void setMemoryFunc( inspire::alloc* af, inspire::free * ff )
-   {
-      _alloc = af;
-      _free  = ff;
-   }
-
-   void  release();
+   void  Release();
 
 private:
    static const int BLOCK_SIZE = 64 * 1024;
@@ -59,9 +53,6 @@ private:
    char*    _ptrEnd;
    char*    _curPtr;
 
-   inspire::alloc*  _alloc;
-   inspire::free*   _free;
-
 private:
    // MB : Memory block
    struct MBHeader
@@ -69,11 +60,11 @@ private:
       char* prevHeader;
    };
 
-   void  initBufferPool();
-   char* addMemory( std::size_t size );
+   void  InitBuffer();
+   char* AddMemory( std::size_t size );
 
    // 内存对齐，使偏移为sizeof( void* )的整数倍
-   char* align( char* ptr );
+   char* Align( char* ptr );
 };
 
 }

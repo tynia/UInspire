@@ -13,7 +13,6 @@
   <ItemGroup>
     <ClCompile Include="inspire\log\LogFile.cpp" />
     <ClCompile Include="inspire\log\LogManager.cpp" />
-    <ClCompile Include="inspire\ui\control\InspireInternal.cpp" />
     <ClCompile Include="inspire\ui\control\UIButton.cpp" />
     <ClCompile Include="inspire\ui\control\UICheckBox.cpp" />
     <ClCompile Include="inspire\ui\control\UIComboBox.cpp" />
@@ -32,6 +31,8 @@
     <ClCompile Include="inspire\ui\control\UIWnd.cpp" />
     <ClCompile Include="inspire\ui\InputManager.cpp" />
     <ClCompile Include="inspire\ui\InvokerManager.cpp" />
+    <ClCompile Include="inspire\ui\Point.cpp" />
+    <ClCompile Include="inspire\ui\Rect.cpp" />
     <ClCompile Include="inspire\ui\UIBase.cpp" />
     <ClCompile Include="inspire\ui\UILayoutBuilder.cpp" />
     <ClCompile Include="inspire\ui\UIRenderFactory.cpp" />
@@ -42,7 +43,7 @@
     <ClCompile Include="inspire\xml\XMLBase.cpp" />
     <ClCompile Include="inspire\xml\XMLDocument.cpp" />
     <ClCompile Include="inspire\xml\XMLHelper.cpp" />
-    <ClCompile Include="inspire\xml\XMLMemoryPool.cpp" />
+    <ClCompile Include="inspire\xml\XMLBuffer.cpp" />
     <ClCompile Include="inspire\xml\XMLNode.cpp" />
     <ClCompile Include="inspire\xml\XMLReader.cpp" />
     <ClCompile Include="inspire\xml\XMLWriter.cpp" />
@@ -90,13 +91,16 @@
     <ClInclude Include="include\ui\interface\IUITree.h" />
     <ClInclude Include="include\ui\interface\IUIWnd.h" />
     <ClInclude Include="include\ui\interface\IUIWndManager.h" />
+    <ClInclude Include="include\ui\Point.h" />
+    <ClInclude Include="include\ui\Rect.h" />
     <ClInclude Include="include\ui\UIBase.h" />
     <ClInclude Include="include\ui\UILayoutBuilder.h" />
     <ClInclude Include="include\ui\UIWndData.h" />
     <ClInclude Include="include\ui\UIWndEvent.h" />
-    <ClInclude Include="include\ui\wnd.h" />
+    <ClInclude Include="include\ui\Wnd.h" />
     <ClInclude Include="include\util\CharConverter.h" />
-    <ClInclude Include="include\util\LockCondition.h" />
+    <ClInclude Include="include\util\Mutex.h" />
+    <ClInclude Include="include\util\ScopeMutex.h" />
     <ClInclude Include="include\xml\IXMLAttribute.h" />
     <ClInclude Include="include\xml\IXMLDocument.h" />
     <ClInclude Include="include\xml\IXMLNode.h" />
@@ -104,19 +108,17 @@
     <ClInclude Include="include\xml\XMLBase.h" />
     <ClInclude Include="include\xml\XMLDocument.h" />
     <ClInclude Include="include\xml\XMLHelper.h" />
-    <ClInclude Include="include\xml\XMLMemoryPool.h" />
     <ClInclude Include="include\xml\XMLNode.h" />
     <ClInclude Include="include\xml\XMLReader.h" />
     <ClInclude Include="include\xml\XMLWriter.h" />
     <ClInclude Include="inspire\render\UID3DRender.h" />
     <ClInclude Include="inspire\render\UIGDIRender.h" />
-    <ClInclude Include="inspire\ui\FreeList.h" />
     <ClInclude Include="inspire\ui\InvokerManager.h" />
     <ClInclude Include="inspire\ui\UIHelper.h" />
     <ClInclude Include="inspire\ui\UIInvoker.h" />
     <ClInclude Include="inspire\ui\UIRenderFactory.h" />
-    <ClInclude Include="inspire\util\InspireFreeList.h" />
-    <ClInclude Include="inspire\util\InspireLock.h" />
+    <ClInclude Include="inspire\util\FreeList.h" />
+    <ClInclude Include="inspire\xml\XMLBuffer.h" />
     <ClInclude Include="inspire\xml\XMLNodeBase.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

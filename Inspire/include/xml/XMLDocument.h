@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -23,7 +23,7 @@
 
 namespace inspire {
 
-class XMLBufferPool;
+class XMLBuffer;
 class XMLWriter;
 class XMLReader;
 class IXMLAttribute;
@@ -36,27 +36,27 @@ public:
    XMLDocument();
    virtual ~XMLDocument();
 
-   virtual const char* getFileName() const
+   virtual const char* GetFileName() const
    {
       return _filename;
    }
 
-   virtual bool load( const char* filename );
-   virtual bool save();
+   virtual bool LoadXML( const char* filename );
+   virtual bool SaveXML();
 
-   virtual IXMLNode* allocNode( XMLNodeType nt, const char* name = NULL, const char* value = NULL );
-   virtual IXMLAttribute* allocAttribute( const char* name = NULL, const char* value = NULL );
-   virtual char* allocString( const char* str );
-
-private:
-   void readFile();
+   virtual IXMLNode* AllocNode( XMLNodeType nt, const char* name = NULL, const char* value = NULL );
+   virtual IXMLAttribute* AllocAttribute( const char* name = NULL, const char* value = NULL );
+   virtual char* AllocString( const char* str );
 
 private:
-   XMLBufferPool*  _pool;
-   XMLWriter*      _writer;
-   XMLReader*      _reader;
-   const char*     _filename;
-   char*           _data;
+   void ReadFile();
+
+private:
+   XMLBuffer*  _pool;
+   XMLWriter*  _writer;
+   XMLReader*  _reader;
+   const char* _filename;
+   char*       _data;
 };
 
 }

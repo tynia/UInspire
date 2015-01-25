@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -18,8 +18,11 @@
 #ifndef _INSPIRE_IUI_WND_EVENT_H_
 #define _INSPIRE_IUI_WND_EVENT_H_
 
-#include "InspireInternal.h"
+#include "Wnd.h"
+#include "Point.h"
+
 namespace inspire {
+
 class IUIWnd;
 
 struct EventArg
@@ -34,7 +37,7 @@ enum InputEventType
 {
    IET_INVALID_EVENT = -1,   ///< 非法事件
    IET_KEYBOARD_EVENT = 0,   ///< 键盘事件
-   IET_MOUSE_EVENT,      ///< 鼠标事件
+   IET_MOUSE_EVENT,          ///< 鼠标事件
 };
 
 enum MouseKey
@@ -232,7 +235,8 @@ protected:
 class CMouseEvent : public CInputEvent
 {
 public:
-   CMouseEvent( HWND hWnd, InputEventID id, int modifiedkey, CPoint& pos, CPoint& relpos, int wheel )
+   CMouseEvent( HWND hWnd, InputEventID id, int modifiedkey,
+                CPoint& pos, CPoint& relpos, int wheel )
       : CInputEvent( hWnd, id, modifiedkey )
       , _Position( pos )
       , _RelativePos( relpos )
@@ -268,12 +272,10 @@ class CEventQueue
 public:
    CEventQueue()
    {
-
    }
 
    ~CEventQueue()
    {
-
    }
 
    void Push( CInputEvent* event )

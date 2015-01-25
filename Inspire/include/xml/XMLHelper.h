@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -19,34 +19,35 @@
 #define _INSPIRE_XML_HELPER_H_
 
 #include "platform.h"
+
 namespace inspire {
-std::size_t caculateLen( const char* pszString );
 
+std::size_t Length( const char* pszString );
 
-bool compareString( const char* first, std::size_t szFirst,
-                    const char* second, std::size_t szSecond );
+bool Equals( const char* first, std::size_t szFirst,
+             const char* second, std::size_t szSecond );
 
-bool isWhiteSpace( const char cch );
+bool IsWhiteSpace( const char cch );
 
-bool isNodeName( const char cch );
+bool IsNameText( const char cch );
 
-bool isText( const char cch );
+bool IsText( const char cch );
 
-bool isTextWithoutWhitespace( const char cch );
+bool IsTextNoneWS( const char cch );
 
-bool isTextWithWhitespace( const char cch );
+bool IsTextWithWS( const char cch );
 
-bool isAttributeName( const char cch );
+bool IsAttriName( const char cch );
 
-bool isSingleQuoteData( const char cch );
+bool IsSingleQuote( const char cch );
 
-bool isPureSingleQuoteData( const char cch );
+bool IsPureSingleQuote( const char cch );
 
-bool isDoubleQuoteData( const char cch );
+bool IsDoubleQuote( const char cch );
 
-bool isPureDoubleQuoteData( const char cch );
+bool IsPureDoubleQuote( const char cch );
 
-bool needSkip( int skip_idx, const char cch );
+bool NeedSkip( int SKIP_TYPE, const char cch );
 
 class IXMLNode;
 ///< print 
@@ -99,15 +100,13 @@ std::ostream& operator<< ( std::ostream& os, IXMLNode* node );
 //////////////////////////////////////////////////////////////////////////
 //< simple exception
 
-#include <exception>    // For std::exception
+#include <exception>
 #define XML_PARSE_ERROR( what, where ) throw parse_exception( what, where )
 
 class parse_exception : public std::exception
 {
 public:
-   parse_exception( const char* what, void* where ) :
-      _what( what ),
-      _where( where )
+   parse_exception( const char* what, void* where ) : _what( what ), _where( where )
    {
    }
 
@@ -118,7 +117,7 @@ public:
 
    char* where() const
    {
-      return reinterpret_cast<char*>( _where );   
+      return reinterpret_cast<char*>( _where );
    }
 
 private:

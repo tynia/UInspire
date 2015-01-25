@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -19,58 +19,59 @@
 #define _INSPIRE_FREE_LIST_H_
 
 #include "platform.h"
-#include "InspireLock.h"
+#include "ScopeMutex.h"
 
 namespace inspire {
+
 template<class TEntity>
-class InspireFreeList
+class FreeList
 {
 public:
-   InspireFreeList() : _allocatedCount( 0 ), _freelistHead( NULL )
+   FreeList() : _count( 0 ), _freeHead( NULL )
    {
-      _elementSize = sizeof( TEntity ) > sizeof( TEntity* ) ? sizeof( TEntity ) : sizeof( TEntity* );
+      _size = sizeof( TEntity ) > sizeof( TEntity* ) ? sizeof( TEntity ) : sizeof( TEntity* );
    }
 
-   ~InspireFreeList()
+   ~FreeList()
    {
-      while ( _freelistHead )
+      while ( _freeHead )
       {
-         TEntity* toFree = _freelistHead;
-         _freelistHead = *( reinterpret_cast<TEntity**>( _freelistHead ) );
+         TEntity* toFree = _freeHead;
+         _freeHead = *( reinterpret_cast<TEntity**>( _freeHead ) );
          ::free( toFree );
       }
    }
 
    int count()
    {
-      return _allocatedCount;
+      return _count;
    }
 
    TEntity* alloc()
    {
-      InspireLock lock( &_variable );
-      ++_allocatedCount;
-      if ( _freelistHead == NULL )
+      ScopeMutex lock( &_variable );
+      ++_count;
+      if ( _freeHead == NULL )
       {
-         return new( malloc( _elementSize ) )TEntity;
+         return new( malloc( _size ) )TEntity;
       }
 
-      TEntity* memory = _freelistHead;
-      _freelistHead = *( reinterpret_cast<TEntity**>( _freelistHead ) );
+      TEntity* memory = _freeHead;
+      _freeHead = *( reinterpret_cast<TEntity**>( _freeHead ) );
       return new( memory )TEntity;
    }
 
    TEntity* alloc( const TEntity* entity )
    {
-      InspireLock lock( &_variable );
-      ++_allocatedCount;
-      if ( _freelistHead == NULL )
+      ScopeMutex lock( &_variable );
+      ++_count;
+      if ( _freeHead == NULL )
       {
-         return new( malloc( _elementSize ) )TEntity( entity );
+         return new( malloc( _size ) )TEntity( entity );
       }
 
-      TEntity* memory = _freelistHead;
-      _freelistHead = *( reinterpret_cast<TEntity**>( _freelistHead ) );
+      TEntity* memory = _freeHead;
+      _freeHead = *( reinterpret_cast<TEntity**>( _freeHead ) );
       return new( memory )TEntity( entity );
    }
 
@@ -79,20 +80,20 @@ public:
       entity->~TEntity();
       if ( true )
       {
-         InspireLock lock( &_variable );
-         memset( entity, 0xfe, _elementSize );
-         --_allocatedCount;
-         assert( _allocatedCount > 0 );
-         *( reinterpret_cast<TEntity**>( entity ) ) = _freelistHead;
-         _freelistHead = entity;
+         ScopeMutex lock( &_variable );
+         memset( entity, 0xfe, _size );
+         --_count;
+         assert( _count > 0 );
+         *( reinterpret_cast<TEntity**>( entity ) ) = _freeHead;
+         _freeHead = entity;
       }
    }
 
 private:
-   int                 _allocatedCount;
-   int                 _elementSize;
-   TEntity*            _freelistHead;
-   InspireLockVariable _variable;
+   int      _count;
+   int      _size;
+   TEntity* _freeHead;
+   Mutex    _variable;
 };
 
 }

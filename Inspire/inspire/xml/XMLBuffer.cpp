@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -17,84 +17,60 @@
 *******************************************************************************/
 #include <new>
 #include "XMLHelper.h"
-#include "XMLBufferPool.h"
+#include "XMLBuffer.h"
 #include "XMLAttribute.h"
 #include "XMLNode.h"
 
 namespace inspire {
 class XMLNode;
 
-XMLBufferPool::XMLBufferPool() :
-_alloc( NULL ),
-_free( NULL ),
-_ptrBegin( NULL ),
-_ptrEnd( NULL ),
-_curPtr( NULL )
+XMLBuffer::XMLBuffer() : _ptrBegin( NULL ), _ptrEnd( NULL ), _curPtr( NULL )
 {
-   initBufferPool();
+   InitBuffer();
 }
 
-XMLBufferPool::~XMLBufferPool()
+XMLBuffer::~XMLBuffer()
 {
-   release();
+   Release();
 }
 
-void XMLBufferPool::initBufferPool()
+void XMLBuffer::InitBuffer()
 {
    _ptrBegin = _begin;
-   _curPtr = align( _ptrBegin );
+   _curPtr = Align( _ptrBegin );
    _ptrEnd = _begin + sizeof( _begin );
 }
 
-void XMLBufferPool::release()
+void XMLBuffer::Release()
 {
    while( _ptrBegin != _begin )
    {
-      char* prevBlock = reinterpret_cast<MBHeader*>( align( _ptrBegin ) )->prevHeader;
-      if ( _free )
-      {
-         _free( _ptrBegin );
-      }
-      else
-      {
-         delete [] _ptrBegin;
-      }
+      char* prevBlock = reinterpret_cast<MBHeader*>( Align( _ptrBegin ) )->prevHeader;
+      delete [] _ptrBegin;
       _ptrBegin = prevBlock;
    }
-   initBufferPool();
+   InitBuffer();
 }
 
-char* XMLBufferPool::align( char* ptr )
+char* XMLBuffer::Align( char* ptr )
 {
    std::size_t offset = ( ( XML_ALIGNMENT - ( std::size_t( ptr ) & ( XML_ALIGNMENT - 1 ) ) ) & ( XML_ALIGNMENT - 1 ) );
    return ptr + offset;
 }
 
-char* XMLBufferPool::addMemory( std::size_t size )
+char* XMLBuffer::AddMemory( std::size_t size )
 {
-   void* pMemory = NULL;
-   if ( _alloc )
+   void* pMemory = new char[size];
+   if ( pMemory == NULL )
    {
-      pMemory = _alloc( size );
-      if ( pMemory == NULL )
-      {
-         // 内存分配不成功，打log
-      }
-   }
-   else
-   {
-      pMemory = new char[size];
-      if ( pMemory == NULL )
-      {
-         // 内存分配不成功，打log
-      }
+      // 内存分配不成功，打log
    }
    return static_cast<char*>( pMemory );
 }
 
-void* XMLBufferPool::alloc( std::size_t size )
+void* XMLBuffer::Alloc( std::size_t size )
 {
-   char* pReturn = align( _curPtr );
+   char* pReturn = Align( _curPtr );
 
    if ( pReturn + size > _ptrEnd )
    {
@@ -105,65 +81,65 @@ void* XMLBufferPool::alloc( std::size_t size )
       }
 
       std::size_t allocSize = sizeof( MBHeader ) + 2 * ( XML_ALIGNMENT - 1 ) + blockSize;
-      char* newMemory = addMemory( allocSize );
+      char* newMemory = AddMemory( allocSize );
 
-      char* begin = align( newMemory );
+      char* begin = Align( newMemory );
       MBHeader* memHeader = reinterpret_cast<MBHeader*>( begin );
       memHeader->prevHeader = _begin;
       _ptrBegin = newMemory;
       _curPtr = begin + sizeof( MBHeader );
       _ptrEnd = newMemory + allocSize;
 
-      pReturn = align( _curPtr );
+      pReturn = Align( _curPtr );
    }
 
    _curPtr = pReturn + size;
    return pReturn;
 }
 
-IXMLNode* XMLBufferPool::allocNode( XMLNodeType nt, const char* name, const char* value )
+IXMLNode* XMLBuffer::AllocNode( XMLNodeType nt, const char* name, const char* value )
 {
-   void* memory = alloc( sizeof( XMLNode ) );
+   void* memory = Alloc( sizeof( XMLNode ) );
    XMLNode* node = new( memory ) XMLNode( nt );
    if ( name )
    {
-      node->setName( name, caculateLen( name ) );
+      node->SetName( name, Length( name ) );
    }
 
    if ( value )
    {
-      node->setValue( value, caculateLen( value ) );
+      node->SetValue( value, Length( value ) );
    }
 
    return node;
 }
 
-IXMLAttribute* XMLBufferPool::allocAttribute( const char* name, const char* value )
+IXMLAttribute* XMLBuffer::AllocAttribute( const char* name, const char* value )
 {
-   void* memory = alloc( sizeof( XMLAttribute ) );
+   void* memory = Alloc( sizeof( XMLAttribute ) );
    IXMLAttribute* attri = new( memory ) XMLAttribute();
    if ( name )
    {
-      attri->setName( name, caculateLen( name ) );
+      attri->SetName( name, Length( name ) );
    }
 
    if ( value )
    {
-      attri->setValue( value, caculateLen( value ) );
+      attri->SetValue( value, Length( value ) );
    }
 
    return attri;
 }
 
-char* XMLBufferPool::allocString( const char* str )
+char* XMLBuffer::AllocString( const char* str )
 {
    if ( str == NULL )
    {
       return NULL;
    }
 
-   std::size_t length = caculateLen( str );
-   char* memory = static_cast<char*>( alloc( length ) );
+   std::size_t length = Length( str );
+   char* memory = static_cast<char*>( Alloc( length ) );
    memcpy( memory, str, length );
 
    return memory;

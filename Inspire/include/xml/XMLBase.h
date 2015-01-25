@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -22,18 +22,18 @@
 
 namespace inspire {
 
-const int PARSE_NO_DATA_NODES             = 0x1;
-const int PARSE_NO_VALUE_ELEMENTS         = 0x2;
-const int PARSE_NO_STRING_TERMINATORS     = 0x4;
-const int PARSE_NO_ENTITY_TRANSLATION     = 0x8;
-const int PARSE_NO_UTF8                   = 0x10;
-const int PARSE_DECLARATION_NODE          = 0x20;
-const int PARSE_COMMENT_NODES             = 0x40;
-const int PARSE_DOCTYPE_NODES             = 0x80;
-const int PARSE_PI_NODES                  = 0x100;
-const int PARSE_VALIDATE_END_TAG          = 0x200;
-const int PARSE_TRIM_WHITESPACE           = 0x400;
-const int PARSE_NORMALIZE_WHITESPACE      = 0x800;
+const int PARSE_NO_DATA_NODES             = 0x00000001 << 0;
+const int PARSE_NO_VALUE_ELEMENTS         = 0x00000001 << 1;
+const int PARSE_NO_STRING_TERMINATORS     = 0x00000001 << 3;
+const int PARSE_NO_ENTITY_TRANSLATION     = 0x00000001 << 4;
+const int PARSE_NO_UTF8                   = 0x00000001 << 5;
+const int PARSE_DECLARATION_NODE          = 0x00000001 << 6;
+const int PARSE_COMMENT_NODES             = 0x00000001 << 7;
+const int PARSE_DOCTYPE_NODES             = 0x00000001 << 8;
+const int PARSE_PI_NODES                  = 0x00000001 << 9;
+const int PARSE_VALIDATE_END_TAG          = 0x00000001 << 10;
+const int PARSE_TRIM_WHITESPACE           = 0x00000001 << 11;
+const int PARSE_NORMALIZE_WHITESPACE      = 0x00000001 << 12;
 const int PARSE_DEFAULT                   = 0;
 const int PARSE_FASTEST                   = PARSE_NO_STRING_TERMINATORS |
                                             PARSE_NO_ENTITY_TRANSLATION |
@@ -53,46 +53,33 @@ const int PRINT_DEFAULT                   = 0;
 
 enum XMLNodeType
 {
-   XNT_DOCUMENT = 0,    ///< 文件类型，没有名字和值
-   XNT_ELEMENT,         ///< 元素类型，有名字和值（有属性）
-   XNT_DATA,            ///< DATA类型，没有名字，有值
-   XNT_CDATA,           ///< CDATA类型，没有名字，有值
-   XNT_COMMENT,         ///< 注释类型，没有名字，有注释内容
-   XNT_DECLARATION,     ///< 声明类型，没有名字，有属性（版本，编码类型等）
-   XNT_DOCTYPE,         ///< DOCTYPE类型，没有名字，有DOCTYPE内容
-   XNT_PI,              ///< Processing instruction 执行说明
+   XNT_DOCUMENT = 0,
+   XNT_ELEMENT,
+   XNT_DATA,
+   XNT_CDATA,
+   XNT_COMMENT,
+   XNT_DECLARATION,
+   XNT_DOCTYPE,
+   XNT_PI,
 };
 
-typedef void* ( alloc )( std::size_t size );
-typedef void  ( free )( void* ptr );
-
-enum SkipIndex
+enum XMLSkipType
 {
-   ESI_WhiteSpace = 0,
-   ESI_NodeName,
-   ESI_Text,
-   ESI_Text_NONE_WS,
-   ESI_Text_WS,
-   ESI_AttributeName,
-   ESI_SingleQuote,
-   ESI_PureSingleQuote,
-   ESI_DoubleQuote,
-   ESI_PureDoubleQuote
+   WHITE_SPACE = 0,
+   NODE_NAME,
+   TEXT,
+   TEXT_NONE_WS,
+   TEXT_WITH_WS,
+   ATTRI_NAME,
+   SINGLE_QUOTE,
+   PURE_SINGLE_QUOTE,
+   DOUBLE_QUOTE,
+   PURE_DOUBLE_QUOTE
 };
 
-struct XMLLookupTable
+struct XML
 {
-   static const unsigned char XMT_Whitespace[256];
-   static const unsigned char XMT_Node_Name[256];
-   static const unsigned char XMT_Text[256];
-   static const unsigned char XMT_Text_With_Whitespace[256];
-   static const unsigned char XMT_Text_Without_Whitespace[256];
-   static const unsigned char XMT_Attribute_Name[256];
-   static const unsigned char XMT_Attribute_Data_1[256];
-   static const unsigned char XMT_Attribute_Data_1_Pure[256];
-   static const unsigned char XMT_Attribute_Data_2[256];
-   static const unsigned char XMT_Attribute_Data_2_Pure[256];
-   static const unsigned char XMT_Digits[256];
+   static const unsigned char DIGITAL[256];
 };
 
 class IXMLNode;
@@ -105,21 +92,21 @@ public:
 
    virtual ~XMLBase();
 
-   void setName( const char* name, const std::size_t len );
+   void SetName( const char* name, const std::size_t len );
 
-   const char* getName() const;
+   const char* GetName() const;
 
-   const std::size_t getNameSize() const;
+   const std::size_t GetNameSize() const;
 
-   void setValue( const char* value, const std::size_t len );
+   void SetValue( const char* value, const std::size_t len );
 
-   const char* getValue() const;
+   const char* GetValue() const;
 
-   const std::size_t getValueSize() const;
+   const std::size_t GetValueSize() const;
 
-   void setParent( IXMLNode* node );
+   void SetParent( IXMLNode* node );
 
-   IXMLNode* getParent() const;
+   IXMLNode* GetParent() const;
 
 protected:
    char*       _name;

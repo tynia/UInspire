@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -32,15 +32,15 @@ public:
    XMLAttribute( const char* name, const char* value );
    ~XMLAttribute();
 
-   virtual IXMLDocument* getDocument() const;
+   virtual IXMLDocument* GetDocument() const;
 
-   virtual void append( IXMLAttribute* attri );
+   virtual void Append( IXMLAttribute* attri );
 
-   virtual IXMLAttribute* nextAttribute( const char* name = NULL ) const;
-   virtual IXMLAttribute* prevAttribute( const char* name = NULL ) const;
+   virtual IXMLAttribute* NextAttribute( const char* name = NULL ) const;
+   virtual IXMLAttribute* PrevAttribute( const char* name = NULL ) const;
 
-   virtual void linkToNext( IXMLAttribute* attri );
-   virtual void linkToPrev( IXMLAttribute* attri );
+   virtual void LinkToNext( IXMLAttribute* attri );
+   virtual void LinkToPrev( IXMLAttribute* attri );
 
 private:
    IXMLAttribute*   _prev;

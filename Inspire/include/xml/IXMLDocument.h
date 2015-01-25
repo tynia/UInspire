@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -29,17 +29,17 @@ class INSPIRE_EXPORT_API IXMLDocument : virtual public IXMLNode
 public:
    virtual ~IXMLDocument() {}
 
-   virtual const char* getFileName() const = 0;
+   virtual const char* GetFileName() const = 0;
 
-   virtual bool load( const char* filename ) = 0;
+   virtual bool LoadXML( const char* filename ) = 0;
 
-   virtual bool save() = 0;
+   virtual bool SaveXML() = 0;
 
-   virtual IXMLNode* allocNode( XMLNodeType nt, const char* name = NULL, const char* value = NULL ) = 0;
+   virtual IXMLNode* AllocNode( XMLNodeType nt, const char* name = NULL, const char* value = NULL ) = 0;
 
-   virtual IXMLAttribute* allocAttribute( const char* name = NULL, const char* value = NULL ) = 0;
+   virtual IXMLAttribute* AllocAttribute( const char* name = NULL, const char* value = NULL ) = 0;
 
-   virtual char* allocString( const char* str ) = 0;
+   virtual char* AllocString( const char* str ) = 0;
 };
 }
 #endif

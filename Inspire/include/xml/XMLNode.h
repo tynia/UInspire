@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -22,6 +22,7 @@
 #include "IXMLNode.h"
 
 namespace inspire {
+
 class IXMLDocument;
 class IXMLAttribute;
 enum XMLNodeType;
@@ -33,41 +34,41 @@ public:
    XMLNode( XMLNodeType nt, const char* name, const char* value );
    virtual ~XMLNode();
 
-   virtual const XMLNodeType getType() const
+   virtual const XMLNodeType GetType() const
    {
       return _type;
    }
 
-   virtual IXMLDocument* getDocument() const;
+   virtual IXMLDocument* GetDocument() const;
 
-   virtual const std::size_t getChildNum() const;
+   virtual const std::size_t GetChildNum() const;
 
-   virtual IXMLNode* clone();
+   virtual IXMLNode* Clone();
 
-   virtual IXMLNode* clone( IXMLNode* node );
+   virtual IXMLNode* Clone( IXMLNode* node );
 
-   virtual IXMLNode* firstChild( const char* name = NULL );
-   virtual IXMLNode* nextSibling( const char* name = NULL );
-   virtual void appendChild( IXMLNode* child );
-   virtual void insertChild( IXMLNode* wh, IXMLNode* child, bool behind = true );
-   virtual void removeChild( IXMLNode* wh );
-   virtual void removeAllChild();
+   virtual IXMLNode* FirstChild( const char* name = NULL );
+   virtual IXMLNode* NextSibling( const char* name = NULL );
+   virtual void AppendChild( IXMLNode* child );
+   virtual void InsertChild( IXMLNode* wh, IXMLNode* child, bool behind = true );
+   virtual void RemoveChild( IXMLNode* wh );
+   virtual void RemoveAllChild();
 
-   virtual IXMLNode* prevNode() const;
-   virtual IXMLNode* nextNode() const;
+   virtual IXMLNode* PrevNode() const;
+   virtual IXMLNode* NextNode() const;
 
-   virtual void setAttribute( const char* name, const char* value );
-   virtual IXMLAttribute* firstAttribute( const char* name = NULL );
-   virtual IXMLAttribute* getAttribute( const char* name );
-   virtual const char* getAttributeValue( const char* name );
-   virtual void appendAttribute( IXMLAttribute* attri );
-   virtual void insertAttribute( IXMLAttribute* wh, IXMLAttribute* attri, bool behind = true );
-   virtual void removeAttribute( IXMLAttribute* wh );
-   virtual void removeAllAttribute();
+   virtual void SetAttribute( const char* name, const char* value );
+   virtual IXMLAttribute* FirstAttribute( const char* name = NULL );
+   virtual IXMLAttribute* GetAttribute( const char* name );
+   virtual const char* GetAttributeValue( const char* name );
+   virtual void AppendAttribute( IXMLAttribute* attri );
+   virtual void InsertAttribute( IXMLAttribute* wh, IXMLAttribute* attri, bool behind = true );
+   virtual void RemoveAttribute( IXMLAttribute* wh );
+   virtual void RemoveAllAttribute();
 
 protected:
-   virtual void linkToPrev( IXMLNode* next_node );
-   virtual void linkToNext( IXMLNode* prev_node );
+   virtual void LinkToPrev( IXMLNode* node );
+   virtual void LinkToNext( IXMLNode* node );
 
 private:
    XMLNode( const IXMLNode& node );

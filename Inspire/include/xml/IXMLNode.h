@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Copyright (C) 2014 tynia.
+   Copyright (C) 2015 tynia.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License, version 3,
@@ -30,51 +30,51 @@ public:
 
    virtual ~IXMLNode() {}
 
-   virtual const XMLNodeType getType() const = 0;
+   virtual const XMLNodeType GetType() const = 0;
 
-   virtual IXMLDocument* getDocument() const = 0;
+   virtual IXMLDocument* GetDocument() const = 0;
 
-   virtual IXMLNode* firstChild( const char* name = NULL ) = 0;
+   virtual IXMLNode* FirstChild( const char* name = NULL ) = 0;
 
-   virtual IXMLNode* nextSibling( const char* name = NULL ) = 0;
+   virtual IXMLNode* NextSibling( const char* name = NULL ) = 0;
 
-   virtual const std::size_t getChildNum() const = 0;
+   virtual const std::size_t GetChildNum() const = 0;
 
-   virtual IXMLNode* clone() = 0;
+   virtual IXMLNode* Clone() = 0;
 
-   virtual IXMLNode* clone( IXMLNode* node ) = 0;
+   virtual IXMLNode* Clone( IXMLNode* node ) = 0;
 
-   virtual void appendChild( IXMLNode* child ) = 0;
+   virtual void AppendChild( IXMLNode* child ) = 0;
 
-   virtual void insertChild( IXMLNode* wh, IXMLNode* child, bool behind = true ) = 0;
+   virtual void InsertChild( IXMLNode* wh, IXMLNode* child, bool behind = true ) = 0;
 
-   virtual void removeChild( IXMLNode* wh ) = 0;
+   virtual void RemoveChild( IXMLNode* wh ) = 0;
 
-   virtual void removeAllChild() = 0;
+   virtual void RemoveAllChild() = 0;
 
-   virtual IXMLNode* prevNode() const = 0;
+   virtual IXMLNode* PrevNode() const = 0;
 
-   virtual IXMLNode* nextNode() const = 0;
+   virtual IXMLNode* NextNode() const = 0;
 
-   virtual void linkToPrev( IXMLNode* next ) = 0;
+   virtual void LinkToPrev( IXMLNode* next ) = 0;
 
-   virtual void linkToNext( IXMLNode* prev ) = 0;
+   virtual void LinkToNext( IXMLNode* prev ) = 0;
 
-   virtual void setAttribute( const char* name, const char* value ) = 0;
+   virtual void SetAttribute( const char* name, const char* value ) = 0;
 
-   virtual IXMLAttribute* firstAttribute( const char* name = NULL ) = 0;
+   virtual IXMLAttribute* FirstAttribute( const char* name = NULL ) = 0;
 
-   virtual IXMLAttribute* getAttribute( const char* name ) = 0;
+   virtual IXMLAttribute* GetAttribute( const char* name ) = 0;
 
-   virtual const char* getAttributeValue( const char* name ) = 0;
+   virtual const char* GetAttributeValue( const char* name ) = 0;
 
-   virtual void appendAttribute( IXMLAttribute* add_attri ) = 0;
+   virtual void AppendAttribute( IXMLAttribute* add_attri ) = 0;
 
-   virtual void insertAttribute( IXMLAttribute* _Where, IXMLAttribute* add_attri, bool behind = true ) = 0;
+   virtual void InsertAttribute( IXMLAttribute* _Where, IXMLAttribute* add_attri, bool behind = true ) = 0;
 
-   virtual void removeAttribute( IXMLAttribute* _Where ) = 0;
+   virtual void RemoveAttribute( IXMLAttribute* _Where ) = 0;
 
-   virtual void removeAllAttribute() = 0;
+   virtual void RemoveAllAttribute() = 0;
 };
 }
 #endif

@@ -29,6 +29,24 @@ do                                                             \
 } while ( false )
 
 #ifdef _DEBUG
+#define LIGHT_ASSERT( condition )                              \
+do                                                             \
+{                                                              \
+   if ( !condition )                                           \
+   {                                                           \
+      inspire::Panic();                                        \
+   }                                                           \
+} while ( false )
+#else
+#define LIGHT_ASSERT( condition )                              \
+do                                                             \
+{                                                              \
+   if ( condition )                                            \
+   {}                                                          \
+} while ( false )
+#endif
+
+#ifdef _DEBUG
 #define INSPIRE_ASSERT( condition, fmt, ... )                  \
 do                                                             \
 {                                                              \
@@ -44,7 +62,7 @@ do                                                             \
 do                                                             \
 {                                                              \
    if ( !condition )                                           \
-         {}                                                          \
+   {}                                                          \
 } while ( false )
 #endif
 

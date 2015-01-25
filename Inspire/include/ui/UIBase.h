@@ -23,7 +23,7 @@
 class INSPIRE_EXPORT_API CUIBase
 {
 public:
-   CUIBase( const _tchar* wndID, HWND hParentWnd = NULL, bool MultiInstance = false );
+   CUIBase( const _tchar* wndID, HWND hParentWnd = NULL, bool multiInstance = false );
    virtual ~CUIBase();
 
 public:

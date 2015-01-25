@@ -23,8 +23,10 @@
 #include "IUIRender.h"
 #include <XMLDocument.h>
 #include "LogHelper.h"
+#include "../../include/ui/Rect.h"
 
 namespace inspire {
+
 CUIWndManager* CUIWndManager::static_Instance = NULL;
 CUIWndManager::CUIWndManager()
 {
@@ -116,7 +118,7 @@ void CUIWndManager::PopFromMultiInstanceWndContainer( CUIBase* uibase )
 
 void CUIWndManager::AttachWindow( CUIBase* const uibase, const _tchar* wndid, bool multiInstance )
 {
-   LIB_ASSERT( uibase );
+   INSPIRE_ASSERT( uibase, "base wnd should not be NULL" );
 
    if ( multiInstance )
    {
@@ -556,7 +558,7 @@ LRESULT CALLBACK CUIWndManager::__WindowProcess( HWND hWnd, UINT uMsg, WPARAM wP
    case WM_PAINT :
       {
          inspire::IUIWnd* wnd = static_Instance->GetUIBase( hWnd )->GetMainWnd();
-         LIB_ASSERT( wnd );
+         INSPIRE_ASSERT( wnd, "Failed too get main wnd" );
          static_Instance->Draw( hWnd, wnd );
 #ifdef _DEBUG
          //todo: 打印debug信息，坐标窗口 ID等
@@ -571,7 +573,7 @@ LRESULT CALLBACK CUIWndManager::__WindowProcess( HWND hWnd, UINT uMsg, WPARAM wP
 
 void CUIWndManager::Draw( const HWND& hWnd, inspire::IUIWnd* wnd )
 {
-   SYSTEM_ASSERT( _UIRender );
+   INSPIRE_ASSERT(_UIRender, "Render is NULL");
 
    _UIRender->BeginDraw( hWnd );
    wnd->Draw();

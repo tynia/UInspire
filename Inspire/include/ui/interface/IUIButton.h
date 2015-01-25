@@ -40,5 +40,6 @@ public:
    ///< callback
    virtual IInvoker* SetPressFunc( IInvoker* oper ) = 0;
 };
+
 }
 #endif

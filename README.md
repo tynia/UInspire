@@ -4,6 +4,8 @@
 
 **Inspire** aims at building ui layout for win32 applications easily.
 
+Inspire aims at building ui layout for win32 applications easily.
+
 When you build a project with Inspire, and you can use a button like:
 
 ```

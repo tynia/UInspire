@@ -87,7 +87,7 @@ inline void InitControl( TObj* obj, TWnd*& wnd, inspire::IUIWnd* parentWnd,
 template<class TObj, class TWnd, class TAttacher>
 inline void DECLARE_MESSAGE_HANDLER( TObj* obj, TWnd* wnd, TAttacher* attacher )
 {
-   scoped_ptr<TAttacher> sp( attacher );
+   //scoped_ptr<TAttacher> sp( attacher );
    attacher->AttachInvoker( obj, wnd );
    attacher->Release();
 }

@@ -7,13 +7,10 @@
 When you build a project with Inspire, and you can use a button like:
 
 ```
-// init button and set callback when button clicked
-InitControl( this, m_btnOK, L"btnOK", SetPressFunc(&CUIMessageBox::OnBtnOK) ) ;
-INSPIRE_ASSERT( m_btnOK, L"Cannot find button: %s", L"btnOK" ) ;
-// let button can be click
-m_btnOK->Enable() ;
-// let button hide
-m_btnOK->ShowWindow( false ) ;
+InitControl( this, m_btnOK, L"btnOK", SetPressFunc(&CUIMessageBox::OnBtnOK) ) ; // init and set callback when button clicked
+INSPIRE_ASSERT( m_btnOK, L"Cannot find button: %s", L"btnOK" ) ; // make sure button named "btnOK" is existed.
+m_btnOK->Enable() ; // let button can be click
+m_btnOK->ShowWindow( false ) ; // let button hide
 ```
 
 Inpsire comes with some modules:

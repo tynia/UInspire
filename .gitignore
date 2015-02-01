@@ -3,11 +3,8 @@
 *.lo
 *.o
 *.obj
-<<<<<<< HEAD
-=======
 *.sdf
-*.pdb
->>>>>>> d48d27d005e4d5f1973330fadee4fd7d2c1f0cd7
+*.opensdf
 
 # Precompiled Headers
 *.gch

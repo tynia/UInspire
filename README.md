@@ -21,10 +21,11 @@ m_btnOK->ShowWindow( false ) ;
 
 Inpsire comes with some modules:
 
-* **Log** module : with serveral levels: fatal, error, debug, info... is may not thread safety.
-* **XML** module : which is inspired by rapidxml, and I abstracted interfaces like IXMLDocument, IXMLElement, IXMLNode...and so on.
-* **Util** module: includes memory pool, free list, char converter...
-* **Conrols** module : StaticText, CheckBox, ComboBox, Button, EditBox...etc.
+* **Log**   module : with serveral levels: fatal, error, debug, info... is may not thread safety.
+* **XML**   module : which is inspired by rapidxml, and I abstracted interfaces like IXMLDocument, IXMLElement,
+            IXMLNode...and so on.
+* **Util**  module: includes memory pool, free list, char converter...
+* **Controls**  module : StaticText, CheckBox, ComboBox, Button, EditBox...etc.
 
 A series of components will be supported when it finished, such as Inspire libaray, UIDesigner...etc.
 

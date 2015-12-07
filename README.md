@@ -30,3 +30,4 @@ Inpsire comes with some modules:
 A series of components will be supported when it finished, such as Inspire libaray, UIDesigner...etc.
 
 Welcome to fork and improve **Inspire**.
+Thanks

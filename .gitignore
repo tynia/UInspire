@@ -4,6 +4,8 @@
 *.o
 *.obj
 *.sdf
+
+# Project
 *.opensdf
 
 # Precompiled Headers

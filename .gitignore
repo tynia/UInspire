@@ -3,10 +3,10 @@
 *.lo
 *.o
 *.obj
-*.sdf
 
 # Project
 *.opensdf
+*.sdf
 
 # Precompiled Headers
 *.gch

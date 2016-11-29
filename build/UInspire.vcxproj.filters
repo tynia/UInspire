@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="doc">
+      <UniqueIdentifier>{da7dac89-57b3-4f64-a5ce-6ed21a385d90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="build">
+      <UniqueIdentifier>{cbd3dd51-2a46-40d3-9656-2347fc2446bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code">
+      <UniqueIdentifier>{20afdbd1-7525-4905-8d13-7c06ac7d7d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\include">
+      <UniqueIdentifier>{e0013586-4c6b-4d37-940e-75f4fced7aee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\util">
+      <UniqueIdentifier>{d5310148-efa1-483c-9261-db075d447a00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\thirdparty">
+      <UniqueIdentifier>{cdd9bcdb-1384-4386-a3b6-57389e047896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\interface">
+      <UniqueIdentifier>{f50a7c94-5679-4b39-a297-6dee3792914a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\code\interface\IUIWnd.h">
+      <Filter>code\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\interface\CPoint.h">
+      <Filter>code\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\interface\import.h">
+      <Filter>code\interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

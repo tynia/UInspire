@@ -5,6 +5,7 @@
 *.obj
 
 # Project
+*.db
 *.opensdf
 *.sdf
 

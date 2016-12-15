@@ -1,7 +1,9 @@
-#ifndef _UI_INTERFACE_WND_H_
-#define _UI_INTERFACE_WND_H_
+#ifndef _UI_INSPIRE_INTERFACE_WND_H_
+#define _UI_INSPIRE_INTERFACE_WND_H_
 
-#include "import.h"
+#include "definition.h"
+#include "XPoint.h"
+#include "XRect.h"
 
 namespace inspire {
 
@@ -48,15 +50,21 @@ namespace inspire {
 
         virtual void Draw() = 0;
 
-        virtual void SetTooltips(const char* caption) = 0;
+        virtual void SetTooltips(const char* tips) = 0;
+
+        virtual IUIWnd* GetParentWnd() = 0;
 
         virtual void SetPosition(int x, int y) = 0;
 
-        virtual const CPoint& GetPosition() const = 0;
+        virtual const XPoint& GetPosition() const = 0;
 
-        virtual void SetRect(const CRect& rect) = 0;
+        virtual const XPoint& GetAbsolutePosition() const = 0;
 
-        virtual const CRect& GetRection() const = 0;
+        virtual void SetRect(const XRect& rect) = 0;
+
+        virtual const XRect& GetRect() const = 0;
+
+        virtual bool PointInWnd(const XPoint& pt) = 0;
 
         // resource
         virtual void SetResourceID(const char* id) = 0;

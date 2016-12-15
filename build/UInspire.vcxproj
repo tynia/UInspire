@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\common\logger\logger.h" />
+    <ClInclude Include="..\source\include\assert.h" />
+    <ClInclude Include="..\source\include\coordinates.h" />
+    <ClInclude Include="..\source\include\WndData.h" />
+    <ClInclude Include="..\source\interface\definition.h" />
+    <ClInclude Include="..\source\interface\inspire.h" />
+    <ClInclude Include="..\source\interface\ui\IUIWnd.h" />
+    <ClInclude Include="..\source\interface\ui\XPoint.h" />
+    <ClInclude Include="..\source\interface\ui\XRect.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\impl\coordinates.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2E2AE3F4-0F04-47C1-8CBD-43637CE88BB6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -73,6 +87,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)\..\bin</OutDir>
     <IntDir>$(SolutionDir)\..\debug</IntDir>
+    <IncludePath>$(ProjectDir)\..\source;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -147,11 +162,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\code\interface\CPoint.h" />
-    <ClInclude Include="..\code\interface\IUIWnd.h" />
-    <ClInclude Include="..\code\interface\import.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

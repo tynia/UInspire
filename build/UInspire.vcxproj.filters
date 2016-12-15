@@ -7,31 +7,72 @@
     <Filter Include="build">
       <UniqueIdentifier>{cbd3dd51-2a46-40d3-9656-2347fc2446bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="code">
+    <Filter Include="source">
       <UniqueIdentifier>{20afdbd1-7525-4905-8d13-7c06ac7d7d1a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="code\include">
+    <Filter Include="source\include">
       <UniqueIdentifier>{e0013586-4c6b-4d37-940e-75f4fced7aee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="code\util">
+    <Filter Include="source\util">
       <UniqueIdentifier>{d5310148-efa1-483c-9261-db075d447a00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="code\thirdparty">
+    <Filter Include="source\thirdparty">
       <UniqueIdentifier>{cdd9bcdb-1384-4386-a3b6-57389e047896}</UniqueIdentifier>
     </Filter>
-    <Filter Include="code\interface">
+    <Filter Include="source\interface">
       <UniqueIdentifier>{f50a7c94-5679-4b39-a297-6dee3792914a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\impl">
+      <UniqueIdentifier>{41e95002-b224-4afe-af1d-866e2fa111a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\common">
+      <UniqueIdentifier>{dca1d522-d4fc-4a2d-b1ff-f846b0a3c081}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\interface\ui">
+      <UniqueIdentifier>{494a3bb8-f01f-454e-aca3-3bbcf2bada81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\interface\ui\control">
+      <UniqueIdentifier>{e448fece-75bf-441a-93c1-ac4f033e7e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\common\logger">
+      <UniqueIdentifier>{0cc8758c-19d8-46db-b26e-5b831cdd1c1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\common\logger\impl">
+      <UniqueIdentifier>{5de2f031-5abb-4311-a7c9-ef4bdc6c65c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\code\interface\IUIWnd.h">
-      <Filter>code\interface</Filter>
+    <ClInclude Include="..\source\interface\inspire.h">
+      <Filter>source\interface</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\interface\CPoint.h">
-      <Filter>code\interface</Filter>
+    <ClInclude Include="..\source\include\WndData.h">
+      <Filter>source\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\interface\import.h">
-      <Filter>code\interface</Filter>
+    <ClInclude Include="..\source\interface\definition.h">
+      <Filter>source\interface</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\include\coordinates.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\include\assert.h">
+      <Filter>source\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\interface\ui\IUIWnd.h">
+      <Filter>source\interface\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\interface\ui\XPoint.h">
+      <Filter>source\interface\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\interface\ui\XRect.h">
+      <Filter>source\interface\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\common\logger\logger.h">
+      <Filter>source\common\logger</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\impl\coordinates.cpp">
+      <Filter>source\impl</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

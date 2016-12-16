@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\source\common\CharConverter.h" />
+    <ClInclude Include="..\source\common\logger\impl\trace.h" />
+    <ClInclude Include="..\source\common\logger\impl\tracer.h" />
     <ClInclude Include="..\source\common\logger\logger.h" />
+    <ClInclude Include="..\source\common\util.h" />
     <ClInclude Include="..\source\include\assert.h" />
     <ClInclude Include="..\source\include\coordinates.h" />
     <ClInclude Include="..\source\include\WndData.h" />
@@ -30,6 +34,7 @@
     <ClInclude Include="..\source\interface\ui\XRect.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\source\common\logger\impl\tracer.cpp" />
     <ClCompile Include="..\source\impl\coordinates.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

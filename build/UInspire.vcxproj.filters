@@ -69,10 +69,25 @@
     <ClInclude Include="..\source\common\logger\logger.h">
       <Filter>source\common\logger</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\common\CharConverter.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\common\util.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\common\logger\impl\tracer.h">
+      <Filter>source\common\logger\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\common\logger\impl\trace.h">
+      <Filter>source\common\logger\impl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\impl\coordinates.cpp">
       <Filter>source\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\common\logger\impl\tracer.cpp">
+      <Filter>source\common\logger\impl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

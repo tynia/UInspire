@@ -8,13 +8,6 @@
 
 #define LOG_BUFFER_SIZE 4096
 
-enum {
-    PRIO_FATAL   = -1,
-    PRIO_ERROR   = 100,
-    PRIO_WARNING = 200,
-    PRIO_INFO    = 300,
-    PRIO_DEBUG   = 400
-};
 
 const char* strType[] = {
     "Fatal",

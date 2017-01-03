@@ -1,6 +1,9 @@
 #ifndef _INSPIRE_LOG_TRACER_H_
 #define _INSPIRE_LOG_TRACER_H_
 
+#define LOG_BUFFER_SIZE 4096
+#define LOG_FILE_NAME_SIZE 256
+
 namespace inspire {
 
     enum {
@@ -25,12 +28,14 @@ namespace inspire {
 #endif
         virtual void WriteLog(const int priority, const char* data);
 
+        virtual void ConsoleOut(const char* fmt, ...);
+
     protected:
         Tracer(const int priority);
         virtual ~Tracer() {}
 
     protected:
-        const char* _switch();
+        const char* _gen();
 
     private:
         Tracer(const Tracer& rhs);
@@ -39,6 +44,7 @@ namespace inspire {
     private:
         int  _priority;
         unsigned long long _timestamp;
+        char* _filename;
     };
 }
 

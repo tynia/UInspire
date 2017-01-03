@@ -6,12 +6,14 @@
 
 namespace inspire {
 
+#ifdef _DEBUG
     inline void Panic()
     {
         __asm int 3;
     }
+#endif
 
-    inline size_t Snprintf(char* buffer, size_t bufferLen, const char* fmt, ...)
+    inline size_t __snprintf(char* buffer, size_t bufferLen, const char* fmt, ...)
     {
         va_list ap;
         size_t n;

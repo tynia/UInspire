@@ -10,6 +10,12 @@ do                                                             \
           __LINE__, fmt, ##__VA_ARGS__ ) ;                     \
 } while ( false )
 
+#define __CONSOLE_OUT( fmt, ... )                              \
+do                                                             \
+{                                                              \
+    console( fmt, ##__VA_ARGS__ );                             \
+} while ( false )
+
 #define LogFatal( fmt, ... )                                   \
    __LOG_WRAPPER( PRIO_FATAL, fmt, ##__VA_ARGS__ )
 
@@ -25,4 +31,6 @@ do                                                             \
 #define LogDebug( fmt, ... )                                   \
    __LOG_WRAPPER( PRIO_DEBUG, fmt, ##__VA_ARGS__ )
 
+#define Console( fmt, ... )                                    \
+   __CONSOLE_OUT( fmt, ##__VA_ARGS__)
 #endif

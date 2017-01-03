@@ -6,9 +6,6 @@
 #include "tracer.h"
 #include "common/util.h"
 
-#define LOG_BUFFER_SIZE 4096
-
-
 const char* strType[] = {
     "Fatal",
     "Error",
@@ -49,19 +46,28 @@ inline void trace(int priority, const char* func, const char* file, const unsign
     struct tm otm;
     time_t tt = time(NULL);
     ::localtime_s(&otm, &tt);
-    char userInfo[LOG_BUFFER_SIZE] = { 0 };
+    char info[LOG_BUFFER_SIZE] = { 0 };
     va_list ap;
     va_start(ap, fmt);
-    vsnprintf(userInfo, LOG_BUFFER_SIZE, fmt, ap);
+    vsnprintf(info, LOG_BUFFER_SIZE, fmt, ap);
     va_end(ap);
 
     char buffer[LOG_BUFFER_SIZE] = { 0 };
-    inspire::Snprintf(buffer, LOG_BUFFER_SIZE, logFmt,
+    inspire::__snprintf(buffer, LOG_BUFFER_SIZE, logFmt,
         otm.tm_year + 1900, otm.tm_mon + 1, otm.tm_mday,
         otm.tm_hour, otm.tm_min, otm.tm_sec, toString(priority),
         ::GetCurrentProcessId(), ::GetCurrentThreadId(),
-        func, line, file, userInfo);
+        func, line, file, info);
     inspire::Tracer::instance()->WriteLog(priority, buffer);
+}
+
+inline void console(const char* fmt, ...)
+{
+
+    char info[LOG_BUFFER_SIZE] = { 0 };
+    va_list ap;
+    va_start(ap, fmt);
+    inspire::Tracer::instance()->ConsoleOut(fmt, ap);
 }
 
 #endif

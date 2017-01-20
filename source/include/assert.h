@@ -47,5 +47,3 @@ do                                                             \
    __LOG_WRAPPER( inspire::PRIO_INFO, fmt, ##__VA_ARGS__ )
 
 #endif
-
-#endif

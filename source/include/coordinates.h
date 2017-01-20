@@ -1,9 +1,9 @@
 #ifndef _UI_INSPIRE_COORDINATES_H_
 #define _UI_INSPIRE_COORDINATES_H_
 
-#include "interface/XPoint.h"
-#include "interface/XRect.h"
-#include "interface/IUIWnd.h"
+#include "interface/ui/XPoint.h"
+#include "interface/ui/XRect.h"
+#include "interface/ui/IUIWnd.h"
 
 namespace inspire {
 

@@ -1,7 +1,7 @@
 #ifndef _UI_INSPIRE_INTERFACE_WND_H_
 #define _UI_INSPIRE_INTERFACE_WND_H_
 
-#include "definition.h"
+#include "interface/definition.h"
 #include "XPoint.h"
 #include "XRect.h"
 
@@ -46,6 +46,10 @@ namespace inspire {
 
         virtual void Hide() = 0;
 
+        virtual void OnShow() = 0;
+
+        virtual void OnHide() = 0;
+
         virtual bool IsShow() const = 0;
 
         virtual void Draw() = 0;
@@ -64,7 +68,7 @@ namespace inspire {
 
         virtual const XRect& GetRect() const = 0;
 
-        virtual bool PointInWnd(const XPoint& pt) = 0;
+        virtual bool PointInWnd(const XPoint& pt) const = 0;
 
         // resource
         virtual void SetResourceID(const char* id) = 0;
